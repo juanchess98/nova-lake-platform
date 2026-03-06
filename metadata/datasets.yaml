@@ -1,0 +1,103 @@
+version: 1
+owner: novalake-platform
+module: lakehouse-foundation
+
+entities:
+  customers:
+    description: Master customer profile data from the operational e-commerce system.
+    source_layer: raw
+    file_path: data/raw/customers.csv
+    primary_key: customer_id
+    columns:
+      - name: customer_id
+        type: long
+        nullable: false
+      - name: full_name
+        type: string
+        nullable: false
+      - name: email
+        type: string
+        nullable: false
+      - name: country_code
+        type: string
+        nullable: false
+      - name: signup_date
+        type: date
+        nullable: false
+
+  products:
+    description: Product catalog with list price and category.
+    source_layer: raw
+    file_path: data/raw/products.csv
+    primary_key: product_id
+    columns:
+      - name: product_id
+        type: long
+        nullable: false
+      - name: product_name
+        type: string
+        nullable: false
+      - name: category
+        type: string
+        nullable: false
+      - name: list_price
+        type: decimal(12,2)
+        nullable: false
+
+  orders:
+    description: Customer order headers with payment and status details.
+    source_layer: raw
+    file_path: data/raw/orders.csv
+    primary_key: order_id
+    foreign_keys:
+      - customer_id -> customers.customer_id
+    columns:
+      - name: order_id
+        type: long
+        nullable: false
+      - name: customer_id
+        type: long
+        nullable: false
+      - name: order_timestamp
+        type: timestamp
+        nullable: false
+      - name: status
+        type: string
+        nullable: false
+      - name: currency
+        type: string
+        nullable: false
+      - name: total_amount
+        type: decimal(12,2)
+        nullable: false
+      - name: payment_method
+        type: string
+        nullable: false
+
+  order_items:
+    description: Line-level breakdown per order.
+    source_layer: raw
+    file_path: data/raw/order_items.csv
+    primary_key: order_item_id
+    foreign_keys:
+      - order_id -> orders.order_id
+      - product_id -> products.product_id
+    columns:
+      - name: order_item_id
+        type: long
+        nullable: false
+      - name: order_id
+        type: long
+        nullable: false
+      - name: product_id
+        type: long
+        nullable: false
+      - name: quantity
+        type: int
+        nullable: false
+      - name: unit_price
+        type: decimal(12,2)
+        nullable: false
+      - name: line_amount
+        type: decimal(12,2)
+        nullable: false

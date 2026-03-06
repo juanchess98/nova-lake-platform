@@ -1,0 +1,7 @@
+customer_id,full_name,email,country_code,signup_date
+1001,Ana Gomez,ana.gomez@example.com,CO,2024-07-10
+1002,Liam Carter,liam.carter@example.com,US,2024-08-03
+1003,Valentina Ruiz,valentina.ruiz@example.com,MX,2024-09-21
+1004,Noah Miller,noah.miller@example.com,US,2024-10-16
+1005,Sofia Herrera,sofia.herrera@example.com,CO,2024-11-02
+1006,Emma Scott,emma.scott@example.com,CA,2024-12-05

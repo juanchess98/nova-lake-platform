@@ -1,0 +1,9 @@
+order_id,customer_id,order_timestamp,status,currency,total_amount,payment_method
+5001,1001,2026-01-03 09:15:00,paid,USD,1477.00,credit_card
+5002,1002,2026-01-03 11:42:00,shipped,USD,938.00,paypal
+5003,1003,2026-01-04 14:10:00,completed,USD,498.00,debit_card
+5004,1004,2026-01-04 18:05:00,paid,USD,345.00,credit_card
+5005,1005,2026-01-05 10:28:00,refunded,USD,2128.00,credit_card
+5006,1006,2026-01-05 16:52:00,paid,USD,140.00,apple_pay
+5007,1002,2026-01-06 08:40:00,cancelled,USD,0.00,paypal
+5008,1001,2026-01-06 13:17:00,shipped,USD,338.00,credit_card
