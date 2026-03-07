@@ -82,6 +82,14 @@ nova-lake-platform/
 
 ## Run Locally
 
+Before starting services, create local env file:
+
+```bash
+cp .env.example .env
+```
+
+(`.env` is gitignored and should never be committed.)
+
 ### PowerShell (recommended on Windows)
 
 ```powershell
