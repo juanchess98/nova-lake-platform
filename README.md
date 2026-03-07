@@ -132,6 +132,8 @@ Stop services:
 ./scripts/run_job.sh down
 ```
 
+(`down` removes orphans and also tears down `lab` profile resources to avoid "network is still in use".)
+
 ### Optional Notebook Lab
 
 PowerShell:
@@ -219,6 +221,8 @@ MSYS_NO_PATHCONV=1 docker compose -f infra/docker-compose.yml exec spark-master 
   - Action: use `scripts/sql_shell.*` (already sets `spark.sql.catalogImplementation=in-memory`) and avoid multiple concurrent `spark-sql` sessions.
 - Notebook cannot connect to Spark catalog:
   - Ensure core services are up, lab image was rebuilt (`run_lab ... up`), and notebook uses the **PySpark (NovaLake)** kernel.
+- `POSTGRES_* variable is not set` warnings:
+  - Compose now has safe local defaults and also reads `.env` if present.
 
 ## Lab Health Check
 

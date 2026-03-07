@@ -8,7 +8,8 @@ up:
 	$(COMPOSE) up -d --build
 
 down:
-	$(COMPOSE) down
+	$(COMPOSE) --profile lab down --remove-orphans || true
+	$(COMPOSE) down --remove-orphans
 
 build:
 	$(COMPOSE) build spark-master

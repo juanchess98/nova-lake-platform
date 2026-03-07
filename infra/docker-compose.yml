@@ -5,9 +5,9 @@ services:
     env_file:
       - ../.env
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER:-novalake}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-novalake_local_password}
+      POSTGRES_DB: ${POSTGRES_DB:-novalake_ops}
     ports:
       - "5432:5432"
     volumes:

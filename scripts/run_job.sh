@@ -25,7 +25,8 @@ case "$1" in
     run_compose up -d --build
     ;;
   down)
-    run_compose down
+    run_compose --profile lab down --remove-orphans || true
+    run_compose down --remove-orphans
     ;;
   bronze)
     run_compose exec spark-master /bin/bash -lc "$SPARK_SUBMIT /opt/novalake/ingestion/batch/load_orders_to_bronze.py"

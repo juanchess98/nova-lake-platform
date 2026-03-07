@@ -21,7 +21,10 @@ function Invoke-Compose {
 switch ($Step) {
     "build" { Invoke-Compose -Args @("build", "spark-master") }
     "up" { Invoke-Compose -Args @("up", "-d", "--build") }
-    "down" { Invoke-Compose -Args @("down") }
+    "down" {
+        docker compose -f infra/docker-compose.yml --profile lab down --remove-orphans | Out-Null
+        Invoke-Compose -Args @("down", "--remove-orphans")
+    }
     "bronze" { Invoke-Compose -Args (@("exec", "spark-master") + $submitBase + @("/opt/novalake/ingestion/batch/load_orders_to_bronze.py")) }
     "silver" { Invoke-Compose -Args (@("exec", "spark-master") + $submitBase + @("/opt/novalake/transformations/bronze_to_silver/orders_silver.py")) }
     "gold" { Invoke-Compose -Args (@("exec", "spark-master") + $submitBase + @("/opt/novalake/transformations/silver_to_gold/daily_revenue.py")) }
