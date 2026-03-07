@@ -11,6 +11,7 @@ Establish a local, reproducible lakehouse baseline with engineering conventions 
 - Shared runtime configuration for consistency
 - Lightweight quality controls before business aggregation
 - Local-first execution with deterministic sample data
+- Containerized reproducibility with pre-bundled Spark dependencies
 
 ## Logical Layers
 
@@ -33,6 +34,9 @@ Establish a local, reproducible lakehouse baseline with engineering conventions 
 - Shared modules
   - `core/config.py`: platform constants and paths
   - `core/spark.py`: Spark session factory, table identifiers, namespace helpers
+- Container runtime
+  - `infra/spark/Dockerfile`: custom Spark 3.5.1 image with Iceberg runtime JAR bundled
+  - `infra/lab/Dockerfile`: optional JupyterLab interface for exploration
 - Storage
   - Raw files: `data/raw/*.csv`
   - Iceberg warehouse: `data/warehouse`
@@ -43,6 +47,7 @@ Establish a local, reproducible lakehouse baseline with engineering conventions 
 
 - `postgres`: operational system seed for upcoming ingestion modules
 - `spark-master` and `spark-worker`: local processing runtime
+- Spark jobs submit explicitly to `spark://spark-master:7077`
 
 ## Current Data Flow
 
@@ -56,3 +61,5 @@ Establish a local, reproducible lakehouse baseline with engineering conventions 
 - Transformation domain split can add dbt-compatible models in a separate module
 - Shared config/helpers avoid hardcoded paths across jobs
 - ADR workflow (`docs/decisions.md`) preserves architecture rationale as scope expands
+- Notebook experience is isolated behind the compose `lab` profile, keeping exploration and production code separated
+- Stabilization learnings are tracked in `docs/stabilization.md` to document operational maturity

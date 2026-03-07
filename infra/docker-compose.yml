@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   postgres:
     image: postgres:16
@@ -20,11 +18,24 @@ services:
       retries: 5
 
   spark-master:
-    image: bitnami/spark:3.5.1
+    build:
+      context: ..
+      dockerfile: infra/spark/Dockerfile
+    image: novalake/spark-iceberg:3.5.1
     container_name: novalake-spark-master
     environment:
-      SPARK_MODE: master
-      SPARK_MASTER_HOST: spark-master
+      PYTHONPATH: /opt/novalake
+    command:
+      [
+        "/opt/spark/bin/spark-class",
+        "org.apache.spark.deploy.master.Master",
+        "--host",
+        "spark-master",
+        "--port",
+        "7077",
+        "--webui-port",
+        "8080"
+      ]
     ports:
       - "7077:7077"
       - "8080:8080"
@@ -33,15 +44,48 @@ services:
     working_dir: /opt/novalake
 
   spark-worker:
-    image: bitnami/spark:3.5.1
+    image: novalake/spark-iceberg:3.5.1
     container_name: novalake-spark-worker
     depends_on:
       - spark-master
     environment:
-      SPARK_MODE: worker
-      SPARK_MASTER_URL: spark://spark-master:7077
+      PYTHONPATH: /opt/novalake
+    command:
+      [
+        "/opt/spark/bin/spark-class",
+        "org.apache.spark.deploy.worker.Worker",
+        "spark://spark-master:7077",
+        "--webui-port",
+        "8081"
+      ]
     ports:
       - "8081:8081"
+    volumes:
+      - ../:/opt/novalake
+    working_dir: /opt/novalake
+
+  notebook-lab:
+    build:
+      context: ..
+      dockerfile: infra/lab/Dockerfile
+    image: novalake/notebook-lab:3.5.1
+    container_name: novalake-notebook-lab
+    profiles: ["lab"]
+    depends_on:
+      - spark-master
+      - spark-worker
+    environment:
+      PYTHONPATH: /opt/novalake
+      PYSPARK_SUBMIT_ARGS: >-
+        --master spark://spark-master:7077
+        --conf spark.sql.catalogImplementation=in-memory
+        --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
+        --conf spark.sql.catalog.novalake=org.apache.iceberg.spark.SparkCatalog
+        --conf spark.sql.catalog.novalake.type=hadoop
+        --conf spark.sql.catalog.novalake.warehouse=/opt/novalake/data/warehouse
+        pyspark-shell
+    ports:
+      - "8888:8888"
     volumes:
       - ../:/opt/novalake
     working_dir: /opt/novalake

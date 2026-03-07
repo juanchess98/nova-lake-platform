@@ -128,3 +128,66 @@ Start ingestion from local CSV datasets while including PostgreSQL service as ne
 ### Follow-up
 
 Add Postgres incremental ingestion in Module 2, then CDC via Debezium in Module 3.
+
+## ADR-005: Pre-Bundle Iceberg Runtime in Custom Spark Image
+
+- Status: Accepted
+- Date: 2026-03-06
+
+### Context
+
+Using `spark-submit --packages ...` at runtime introduces dependency on external Maven availability and creates environment-specific failures.
+
+### Decision
+
+Build a custom Spark image (`infra/spark/Dockerfile`) that includes the Iceberg runtime JAR ahead of time.
+
+### Alternatives Considered
+
+- Runtime package resolution with `--packages`
+- Manual per-container JAR provisioning
+
+### Consequences
+
+- Positive:
+  - More deterministic local runs
+  - Less command complexity for users
+  - Lower chance of transient dependency-resolution failures
+- Negative:
+  - Adds a build step when updating Spark/Iceberg versions
+
+### Follow-up
+
+Add image-tagging strategy per module/environment when CI/CD is introduced.
+
+## ADR-006: Add Notebook UX as Optional Lab Profile
+
+- Status: Accepted
+- Date: 2026-03-06
+
+### Context
+
+Developers and reviewers need a faster way to explore data and validate outputs without repeating long CLI commands. At the same time, transformation logic must remain production-like and versioned in Python modules.
+
+### Decision
+
+Add an optional JupyterLab service in Docker Compose under profile `lab`, keeping notebooks in `notebooks/` as exploratory interfaces only.
+
+### Alternatives Considered
+
+- No notebook interface (CLI only)
+- Notebook-first pipeline implementation
+
+### Consequences
+
+- Positive:
+  - Better DX for ad-hoc analysis and demos
+  - Stronger portfolio storytelling
+  - Preserves production code discipline in `ingestion/` and `transformations/`
+- Negative:
+  - Additional image/service to maintain
+  - Requires explicit guidance to avoid business logic drift into notebooks
+
+### Follow-up
+
+Introduce notebook quality conventions (naming, output clearing, promotion rules) when notebook count grows.

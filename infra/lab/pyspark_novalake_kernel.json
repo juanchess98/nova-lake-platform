@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "python3",
+    "-m",
+    "ipykernel_launcher",
+    "-f",
+    "{connection_file}"
+  ],
+  "display_name": "PySpark (NovaLake)",
+  "language": "python",
+  "metadata": {
+    "debugger": true
+  },
+  "env": {
+    "PYSPARK_PYTHON": "python3",
+    "PYSPARK_DRIVER_PYTHON": "python3",
+    "PYSPARK_SUBMIT_ARGS": "--master spark://spark-master:7077 --conf spark.sql.catalogImplementation=in-memory --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions --conf spark.sql.catalog.novalake=org.apache.iceberg.spark.SparkCatalog --conf spark.sql.catalog.novalake.type=hadoop --conf spark.sql.catalog.novalake.warehouse=/opt/novalake/data/warehouse pyspark-shell"
+  }
+}
