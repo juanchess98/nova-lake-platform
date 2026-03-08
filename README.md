@@ -1,150 +1,116 @@
 # NovaLake Platform
 
-NovaLake Platform is a portfolio-grade local data platform built to evolve in modules. The current release is **Module 1: Lakehouse Foundation**.
+NovaLake is a modular lakehouse platform that demonstrates how a modern data platform evolves module by module.
 
-## Architecture-First Positioning
+**Current baseline:** Module 1 - Lakehouse Foundation.
 
-Module 1 is intentionally local-first and focused on strong foundations:
+## Module 1 Baseline
 
-- Apache Spark + Apache Iceberg medallion layers (`bronze`, `silver`, `gold`)
-- Shared Python core utilities for configuration and Spark behavior consistency
-- Deterministic batch ingestion from raw CSV data
-- Operational-quality conventions (clean job boundaries, lightweight execution logging, ADRs)
-- PostgreSQL included as the operational source anchor for future ingestion modules
+Module 1 establishes a local-first, production-style baseline with deterministic synthetic commerce data and end-to-end batch pipelines.
 
-Module 1 intentionally does **not** add MinIO, Kafka, Debezium, or dbt yet.
+Implemented in Module 1:
+- Synthetic commerce data generator (`scripts/data_generator/generate_commerce_data.py`)
+- Six operational raw datasets (`customers`, `products`, `orders`, `order_items`, `payments`, `shipments`)
+- Bronze ingestion jobs for all six datasets
+- Silver cleaning/validation jobs with referential integrity checks
+- Gold analytical data products for core business monitoring
+- Spark + Iceberg medallion architecture in a containerized local environment
 
-## Module 1 Scope
+Module 1 intentionally does not include MinIO, Kafka, Debezium, or dbt yet.
 
-- Dockerized local runtime
-- Spark processing with Iceberg tables
-- Batch flow: `orders` raw -> bronze -> silver -> gold
-- Local warehouse storage at `data/warehouse`
-- Optional notebook environment for exploration
+## Architecture Story
 
-## Architecture Artifacts
+NovaLake follows raw -> bronze -> silver -> gold:
 
-- Architecture overview: `docs/architecture.md`
-- Module roadmap (Modules 1-6): `docs/roadmap.md`
-- Architecture decisions (ADRs): `docs/decisions.md`
-- Stabilization history: `docs/stabilization.md`
-- Versioned Module 1 diagram: `docs/diagrams/module1-v1.mmd`
+1. Raw: reproducible CSV operational snapshots generated locally
+2. Bronze: ingestion-aligned Iceberg tables with ingestion metadata
+3. Silver: standardized, validated, referentially consistent domain tables
+4. Gold: business-facing aggregates and monitoring datasets
 
-## Repository Layout
+Core architecture docs:
+- `docs/architecture.md`
+- `docs/domain_model.md`
+- `docs/use_case.md`
+- `docs/roadmap.md`
+- `docs/decisions.md`
 
-```text
-nova-lake-platform/
-|-- core/
-|   |-- config.py
-|   `-- spark.py
-|-- ingestion/
-|   `-- batch/
-|       `-- load_orders_to_bronze.py
-|-- transformations/
-|   |-- bronze_to_silver/
-|   |   `-- orders_silver.py
-|   `-- silver_to_gold/
-|       `-- daily_revenue.py
-|-- docs/
-|   |-- architecture.md
-|   |-- roadmap.md
-|   |-- decisions.md
-|   |-- stabilization.md
-|   `-- diagrams/
-|       `-- module1-v1.mmd
-|-- data/
-|   |-- raw/
-|   `-- warehouse/
-|-- infra/
-|   |-- docker-compose.yml
-|   |-- spark/
-|   `-- lab/
-|-- scripts/
-|-- notebooks/
-`-- tests/
-```
+## Module 1 Data Scope
 
-## Module Evolution Narrative
+Raw entities:
+- `customers`
+- `products`
+- `orders`
+- `order_items`
+- `payments`
+- `shipments`
 
-1. Module 1: Lakehouse Foundation (current local baseline)
-2. Module 2: Storage Evolution (S3-compatible object storage)
-3. Module 3: CDC Ingestion
-4. Module 4: Streaming Analytics
-5. Module 5: Metadata Intelligence
-6. Module 6: AI Copilot
-
-The design target is to keep medallion contracts and shared job interfaces stable while infrastructure capability increases module by module.
+Gold analytical datasets:
+- `daily_revenue`: daily commercial performance trend
+- `sales_by_country`: country-level revenue and order behavior
+- `top_products`: top product ranking by revenue and units sold
+- `customer_revenue`: customer lifetime revenue and order profile
+- `payment_success_rate`: payment execution health by method/date
+- `shipment_delivery_summary`: fulfillment and delivery performance
 
 ## Run Locally
 
-Create local env file:
-
-```bash
-cp .env.example .env
-```
-
-### PowerShell
-
-```powershell
-.\scripts\run_job.ps1 up
-.\scripts\run_job.ps1 bronze
-.\scripts\run_job.ps1 silver
-.\scripts\run_job.ps1 gold
-.\scripts\run_job.ps1 down
-```
-
-### Git Bash / WSL
-
-```bash
-./scripts/run_job.sh up
-./scripts/run_job.sh bronze
-./scripts/run_job.sh silver
-./scripts/run_job.sh gold
-./scripts/run_job.sh down
-```
-
-## Optional Notebook Lab
+### 1. Start services
 
 PowerShell:
+```powershell
+.\scripts\run_job.ps1 up
+```
 
+Bash:
+```bash
+./scripts/run_job.sh up
+```
+
+### 2. Run full Module 1 pipeline
+
+PowerShell:
+```powershell
+.\scripts\run_job.ps1 all
+```
+
+Bash:
+```bash
+./scripts/run_job.sh all
+```
+
+### 3. Validate gold outputs
+
+PowerShell:
+```powershell
+.\scripts\sql_shell.ps1 -Query "SHOW TABLES IN novalake.gold"
+```
+
+Bash:
+```bash
+./scripts/sql_shell.sh -q "SHOW TABLES IN novalake.gold"
+```
+
+### 4. Optional notebook lab
+
+PowerShell:
 ```powershell
 .\scripts\run_lab.ps1 up
 ```
 
-Git Bash / WSL:
-
+Bash:
 ```bash
 ./scripts/run_lab.sh up
 ```
 
-Open `http://localhost:8888` and choose kernel **PySpark (NovaLake)**.
+Open `http://localhost:8888` and use kernel **PySpark (NovaLake)**.
 
-Stop lab:
+## Module Evolution
 
-```powershell
-.\scripts\run_lab.ps1 down
-```
+- Module 1: Lakehouse Foundation (current baseline)
+- Module 2: Storage Evolution (S3-compatible object storage)
+- Module 3: CDC Ingestion
+- Module 4: Streaming Analytics
+- Module 5: Metadata Intelligence
+- Module 6: AI Copilot
 
-```bash
-./scripts/run_lab.sh down
-```
-
-## Validation Query
-
-PowerShell:
-
-```powershell
-.\scripts\sql_shell.ps1 -Query "SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date"
-```
-
-Git Bash / WSL:
-
-```bash
-./scripts/sql_shell.sh -q "SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date"
-```
-
-## Quality Check
-
-```bash
-pytest -q
-```
+The design goal is stable contracts and controlled capability growth across modules.

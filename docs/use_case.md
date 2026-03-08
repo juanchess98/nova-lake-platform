@@ -1,142 +1,78 @@
-# NovaLake Commerce Analytics Platform — Use Case
+# NovaLake Use Case (Module 1 Baseline)
 
-## Overview
+## Context
 
-NovaLake is a modular data platform designed to support analytics and operational insights for a fictional global e-commerce company.
+NovaLake supports analytics for a fictional multi-country e-commerce business. Module 1 establishes the baseline lakehouse to consolidate commerce and operational data into trusted analytical products.
 
-The platform begins as a local batch lakehouse and evolves progressively through multiple modules into a more advanced data ecosystem supporting:
+## Module 1 Scope
 
-- object storage
-- change data capture (CDC)
-- streaming analytics
-- metadata intelligence
-- AI-assisted data exploration
+Module 1 delivers:
+- reproducible synthetic commerce source data
+- raw -> bronze -> silver -> gold batch pipelines
+- six operational datasets (`customers`, `products`, `orders`, `order_items`, `payments`, `shipments`)
+- six gold analytical products for business and operations monitoring
 
-The purpose of this project is to demonstrate how a modern data platform can evolve incrementally while maintaining architectural clarity, modularity, and reproducibility.
-
----
-
-## Business Context
-
-The fictional company operates an online commerce platform that sells products to customers across multiple countries.
-
-Its operational systems generate transactional and operational data related to:
-
-- customers
-- products
-- orders
-- order line items
-- payments
-- shipments
-
-Currently, the organization lacks a centralized analytics platform capable of consolidating commercial and operational data into a reliable analytical foundation.
-
-NovaLake is introduced to organize these datasets into a structured lakehouse architecture and support progressively richer analytical workflows.
-
----
+This module is the platform baseline for all future NovaLake evolution.
 
 ## Business Objectives
 
-The platform aims to support the following business goals:
+- monitor daily and geographic revenue performance
+- understand product and customer value contribution
+- monitor payment reliability and method behavior
+- monitor shipment throughput, delays, and delivery outcomes
 
-- improve visibility of revenue and sales performance
-- understand customer purchasing behavior
-- analyze product and category performance
-- monitor payment and shipment execution
-- provide a foundation for advanced analytics capabilities
+## Key Questions Answered
 
----
-
-## Key Business Questions
-
-The initial version of the platform (Module 1) should enable answering core business and operational questions.
-
-### Revenue and Sales
-
-- What is the daily revenue of the platform?
-- How does revenue evolve over time?
-- Which countries generate the highest revenue?
-
-### Products
-
-- What are the top selling products?
-- Which product categories perform best?
-
-### Customers
-
-- Who are the highest value customers?
-- What is the average order value?
-- Which customer segments generate more revenue?
+### Commercial
+- How much revenue is generated daily?
+- Which countries drive most revenue?
+- Which products are top revenue contributors?
+- Which customers drive lifetime revenue concentration?
 
 ### Payments
+- What is the payment success rate over time?
+- Which payment methods show higher failure or pending rates?
+- How much payment volume is attempted by method/date?
 
-- What percentage of orders were successfully paid?
-- Which payment methods are most frequently used?
-- How many payments failed or remain pending?
+### Fulfillment
+- How many shipments are delivered, delayed, or still in transit?
+- What is average delivery time by carrier/country?
+- Where is delivery reliability weaker?
 
-### Shipments
+## Gold Data Products in Module 1
 
-- How many orders have been shipped, delivered, or delayed?
-- What is the average time between order creation and shipment?
-- Which countries or shipment flows show slower delivery performance?
-
----
+- `daily_revenue`
+  - Daily revenue and order productivity trend.
+- `sales_by_country`
+  - Country-level sales performance and average order value.
+- `top_products`
+  - Product ranking by revenue, units sold, and order reach.
+- `customer_revenue`
+  - Customer-level lifetime revenue and order behavior profile.
+- `payment_success_rate`
+  - Payment outcome quality by date and payment method.
+- `shipment_delivery_summary`
+  - Shipment status mix, delivery rate, and average delivery time.
 
 ## Stakeholders
 
-### Business Stakeholders
-
-**Leadership (CEO / Commercial Leadership)**  
-Needs high-level visibility into revenue trends, market performance, and business growth.
-
-**Finance Team**  
-Requires accurate revenue reporting, payment visibility, and order value analysis.
-
-**Operations Team**  
-Needs monitoring of order flows, payment execution, and shipment performance.
-
----
-
-### Data Stakeholders
-
-**Data Engineers**  
-Responsible for designing and maintaining the platform infrastructure, ingestion pipelines, and transformation workflows.
-
-**Data Analysts**  
-Consume curated datasets to analyze sales, customers, products, payments, and shipments.
-
-**Data Scientists (future)**  
-Will use curated datasets for predictive modeling, behavioral analysis, and advanced forecasting.
-
----
+- Leadership: business growth and market-level performance visibility
+- Finance: revenue integrity and payment execution monitoring
+- Operations: order-to-shipment execution and delivery reliability
+- Data Engineering: pipeline correctness, reproducibility, and evolution readiness
+- Data Analytics: curated gold products for recurring analysis
 
 ## Success Criteria
 
-### Business Success
+Business:
+- reliable revenue, country, product, customer, payment, and shipment insights
+- faster analytical turnaround with trusted curated outputs
 
-- accurate reporting of revenue and sales trends
-- clear insights into customer and product performance
-- better visibility into payment and shipment execution
-- faster analytical turnaround for core commerce questions
+Platform:
+- stable end-to-end execution of all Module 1 pipelines
+- clear medallion layering and entity relationships
+- documented architecture baseline that supports modular growth
 
-### Platform Success
+## Evolution Alignment
 
-- stable end-to-end pipeline execution
-- clear medallion architecture
-- well-documented architecture and decisions
-- ability to evolve the platform across future modules without redesigning the foundation
-
----
-
-## Platform Evolution
-
-NovaLake evolves progressively across multiple modules.
-
-| Module | Focus |
-|------|------|
-| Module 1 | Lakehouse foundation with batch ingestion and core commerce analytics |
-| Module 2 | Storage evolution using object storage |
-| Module 3 | CDC ingestion from operational systems |
-| Module 4 | Streaming event ingestion |
-| Module 5 | Metadata intelligence and discoverability |
-| Module 6 | AI-assisted data exploration |
+Module 1 is intentionally batch/local-first. Future modules add storage evolution, CDC, streaming, metadata intelligence, and AI assistance without discarding Module 1 domain and data contracts.

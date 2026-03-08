@@ -1,211 +1,149 @@
-# NovaLake Domain Model
+# NovaLake Domain Model (Module 1 Baseline)
 
 ## Overview
 
-The NovaLake platform is based on a simplified commerce domain representing a fictional e-commerce company.
+NovaLake Module 1 models a simplified e-commerce domain with six operational entities that support both commercial and operational analytics.
 
-The domain model captures both commercial and operational entities required to analyze sales performance, customer activity, payment execution, and shipment behavior.
+Entities:
+- `customers`
+- `products`
+- `orders`
+- `order_items`
+- `payments`
+- `shipments`
 
----
+This model is the baseline domain contract for future platform modules.
 
-# Core Entities
+## Entity Details
 
-The current platform scope includes six primary entities:
+### Customers
 
-- customers
-- products
-- orders
-- order_items
-- payments
-- shipments
+One row per customer profile.
 
-These entities represent the core analytical foundation of the NovaLake commerce platform.
+Key attributes:
+- `customer_id`
+- `email`
+- `first_name`
+- `last_name`
+- `country`
+- `city`
+- `signup_date`
+- `customer_segment`
+- `is_active`
 
----
+### Products
 
-# Entity Descriptions
+One row per product in catalog.
 
-## Customers
+Key attributes:
+- `product_id`
+- `product_name`
+- `category`
+- `subcategory`
+- `brand`
+- `unit_price`
+- `cost`
+- `created_at`
+- `is_active`
 
-Represents individual users who place orders on the platform.
+### Orders
 
-Typical attributes include:
+One row per order header.
 
-- customer_id
-- email
-- first_name
-- last_name
-- country
-- city
-- signup_date
-- customer_segment
-- is_active
+Key attributes:
+- `order_id`
+- `customer_id`
+- `order_timestamp`
+- `order_status`
+- `currency`
+- `subtotal_amount`
+- `tax_amount`
+- `shipping_amount`
+- `total_amount`
+- `payment_method`
 
-Customers may place multiple orders over time.
+### Order Items
 
----
+One row per product line within an order.
 
-## Products
+Key attributes:
+- `order_item_id`
+- `order_id`
+- `product_id`
+- `quantity`
+- `unit_price`
+- `discount_amount`
+- `line_total`
 
-Represents items available for purchase.
+### Payments
 
-Typical attributes include:
+Payment execution events for orders.
 
-- product_id
-- product_name
-- category
-- subcategory
-- brand
-- unit_price
-- cost
-- created_at
-- is_active
+Key attributes:
+- `payment_id`
+- `order_id`
+- `payment_timestamp`
+- `payment_method`
+- `payment_status`
+- `payment_amount`
+- `currency`
 
-Products may appear in multiple order items.
+Notes:
+- One order can have multiple payment attempts.
+- Payment status supports operational reliability analysis.
 
----
+### Shipments
 
-## Orders
+Shipment and delivery lifecycle records.
 
-Represents transactions initiated by customers.
+Key attributes:
+- `shipment_id`
+- `order_id`
+- `shipment_timestamp`
+- `delivery_timestamp`
+- `shipment_status`
+- `carrier`
+- `shipping_country`
 
-Typical attributes include:
+Notes:
+- Typically generated for non-cancelled orders.
+- Delivery timestamp may be null for in-progress deliveries.
 
-- order_id
-- customer_id
-- order_timestamp
-- order_status
-- currency
-- subtotal_amount
-- tax_amount
-- shipping_amount
-- total_amount
-- payment_method
+## Relationship Model
 
-Each order belongs to a single customer and may contain multiple order items.
+- One customer -> many orders
+- One order -> many order_items
+- One product -> many order_items
+- One order -> one or many payments
+- One order -> zero or one shipment (Module 1 simulation default)
 
----
+## Conceptual Diagram
 
-## Order Items
+`customers (1) -> (N) orders`
 
-Represents individual products purchased within an order.
+`orders (1) -> (N) order_items`
 
-Typical attributes include:
+`products (1) -> (N) order_items`
 
-- order_item_id
-- order_id
-- product_id
-- quantity
-- unit_price
-- discount_amount
-- line_total
+`orders (1) -> (N) payments`
 
-An order may contain multiple order items.
+`orders (1) -> (0..1) shipments`
 
----
+## Analytical Coverage Enabled by the Domain
 
-## Payments
+- Revenue and sales trend analysis
+- Product and category performance analysis
+- Customer value segmentation
+- Payment execution reliability monitoring
+- Shipment and delivery performance monitoring
 
-Represents payment attempts or completed payments associated with orders.
+## Future Domain Evolution
 
-Typical attributes include:
+Future modules may extend this baseline with entities such as:
+- `inventory_snapshots`
+- `order_status_history`
+- `returns`
+- `promotions`
+- event-level behavioral streams
 
-- payment_id
-- order_id
-- payment_timestamp
-- payment_method
-- payment_status
-- payment_amount
-- currency
-
-Each order may have one or more payment-related records depending on business rules and simulation design.
-
----
-
-## Shipments
-
-Represents shipment execution and delivery status for orders.
-
-Typical attributes include:
-
-- shipment_id
-- order_id
-- shipment_timestamp
-- delivery_timestamp
-- shipment_status
-- carrier
-- shipping_country
-
-Each order may generate a shipment record depending on order lifecycle and fulfillment logic.
-
----
-
-# Entity Relationships
-
-The relationships between entities are illustrated conceptually below.
-
-- One customer can place many orders.
-- One order can contain many order items.
-- One product can appear in many order items.
-- One order can have one or more payment records.
-- One order can have zero or one shipment record in the initial model.
-
----
-
-# Domain Model Diagram (Conceptual)
-
-Customer
-   |
-   | 1..N
-   v
-Orders ----------- Payments
-   |
-   | 1..N
-   v
-Order_Items
-   ^
-   |
-   | N..1
-Products
-
-Orders
-   |
-   | 0..1
-   v
-Shipments
-
----
-
-# Analytical Value of the Domain
-
-This domain model supports multiple analytical perspectives:
-
-## Commercial Analysis
-- revenue trends
-- sales by country
-- top products
-- customer revenue contribution
-
-## Payment Analysis
-- payment success rates
-- payment method usage
-- failed or pending payment visibility
-
-## Fulfillment Analysis
-- shipment status monitoring
-- order-to-shipment timing
-- delivery performance visibility
-
----
-
-# Future Domain Expansion
-
-Future platform modules may introduce additional domain entities including:
-
-- inventory_snapshots
-- order_status_history
-- customer behavior events
-- returns
-- promotions
-
-These additions will support more advanced analytical capabilities, operational monitoring, and AI-assisted exploration.
+These additions should preserve compatibility with Module 1 core entity contracts.

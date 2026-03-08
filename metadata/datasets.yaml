@@ -1,38 +1,50 @@
 version: 1
 owner: novalake-platform
-module: lakehouse-foundation
+module: module-1-lakehouse-foundation
 
 entities:
   customers:
-    description: Master customer profile data from the operational e-commerce system.
+    description: Customer master profiles generated for Module 1 synthetic commerce data.
     source_layer: raw
     file_path: data/raw/customers.csv
     primary_key: customer_id
     columns:
       - name: customer_id
-        type: long
-        nullable: false
-      - name: full_name
         type: string
         nullable: false
       - name: email
         type: string
         nullable: false
-      - name: country_code
+      - name: first_name
+        type: string
+        nullable: false
+      - name: last_name
+        type: string
+        nullable: false
+      - name: country
+        type: string
+        nullable: false
+      - name: city
         type: string
         nullable: false
       - name: signup_date
         type: date
         nullable: false
+      - name: customer_segment
+        type: string
+        nullable: false
+      - name: is_active
+        type: boolean
+        nullable: false
 
   products:
-    description: Product catalog with list price and category.
+    description: Product catalog with pricing and product classification metadata.
     source_layer: raw
     file_path: data/raw/products.csv
     primary_key: product_id
     columns:
       - name: product_id
-        type: long
+        type: string
         nullable: false
       - name: product_name
         type: string
@@ -40,12 +52,27 @@ entities:
       - name: category
         type: string
         nullable: false
-      - name: list_price
+      - name: subcategory
+        type: string
+        nullable: false
+      - name: brand
+        type: string
+        nullable: false
+      - name: unit_price
         type: decimal(12,2)
+        nullable: false
+      - name: cost
+        type: decimal(12,2)
+        nullable: false
+      - name: created_at
+        type: timestamp
+        nullable: false
+      - name: is_active
+        type: boolean
         nullable: false
 
   orders:
-    description: Customer order headers with payment and status details.
+    description: Order headers with customer reference and monetary fields.
     source_layer: raw
     file_path: data/raw/orders.csv
     primary_key: order_id
@@ -53,19 +80,28 @@ entities:
       - customer_id -> customers.customer_id
     columns:
       - name: order_id
-        type: long
+        type: string
         nullable: false
       - name: customer_id
-        type: long
+        type: string
         nullable: false
       - name: order_timestamp
         type: timestamp
         nullable: false
-      - name: status
+      - name: order_status
         type: string
         nullable: false
       - name: currency
         type: string
+        nullable: false
+      - name: subtotal_amount
+        type: decimal(12,2)
+        nullable: false
+      - name: tax_amount
+        type: decimal(12,2)
+        nullable: false
+      - name: shipping_amount
+        type: decimal(12,2)
         nullable: false
       - name: total_amount
         type: decimal(12,2)
@@ -75,7 +111,7 @@ entities:
         nullable: false
 
   order_items:
-    description: Line-level breakdown per order.
+    description: Product-level order lines used to construct order subtotals.
     source_layer: raw
     file_path: data/raw/order_items.csv
     primary_key: order_item_id
@@ -84,13 +120,13 @@ entities:
       - product_id -> products.product_id
     columns:
       - name: order_item_id
-        type: long
+        type: string
         nullable: false
       - name: order_id
-        type: long
+        type: string
         nullable: false
       - name: product_id
-        type: long
+        type: string
         nullable: false
       - name: quantity
         type: int
@@ -98,6 +134,69 @@ entities:
       - name: unit_price
         type: decimal(12,2)
         nullable: false
-      - name: line_amount
+      - name: discount_amount
         type: decimal(12,2)
+        nullable: false
+      - name: line_total
+        type: decimal(12,2)
+        nullable: false
+
+  payments:
+    description: Payment attempt/execution records associated with orders.
+    source_layer: raw
+    file_path: data/raw/payments.csv
+    primary_key: payment_id
+    foreign_keys:
+      - order_id -> orders.order_id
+    columns:
+      - name: payment_id
+        type: string
+        nullable: false
+      - name: order_id
+        type: string
+        nullable: false
+      - name: payment_timestamp
+        type: timestamp
+        nullable: false
+      - name: payment_method
+        type: string
+        nullable: false
+      - name: payment_status
+        type: string
+        nullable: false
+      - name: payment_amount
+        type: decimal(12,2)
+        nullable: false
+      - name: currency
+        type: string
+        nullable: false
+
+  shipments:
+    description: Shipment lifecycle records for order fulfillment and delivery monitoring.
+    source_layer: raw
+    file_path: data/raw/shipments.csv
+    primary_key: shipment_id
+    foreign_keys:
+      - order_id -> orders.order_id
+    columns:
+      - name: shipment_id
+        type: string
+        nullable: false
+      - name: order_id
+        type: string
+        nullable: false
+      - name: shipment_timestamp
+        type: timestamp
+        nullable: false
+      - name: delivery_timestamp
+        type: timestamp
+        nullable: true
+      - name: shipment_status
+        type: string
+        nullable: false
+      - name: carrier
+        type: string
+        nullable: false
+      - name: shipping_country
+        type: string
         nullable: false
