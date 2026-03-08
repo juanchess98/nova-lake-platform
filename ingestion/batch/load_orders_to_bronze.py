@@ -4,27 +4,28 @@ from core.spark import (
     add_ingestion_metadata,
     create_spark_session,
     ensure_namespace,
+    get_logger,
     read_raw_csv,
-    table_identifier,
+    write_iceberg_table,
 )
 
 
 def main() -> None:
+    logger = get_logger("novalake.jobs.ingestion.orders_bronze")
     spark = create_spark_session("novalake_load_orders_to_bronze")
+    logger.info("Starting ingestion job: raw orders -> bronze.orders")
 
-    orders_raw_df = read_raw_csv(spark, "orders")
-    bronze_orders_df = add_ingestion_metadata(orders_raw_df)
+    try:
+        orders_raw_df = read_raw_csv(spark, "orders")
+        bronze_orders_df = add_ingestion_metadata(orders_raw_df)
 
-    ensure_namespace(spark, "bronze")
+        ensure_namespace(spark, "bronze")
+        write_iceberg_table(bronze_orders_df, "bronze", "orders")
 
-    (
-        bronze_orders_df.writeTo(table_identifier("bronze", "orders"))
-        .using("iceberg")
-        .tableProperty("format-version", "2")
-        .createOrReplace()
-    )
-
-    spark.stop()
+        logger.info("Completed ingestion job: wrote table novalake.bronze.orders")
+    finally:
+        spark.stop()
+        logger.info("Spark session stopped")
 
 
 if __name__ == "__main__":

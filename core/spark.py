@@ -1,11 +1,29 @@
 """Shared Spark helpers for NovaLake Platform jobs."""
 
-from pathlib import Path
+import logging
 
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 
-from core.config import ICEBERG_CATALOG, MEDALLION_LAYERS, RAW_DATA_DIR, WAREHOUSE_DIR
+from core.config import (
+    ICEBERG_CATALOG,
+    MEDALLION_LAYERS,
+    RAW_DATA_DIR,
+    iceberg_catalog_config,
+)
+
+LOGGER_NAME = "novalake.jobs"
+ICEBERG_FORMAT_VERSION = "2"
+
+
+def get_logger(name: str = LOGGER_NAME) -> logging.Logger:
+    """Return a logger configured for concise job execution messages."""
+    if not logging.getLogger().handlers:
+        logging.basicConfig(
+            level=logging.INFO,
+            format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+        )
+    return logging.getLogger(name)
 
 
 def table_identifier(layer: str, table_name: str) -> str:
@@ -44,20 +62,22 @@ def add_ingestion_metadata(df: DataFrame) -> DataFrame:
 
 def create_spark_session(app_name: str) -> SparkSession:
     """Create a Spark session configured for local Iceberg catalogs."""
-    WAREHOUSE_DIR.mkdir(parents=True, exist_ok=True)
-    warehouse_uri = Path(WAREHOUSE_DIR).as_posix()
+    builder = SparkSession.builder.appName(app_name).config(
+        "spark.sql.extensions",
+        "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",
+    )
 
-    return (
-        SparkSession.builder.appName(app_name)
-        .config(
-            "spark.sql.extensions",
-            "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",
-        )
-        .config(
-            f"spark.sql.catalog.{ICEBERG_CATALOG}",
-            "org.apache.iceberg.spark.SparkCatalog",
-        )
-        .config(f"spark.sql.catalog.{ICEBERG_CATALOG}.type", "hadoop")
-        .config(f"spark.sql.catalog.{ICEBERG_CATALOG}.warehouse", warehouse_uri)
-        .getOrCreate()
+    for key, value in iceberg_catalog_config().items():
+        builder = builder.config(key, value)
+
+    return builder.getOrCreate()
+
+
+def write_iceberg_table(df: DataFrame, layer: str, table_name: str) -> None:
+    """Write a DataFrame to an Iceberg table using module defaults."""
+    (
+        df.writeTo(table_identifier(layer, table_name))
+        .using("iceberg")
+        .tableProperty("format-version", ICEBERG_FORMAT_VERSION)
+        .createOrReplace()
     )

@@ -1,0 +1,38 @@
+flowchart LR
+    %% NovaLake Module 1 - Lakehouse Foundation (GitHub-friendly)
+
+    subgraph SRC[Sources]
+        RAW[Raw CSV Data<br/>data/raw/*.csv]
+        PG[(PostgreSQL<br/>Operational Source)]
+    end
+
+    subgraph JOBS[Spark Jobs]
+        J1[Ingestion<br/>load_orders_to_bronze.py]
+        J2[Standardization<br/>orders_silver.py]
+        J3[Aggregation<br/>daily_revenue.py]
+    end
+
+    subgraph CAT[Iceberg Catalog: novalake]
+        B[(bronze.orders)]
+        S[(silver.orders)]
+        G[(gold.daily_revenue)]
+    end
+
+    subgraph STG[Storage]
+        WH[(Local Warehouse<br/>data/warehouse)]
+    end
+
+    NB[Optional Notebooks<br/>JupyterLab]
+
+    RAW --> J1 --> B
+    B --> J2 --> S
+    S --> J3 --> G
+
+    B --> WH
+    S --> WH
+    G --> WH
+
+    PG -. future source integration .-> J1
+    NB -. query and exploration .-> B
+    NB -. query and exploration .-> S
+    NB -. query and exploration .-> G

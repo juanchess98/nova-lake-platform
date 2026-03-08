@@ -3,7 +3,13 @@
 from pyspark.sql import DataFrame, Window
 from pyspark.sql import functions as F
 
-from core.spark import create_spark_session, ensure_namespace, table_identifier
+from core.spark import (
+    create_spark_session,
+    ensure_namespace,
+    get_logger,
+    table_identifier,
+    write_iceberg_table,
+)
 
 VALID_STATUSES = ["pending", "paid", "shipped", "completed", "cancelled", "refunded"]
 DEFAULT_PAYMENT_METHOD = "unknown"
@@ -48,22 +54,22 @@ def apply_quality_checks(orders_df: DataFrame) -> DataFrame:
 
 
 def main() -> None:
+    logger = get_logger("novalake.jobs.transform.orders_silver")
     spark = create_spark_session("novalake_orders_bronze_to_silver")
+    logger.info("Starting transform job: bronze.orders -> silver.orders")
 
-    bronze_orders_df = spark.table(table_identifier("bronze", "orders"))
-    standardized_orders_df = standardize_orders(bronze_orders_df)
-    silver_orders_df = apply_quality_checks(standardized_orders_df)
+    try:
+        bronze_orders_df = spark.table(table_identifier("bronze", "orders"))
+        standardized_orders_df = standardize_orders(bronze_orders_df)
+        silver_orders_df = apply_quality_checks(standardized_orders_df)
 
-    ensure_namespace(spark, "silver")
+        ensure_namespace(spark, "silver")
+        write_iceberg_table(silver_orders_df, "silver", "orders")
 
-    (
-        silver_orders_df.writeTo(table_identifier("silver", "orders"))
-        .using("iceberg")
-        .tableProperty("format-version", "2")
-        .createOrReplace()
-    )
-
-    spark.stop()
+        logger.info("Completed transform job: wrote table novalake.silver.orders")
+    finally:
+        spark.stop()
+        logger.info("Spark session stopped")
 
 
 if __name__ == "__main__":

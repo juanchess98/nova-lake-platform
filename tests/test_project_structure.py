@@ -38,3 +38,9 @@ def test_job_runner_scripts_exist() -> None:
 def test_notebook_templates_exist() -> None:
     assert Path("notebooks/README.md").exists(), "Notebook README is missing."
     assert Path("notebooks/01_lakehouse_exploration.ipynb").exists(), "Starter notebook is missing."
+
+
+def test_architecture_docs_exist() -> None:
+    assert Path("docs/architecture.md").exists(), "Architecture document is missing."
+    assert Path("docs/roadmap.md").exists(), "Roadmap document is missing."
+    assert Path("docs/diagrams/module1-v1.mmd").exists(), "Module 1 architecture diagram is missing."

@@ -1,19 +1,34 @@
 # NovaLake Platform
 
-NovaLake Platform is a portfolio-grade data platform project focused on architecture quality, modularity, and extensibility.
+NovaLake Platform is a portfolio-grade local data platform built to evolve in modules. The current release is **Module 1: Lakehouse Foundation**.
 
-Current release implements **Module 1: Lakehouse Foundation**.
+## Architecture-First Positioning
 
-## Scope
+Module 1 is intentionally local-first and focused on strong foundations:
 
-- Dockerized local environment
-- Spark processing with Apache Iceberg tables
-- E-commerce sample datasets
-- Medallion data model (`bronze`, `silver`, `gold`)
+- Apache Spark + Apache Iceberg medallion layers (`bronze`, `silver`, `gold`)
+- Shared Python core utilities for configuration and Spark behavior consistency
+- Deterministic batch ingestion from raw CSV data
+- Operational-quality conventions (clean job boundaries, lightweight execution logging, ADRs)
+- PostgreSQL included as the operational source anchor for future ingestion modules
+
+Module 1 intentionally does **not** add MinIO, Kafka, Debezium, or dbt yet.
+
+## Module 1 Scope
+
+- Dockerized local runtime
+- Spark processing with Iceberg tables
 - Batch flow: `orders` raw -> bronze -> silver -> gold
-- ADR-based architecture documentation
+- Local warehouse storage at `data/warehouse`
+- Optional notebook environment for exploration
 
-Out of scope in Module 1: Kafka, Debezium, Airflow, dbt, observability stack, AI modules.
+## Architecture Artifacts
+
+- Architecture overview: `docs/architecture.md`
+- Module roadmap (Modules 1-6): `docs/roadmap.md`
+- Architecture decisions (ADRs): `docs/decisions.md`
+- Stabilization history: `docs/stabilization.md`
+- Versioned Module 1 diagram: `docs/diagrams/module1-v1.mmd`
 
 ## Repository Layout
 
@@ -22,24 +37,6 @@ nova-lake-platform/
 |-- core/
 |   |-- config.py
 |   `-- spark.py
-|-- data/
-|   |-- raw/
-|   |   |-- customers.csv
-|   |   |-- products.csv
-|   |   |-- orders.csv
-|   |   `-- order_items.csv
-|   `-- warehouse/
-|       `-- .gitkeep
-|-- docs/
-|   |-- architecture.md
-|   |-- decisions.md
-|   `-- stabilization.md
-|-- infra/
-|   |-- docker-compose.yml
-|   |-- lab/
-|   |   `-- Dockerfile
-|   `-- spark/
-|       `-- Dockerfile
 |-- ingestion/
 |   `-- batch/
 |       `-- load_orders_to_bronze.py
@@ -48,73 +45,52 @@ nova-lake-platform/
 |   |   `-- orders_silver.py
 |   `-- silver_to_gold/
 |       `-- daily_revenue.py
+|-- docs/
+|   |-- architecture.md
+|   |-- roadmap.md
+|   |-- decisions.md
+|   |-- stabilization.md
+|   `-- diagrams/
+|       `-- module1-v1.mmd
+|-- data/
+|   |-- raw/
+|   `-- warehouse/
+|-- infra/
+|   |-- docker-compose.yml
+|   |-- spark/
+|   `-- lab/
 |-- scripts/
-|   |-- lab_health.ps1
-|   |-- lab_health.sh
-|   |-- run_lab.ps1
-|   |-- run_lab.sh
-|   |-- run_job.ps1
-|   |-- run_job.sh
-|   |-- sql_shell.ps1
-|   `-- sql_shell.sh
 |-- notebooks/
-|   |-- 01_lakehouse_exploration.ipynb
-|   `-- README.md
-|-- tests/
-|   `-- test_project_structure.py
-|-- metadata/
-|   `-- datasets.yaml
-|-- sql/
-|   `-- postgres_init/
-|       `-- 001_init_ops_schema.sql
-|-- .gitignore
-|-- Makefile
-`-- requirements.txt
+`-- tests/
 ```
 
-## Architecture Notes
+## Module Evolution Narrative
 
-- `infra/spark/Dockerfile` builds a custom Spark image with Iceberg runtime JAR pre-bundled.
-- Spark jobs submit to the standalone Spark master (`spark://spark-master:7077`), so master/worker topology is actually used.
-- Iceberg catalog is local Hadoop catalog at `data/warehouse`.
-- Python path resolution is standardized using container `PYTHONPATH=/opt/novalake`.
-- Notebook UX is isolated in an optional `lab` profile and does not replace production pipeline code.
+1. Module 1: Lakehouse Foundation (current local baseline)
+2. Module 2: Storage Evolution (S3-compatible object storage)
+3. Module 3: CDC Ingestion
+4. Module 4: Streaming Analytics
+5. Module 5: Metadata Intelligence
+6. Module 6: AI Copilot
+
+The design target is to keep medallion contracts and shared job interfaces stable while infrastructure capability increases module by module.
 
 ## Run Locally
 
-Before starting services, create local env file:
+Create local env file:
 
 ```bash
 cp .env.example .env
 ```
 
-(`.env` is gitignored and should never be committed.)
-
-### PowerShell (recommended on Windows)
+### PowerShell
 
 ```powershell
 .\scripts\run_job.ps1 up
 .\scripts\run_job.ps1 bronze
 .\scripts\run_job.ps1 silver
 .\scripts\run_job.ps1 gold
-```
-
-Stop services:
-
-```powershell
 .\scripts\run_job.ps1 down
-```
-
-Open interactive SQL shell:
-
-```powershell
-.\scripts\sql_shell.ps1
-```
-
-Run one query:
-
-```powershell
-.\scripts\sql_shell.ps1 -Query "SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date"
 ```
 
 ### Git Bash / WSL
@@ -124,17 +100,10 @@ Run one query:
 ./scripts/run_job.sh bronze
 ./scripts/run_job.sh silver
 ./scripts/run_job.sh gold
-```
-
-Stop services:
-
-```bash
 ./scripts/run_job.sh down
 ```
 
-(`down` removes orphans and also tears down `lab` profile resources to avoid "network is still in use".)
-
-### Optional Notebook Lab
+## Optional Notebook Lab
 
 PowerShell:
 
@@ -148,14 +117,7 @@ Git Bash / WSL:
 ./scripts/run_lab.sh up
 ```
 
-Then open: `http://localhost:8888`
-
-In JupyterLab, select kernel: **PySpark (NovaLake)**.
-This kernel is preconfigured for:
-- Spark master: `spark://spark-master:7077`
-- Iceberg catalog: `novalake`
-- Warehouse: `/opt/novalake/data/warehouse`
-- Starter notebook: `notebooks/01_lakehouse_exploration.ipynb`
+Open `http://localhost:8888` and choose kernel **PySpark (NovaLake)**.
 
 Stop lab:
 
@@ -167,91 +129,22 @@ Stop lab:
 ./scripts/run_lab.sh down
 ```
 
-Open interactive SQL shell:
-
-```bash
-./scripts/sql_shell.sh
-```
-
-Run one query:
-
-```bash
-./scripts/sql_shell.sh -q "SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date"
-```
-
-## Makefile Shortcuts
-
-If GNU Make is installed:
-
-```bash
-make build
-make up
-make bronze
-make silver
-make gold
-make down
-make lab-up
-make lab-logs
-make lab-down
-make lab-health
-```
-
-## Validation Query (direct)
-
-```bash
-MSYS_NO_PATHCONV=1 docker compose -f infra/docker-compose.yml exec spark-master /opt/spark/bin/spark-sql \
-  --conf spark.sql.catalogImplementation=in-memory \
-  --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions \
-  --conf spark.sql.catalog.novalake=org.apache.iceberg.spark.SparkCatalog \
-  --conf spark.sql.catalog.novalake.type=hadoop \
-  --conf spark.sql.catalog.novalake.warehouse=/opt/novalake/data/warehouse \
-  -e "SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date;"
-```
-
-## Troubleshooting
-
-- `make: command not found`:
-  - Use `run_job.ps1` or `run_job.sh`, or install GNU Make.
-- `exec: C:/Program Files/Git/opt/...`:
-  - Git Bash path conversion issue; use `run_job.sh` (already handles `MSYS_NO_PATHCONV=1`).
-- `SparkCatalog class not found`:
-  - Re-run `up` (or `build`) to rebuild the custom Spark image with Iceberg JAR.
-- `ERROR XSDB6 ... metastore_db`:
-  - Cause: Hive Derby metastore lock contention.
-  - Action: use `scripts/sql_shell.*` (already sets `spark.sql.catalogImplementation=in-memory`) and avoid multiple concurrent `spark-sql` sessions.
-- Notebook cannot connect to Spark catalog:
-  - Ensure core services are up, lab image was rebuilt (`run_lab ... up`), and notebook uses the **PySpark (NovaLake)** kernel.
-- `POSTGRES_* variable is not set` warnings:
-  - Compose now has safe local defaults and also reads `.env` if present.
-
-## Lab Health Check
+## Validation Query
 
 PowerShell:
 
 ```powershell
-.\scripts\lab_health.ps1
+.\scripts\sql_shell.ps1 -Query "SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date"
 ```
 
 Git Bash / WSL:
 
 ```bash
-./scripts/lab_health.sh
+./scripts/sql_shell.sh -q "SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date"
 ```
 
-This validates:
-- notebook-lab container state
-- notebook HTTP endpoint (`localhost:8888`)
-- TCP connectivity from notebook to Spark master
-- Iceberg catalog visibility (`SHOW NAMESPACES IN novalake`)
+## Quality Check
 
-## Stabilization History
-
-See [docs/stabilization.md](docs/stabilization.md) for a detailed log of initial integration difficulties and the final fixes applied.
-
-## Roadmap
-
-1. Postgres incremental ingestion
-2. Kafka + Debezium CDC ingestion
-3. Orchestration and data contracts
-4. Semantic modeling layer
-5. Observability and AI-assisted platform operations
+```bash
+pytest -q
+```
