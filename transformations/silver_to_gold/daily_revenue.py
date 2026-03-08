@@ -2,15 +2,7 @@
 
 from pyspark.sql import functions as F
 
-from core.spark import (
-    create_spark_session,
-    ensure_namespace,
-    get_logger,
-    table_identifier,
-    write_iceberg_table,
-)
-
-REVENUE_STATUSES = ["paid", "shipped", "completed"]
+from core.spark import create_spark_session, ensure_namespace, get_logger, table_identifier, write_iceberg_table
 
 
 def main() -> None:
@@ -22,7 +14,7 @@ def main() -> None:
         silver_orders_df = spark.table(table_identifier("silver", "orders"))
 
         daily_revenue_df = (
-            silver_orders_df.filter(F.col("order_status").isin(REVENUE_STATUSES))
+            silver_orders_df.filter(F.col("order_status") == F.lit("completed"))
             .withColumn("order_date", F.to_date("order_timestamp"))
             .groupBy("order_date", "currency")
             .agg(
@@ -35,7 +27,6 @@ def main() -> None:
 
         ensure_namespace(spark, "gold")
         write_iceberg_table(daily_revenue_df, "gold", "daily_revenue")
-
         logger.info("Completed transform job: wrote table novalake.gold.daily_revenue")
     finally:
         spark.stop()

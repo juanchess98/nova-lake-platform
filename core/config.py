@@ -2,6 +2,7 @@
 
 import os
 from pathlib import Path
+from typing import Dict
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = PROJECT_ROOT / "data"
@@ -28,7 +29,7 @@ def warehouse_uri() -> str:
     )
 
 
-def iceberg_catalog_config() -> dict[str, str]:
+def iceberg_catalog_config() -> Dict[str, str]:
     """Build Iceberg catalog settings for Spark sessions."""
     return {
         f"spark.sql.catalog.{ICEBERG_CATALOG}": "org.apache.iceberg.spark.SparkCatalog",

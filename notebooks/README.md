@@ -18,5 +18,6 @@ spark.sql("SHOW TABLES IN novalake.bronze").show(truncate=False)
 spark.sql("SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date").show()
 ```
 
-Starter template:
+Starter notebooks:
 - `notebooks/01_lakehouse_exploration.ipynb`
+- `notebooks/02_gold_validation.ipynb`

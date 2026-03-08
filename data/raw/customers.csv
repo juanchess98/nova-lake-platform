@@ -1,7 +1,1001 @@
-customer_id,full_name,email,country_code,signup_date
-1001,Ana Gomez,ana.gomez@example.com,CO,2024-07-10
-1002,Liam Carter,liam.carter@example.com,US,2024-08-03
-1003,Valentina Ruiz,valentina.ruiz@example.com,MX,2024-09-21
-1004,Noah Miller,noah.miller@example.com,US,2024-10-16
-1005,Sofia Herrera,sofia.herrera@example.com,CO,2024-11-02
-1006,Emma Scott,emma.scott@example.com,CA,2024-12-05
+customer_id,email,first_name,last_name,country,city,signup_date,customer_segment,is_active
+CUST000001,danielle.johnson.1@yahoo.com,Danielle,Johnson,CA,Toronto,2022-05-04,Premium,True
+CUST000002,john.taylor.2@gmail.com,John,Taylor,CO,Medellin,2021-03-09,Standard,True
+CUST000003,erica.mcclain.3@gmail.com,Erica,Mcclain,CA,Toronto,2025-01-08,Premium,True
+CUST000004,brittany.johnson.4@gmail.com,Brittany,Johnson,AR,Buenos Aires,2020-04-02,Standard,True
+CUST000005,jeffery.wagner.5@gmail.com,Jeffery,Wagner,CA,Vancouver,2021-12-23,Standard,True
+CUST000006,anna.baldwin.6@hotmail.com,Anna,Baldwin,US,Los Angeles,2026-02-02,VIP,True
+CUST000007,amy.robinson.7@hotmail.com,Amy,Robinson,AR,Cordoba,2023-10-27,Premium,False
+CUST000008,joshua.booth.8@gmail.com,Joshua,Booth,ES,Madrid,2021-05-11,Premium,True
+CUST000009,helen.peterson.9@gmail.com,Helen,Peterson,AR,Rosario,2022-05-13,Standard,True
+CUST000010,jason.gallagher.10@gmail.com,Jason,Gallagher,MX,Guadalajara,2022-11-11,Standard,True
+CUST000011,christopher.davis.11@yahoo.com,Christopher,Davis,CA,Toronto,2023-03-26,Standard,True
+CUST000012,cassandra.roman.12@hotmail.com,Cassandra,Roman,CA,Montreal,2022-12-04,Premium,True
+CUST000013,stephen.martinez.13@yahoo.com,Stephen,Martinez,ES,Madrid,2023-11-28,Standard,True
+CUST000014,christian.carter.14@hotmail.com,Christian,Carter,CA,Calgary,2020-09-01,Premium,False
+CUST000015,christine.hensley.15@hotmail.com,Christine,Hensley,ES,Valencia,2024-11-28,Standard,True
+CUST000016,james.jones.16@hotmail.com,James,Jones,CO,Bogota,2020-05-22,Standard,True
+CUST000017,jeremy.roberts.17@gmail.com,Jeremy,Roberts,CO,Cali,2020-09-04,Standard,True
+CUST000018,melissa.delacruz.18@yahoo.com,Melissa,Delacruz,CO,Bogota,2023-03-27,Standard,True
+CUST000019,joshua.reid.19@yahoo.com,Joshua,Reid,ES,Seville,2025-05-29,Premium,True
+CUST000020,francisco.kelly.20@hotmail.com,Francisco,Kelly,BR,Rio de Janeiro,2023-02-24,Standard,True
+CUST000021,joseph.zuniga.21@hotmail.com,Joseph,Zuniga,BR,Rio de Janeiro,2025-09-13,Premium,True
+CUST000022,charles.reid.22@hotmail.com,Charles,Reid,ES,Madrid,2025-03-07,Standard,True
+CUST000023,jessica.martin.23@yahoo.com,Jessica,Martin,MX,Guadalajara,2021-05-22,VIP,False
+CUST000024,joseph.schaefer.24@hotmail.com,Joseph,Schaefer,CL,Antofagasta,2022-04-18,Premium,True
+CUST000025,angela.cohen.25@gmail.com,Angela,Cohen,CO,Cali,2020-06-22,Premium,True
+CUST000026,jeremy.johnson.26@yahoo.com,Jeremy,Johnson,CO,Bogota,2022-09-07,Standard,True
+CUST000027,richard.jones.27@hotmail.com,Richard,Jones,AR,Rosario,2020-07-24,Standard,False
+CUST000028,nancy.edwards.28@hotmail.com,Nancy,Edwards,CO,Cali,2021-10-22,Standard,True
+CUST000029,victor.wilkerson.29@hotmail.com,Victor,Wilkerson,CL,Antofagasta,2025-06-20,Standard,True
+CUST000030,stephen.baker.30@gmail.com,Stephen,Baker,CL,Valparaiso,2022-04-02,Standard,True
+CUST000031,julie.ryan.31@hotmail.com,Julie,Ryan,MX,Guadalajara,2024-10-10,Standard,True
+CUST000032,brenda.hurst.32@yahoo.com,Brenda,Hurst,ES,Seville,2024-12-17,VIP,True
+CUST000033,michael.osborn.33@gmail.com,Michael,Osborn,AR,Rosario,2021-11-12,Standard,True
+CUST000034,william.davis.34@gmail.com,William,Davis,MX,Puebla,2020-10-09,Standard,True
+CUST000035,michelle.hernandez.35@gmail.com,Michelle,Hernandez,US,New York,2021-04-19,Standard,True
+CUST000036,laura.henderson.36@gmail.com,Laura,Henderson,MX,Puebla,2025-01-26,Standard,True
+CUST000037,paul.carlson.37@yahoo.com,Paul,Carlson,CA,Calgary,2023-03-31,Standard,True
+CUST000038,allison.maddox.38@gmail.com,Allison,Maddox,CL,Concepcion,2024-09-14,Standard,True
+CUST000039,erin.wilson.39@hotmail.com,Erin,Wilson,US,New York,2025-10-19,Standard,True
+CUST000040,karen.mack.40@yahoo.com,Karen,Mack,ES,Valencia,2020-12-12,Standard,True
+CUST000041,daniel.graham.41@yahoo.com,Daniel,Graham,ES,Seville,2021-05-06,Standard,True
+CUST000042,aaron.bowen.42@hotmail.com,Aaron,Bowen,CL,Santiago,2026-02-21,Premium,True
+CUST000043,jose.mason.43@gmail.com,Jose,Mason,ES,Barcelona,2024-04-26,Standard,True
+CUST000044,william.rodriguez.44@hotmail.com,William,Rodriguez,CA,Montreal,2025-06-08,Standard,True
+CUST000045,kenneth.fowler.45@hotmail.com,Kenneth,Fowler,CO,Medellin,2023-03-07,Premium,True
+CUST000046,james.brooks.46@gmail.com,James,Brooks,MX,Mexico City,2025-02-03,Premium,True
+CUST000047,amber.osborne.47@hotmail.com,Amber,Osborne,BR,Recife,2020-03-01,Standard,True
+CUST000048,samantha.george.48@yahoo.com,Samantha,George,CA,Montreal,2022-08-13,Standard,True
+CUST000049,andrew.hickman.49@yahoo.com,Andrew,Hickman,CO,Bogota,2022-01-18,Standard,True
+CUST000050,john.allen.50@hotmail.com,John,Allen,CA,Toronto,2024-02-18,Standard,True
+CUST000051,stacey.miller.51@yahoo.com,Stacey,Miller,CA,Vancouver,2021-02-02,Standard,True
+CUST000052,lisa.spence.52@hotmail.com,Lisa,Spence,CL,Valparaiso,2022-04-03,Standard,True
+CUST000053,katie.anderson.53@yahoo.com,Katie,Anderson,AR,Cordoba,2024-08-02,Premium,True
+CUST000054,stacey.martin.54@hotmail.com,Stacey,Martin,CO,Cali,2023-05-24,Standard,True
+CUST000055,monique.henderson.55@gmail.com,Monique,Henderson,BR,Recife,2024-05-27,Standard,True
+CUST000056,sarah.campos.56@hotmail.com,Sarah,Campos,CL,Santiago,2022-02-09,Premium,True
+CUST000057,james.collins.57@hotmail.com,James,Collins,CO,Bogota,2022-11-16,Standard,True
+CUST000058,debra.kim.58@hotmail.com,Debra,Kim,US,Los Angeles,2025-01-02,Standard,True
+CUST000059,shannon.wright.59@gmail.com,Shannon,Wright,CO,Bogota,2020-08-08,Standard,True
+CUST000060,matthew.chapman.60@gmail.com,Matthew,Chapman,US,Los Angeles,2020-07-28,Standard,True
+CUST000061,brianna.smith.61@hotmail.com,Brianna,Smith,US,Chicago,2020-08-08,Standard,False
+CUST000062,crystal.perez.62@gmail.com,Crystal,Perez,CO,Cali,2025-09-09,Standard,True
+CUST000063,michele.jones.63@gmail.com,Michele,Jones,CL,Valparaiso,2024-08-02,Standard,True
+CUST000064,joshua.washington.64@hotmail.com,Joshua,Washington,MX,Puebla,2022-01-24,Premium,True
+CUST000065,david.walls.65@hotmail.com,David,Walls,CL,Antofagasta,2021-08-14,Standard,True
+CUST000066,barbara.sanchez.66@yahoo.com,Barbara,Sanchez,CA,Toronto,2025-08-09,Standard,False
+CUST000067,lindsey.lee.67@gmail.com,Lindsey,Lee,AR,Rosario,2023-08-09,Standard,True
+CUST000068,donna.gomez.68@yahoo.com,Donna,Gomez,AR,Mendoza,2020-06-17,Standard,True
+CUST000069,stuart.daniel.69@hotmail.com,Stuart,Daniel,CA,Toronto,2023-06-04,Standard,True
+CUST000070,denise.lucas.70@gmail.com,Denise,Lucas,BR,Sao Paulo,2022-02-11,Standard,True
+CUST000071,richard.morgan.71@gmail.com,Richard,Morgan,CO,Medellin,2024-07-24,Standard,True
+CUST000072,john.lee.72@yahoo.com,John,Lee,CL,Valparaiso,2023-08-03,Standard,True
+CUST000073,donald.white.73@yahoo.com,Donald,White,MX,Monterrey,2023-12-08,Premium,True
+CUST000074,john.leblanc.74@yahoo.com,John,Leblanc,CO,Bogota,2023-10-08,Standard,False
+CUST000075,lindsey.chase.75@gmail.com,Lindsey,Chase,CA,Toronto,2025-07-19,Standard,True
+CUST000076,brent.kidd.76@gmail.com,Brent,Kidd,US,New York,2022-01-04,Standard,True
+CUST000077,tanya.house.77@gmail.com,Tanya,House,MX,Puebla,2024-02-17,Standard,True
+CUST000078,gabriel.tucker.78@gmail.com,Gabriel,Tucker,CL,Valparaiso,2023-05-30,Standard,True
+CUST000079,michelle.barrera.79@gmail.com,Michelle,Barrera,US,Los Angeles,2023-03-23,Standard,True
+CUST000080,nicholas.galloway.80@yahoo.com,Nicholas,Galloway,US,Austin,2022-04-03,Premium,True
+CUST000081,sara.glover.81@yahoo.com,Sara,Glover,CL,Concepcion,2023-08-07,Standard,True
+CUST000082,rodney.bernard.82@hotmail.com,Rodney,Bernard,CL,Valparaiso,2021-08-12,Standard,True
+CUST000083,dorothy.tucker.83@gmail.com,Dorothy,Tucker,ES,Barcelona,2020-06-30,Premium,False
+CUST000084,kenneth.novak.84@hotmail.com,Kenneth,Novak,US,Chicago,2020-06-26,Standard,True
+CUST000085,jill.brown.85@yahoo.com,Jill,Brown,US,Austin,2024-04-11,Standard,False
+CUST000086,brian.silva.86@hotmail.com,Brian,Silva,MX,Mexico City,2024-04-26,Standard,True
+CUST000087,samantha.schmidt.87@gmail.com,Samantha,Schmidt,CA,Vancouver,2020-07-31,Standard,True
+CUST000088,susan.miller.88@gmail.com,Susan,Miller,CA,Vancouver,2023-06-08,Standard,True
+CUST000089,casey.jones.89@gmail.com,Casey,Jones,CA,Vancouver,2024-12-03,Standard,True
+CUST000090,richard.david.90@hotmail.com,Richard,David,US,New York,2023-07-26,Standard,True
+CUST000091,john.wheeler.91@hotmail.com,John,Wheeler,BR,Brasilia,2021-09-26,Standard,True
+CUST000092,christopher.sandoval.92@hotmail.com,Christopher,Sandoval,BR,Rio de Janeiro,2022-04-05,Standard,True
+CUST000093,alexandra.donovan.93@gmail.com,Alexandra,Donovan,AR,Cordoba,2025-09-17,Standard,True
+CUST000094,elizabeth.edwards.94@yahoo.com,Elizabeth,Edwards,ES,Seville,2022-09-09,Standard,True
+CUST000095,randy.powers.95@yahoo.com,Randy,Powers,CA,Toronto,2023-11-24,Standard,True
+CUST000096,stephen.hickman.96@gmail.com,Stephen,Hickman,CA,Toronto,2024-07-28,Standard,True
+CUST000097,albert.howell.97@hotmail.com,Albert,Howell,CO,Cali,2021-02-15,Standard,True
+CUST000098,wendy.jones.98@gmail.com,Wendy,Jones,BR,Sao Paulo,2022-01-28,Standard,True
+CUST000099,william.anderson.99@yahoo.com,William,Anderson,BR,Brasilia,2021-05-05,Standard,True
+CUST000100,nicole.suarez.100@yahoo.com,Nicole,Suarez,CL,Concepcion,2025-03-15,VIP,True
+CUST000101,justin.kim.101@hotmail.com,Justin,Kim,US,Chicago,2025-08-23,Premium,True
+CUST000102,jade.carr.102@hotmail.com,Jade,Carr,CA,Vancouver,2022-04-01,Standard,True
+CUST000103,allison.contreras.103@hotmail.com,Allison,Contreras,CA,Toronto,2024-09-14,Standard,True
+CUST000104,kevin.alvarado.104@gmail.com,Kevin,Alvarado,MX,Monterrey,2022-05-25,VIP,True
+CUST000105,joseph.preston.105@hotmail.com,Joseph,Preston,CO,Cali,2021-09-24,Premium,True
+CUST000106,angela.nelson.106@hotmail.com,Angela,Nelson,ES,Seville,2022-02-19,Standard,True
+CUST000107,jason.cooper.107@hotmail.com,Jason,Cooper,US,New York,2025-05-24,Standard,True
+CUST000108,cynthia.baker.108@yahoo.com,Cynthia,Baker,AR,Rosario,2020-05-16,Standard,True
+CUST000109,john.odonnell.109@gmail.com,John,Odonnell,US,Chicago,2021-02-10,Standard,False
+CUST000110,christopher.henderson.110@yahoo.com,Christopher,Henderson,ES,Barcelona,2023-10-04,Premium,True
+CUST000111,bradley.cook.111@gmail.com,Bradley,Cook,AR,Buenos Aires,2020-12-13,Standard,True
+CUST000112,dana.green.112@hotmail.com,Dana,Green,CA,Vancouver,2024-08-22,Standard,True
+CUST000113,scott.thornton.113@hotmail.com,Scott,Thornton,US,Chicago,2024-12-14,Standard,True
+CUST000114,alec.jones.114@hotmail.com,Alec,Jones,MX,Puebla,2021-01-30,Standard,False
+CUST000115,rebecca.gardner.115@yahoo.com,Rebecca,Gardner,US,Chicago,2023-02-06,Standard,False
+CUST000116,brandi.hernandez.116@gmail.com,Brandi,Hernandez,US,Chicago,2021-10-14,Premium,True
+CUST000117,bobby.diaz.117@gmail.com,Bobby,Diaz,CO,Bogota,2023-01-03,Premium,True
+CUST000118,rachel.clark.118@gmail.com,Rachel,Clark,AR,Cordoba,2022-01-05,Standard,True
+CUST000119,elizabeth.gomez.119@hotmail.com,Elizabeth,Gomez,MX,Guadalajara,2023-07-04,Standard,True
+CUST000120,nicole.russell.120@hotmail.com,Nicole,Russell,US,Los Angeles,2022-10-29,Standard,True
+CUST000121,kara.frost.121@gmail.com,Kara,Frost,AR,Cordoba,2022-04-08,Standard,True
+CUST000122,michelle.cherry.122@gmail.com,Michelle,Cherry,MX,Mexico City,2023-04-03,Standard,True
+CUST000123,nicole.johnson.123@hotmail.com,Nicole,Johnson,US,Austin,2021-11-22,Standard,True
+CUST000124,sandra.patton.124@yahoo.com,Sandra,Patton,CO,Barranquilla,2022-12-22,Standard,True
+CUST000125,leah.shields.125@gmail.com,Leah,Shields,ES,Barcelona,2021-11-23,Standard,True
+CUST000126,joseph.cobb.126@gmail.com,Joseph,Cobb,US,Los Angeles,2023-05-22,Standard,True
+CUST000127,patrick.williams.127@yahoo.com,Patrick,Williams,BR,Brasilia,2020-08-03,Standard,True
+CUST000128,jeffrey.velasquez.128@yahoo.com,Jeffrey,Velasquez,ES,Valencia,2025-06-16,Standard,True
+CUST000129,michael.hoover.129@gmail.com,Michael,Hoover,AR,Rosario,2020-03-26,Standard,True
+CUST000130,jeffrey.keller.130@yahoo.com,Jeffrey,Keller,CA,Montreal,2021-07-08,Standard,False
+CUST000131,mark.lin.131@yahoo.com,Mark,Lin,ES,Madrid,2020-12-02,Standard,False
+CUST000132,michael.hicks.132@hotmail.com,Michael,Hicks,AR,Rosario,2022-09-01,Premium,True
+CUST000133,tina.herrera.133@gmail.com,Tina,Herrera,AR,Buenos Aires,2023-04-11,Standard,True
+CUST000134,darrell.waller.134@gmail.com,Darrell,Waller,CO,Cali,2020-05-17,Standard,True
+CUST000135,beverly.terrell.135@gmail.com,Beverly,Terrell,AR,Buenos Aires,2024-06-03,Standard,False
+CUST000136,daniel.hamilton.136@hotmail.com,Daniel,Hamilton,CO,Cali,2023-09-01,Standard,True
+CUST000137,kristin.graham.137@hotmail.com,Kristin,Graham,CA,Montreal,2025-04-20,VIP,True
+CUST000138,darrell.lam.138@gmail.com,Darrell,Lam,BR,Sao Paulo,2026-02-14,Standard,True
+CUST000139,jonathan.fletcher.139@gmail.com,Jonathan,Fletcher,ES,Valencia,2025-09-02,Premium,True
+CUST000140,april.drake.140@hotmail.com,April,Drake,AR,Rosario,2023-06-04,Standard,True
+CUST000141,jennifer.harmon.141@hotmail.com,Jennifer,Harmon,ES,Barcelona,2021-08-19,Standard,True
+CUST000142,james.reynolds.142@hotmail.com,James,Reynolds,AR,Mendoza,2025-10-05,Standard,True
+CUST000143,samantha.hanson.143@hotmail.com,Samantha,Hanson,MX,Monterrey,2023-06-15,Premium,True
+CUST000144,melanie.cortez.144@yahoo.com,Melanie,Cortez,US,Chicago,2022-06-10,Standard,True
+CUST000145,william.estrada.145@yahoo.com,William,Estrada,CO,Barranquilla,2024-12-06,Standard,True
+CUST000146,richard.phillips.146@gmail.com,Richard,Phillips,BR,Recife,2023-10-04,Standard,True
+CUST000147,james.ortega.147@yahoo.com,James,Ortega,CL,Valparaiso,2024-05-07,Standard,True
+CUST000148,erica.orr.148@hotmail.com,Erica,Orr,CL,Valparaiso,2025-08-08,Standard,True
+CUST000149,ashley.sullivan.149@gmail.com,Ashley,Sullivan,CA,Montreal,2024-05-20,Standard,True
+CUST000150,kevin.clark.150@hotmail.com,Kevin,Clark,BR,Sao Paulo,2021-12-30,Standard,True
+CUST000151,catherine.morris.151@yahoo.com,Catherine,Morris,ES,Barcelona,2021-09-10,Premium,True
+CUST000152,scott.lewis.152@yahoo.com,Scott,Lewis,MX,Mexico City,2020-05-23,Premium,True
+CUST000153,laura.moyer.153@hotmail.com,Laura,Moyer,CO,Barranquilla,2025-03-14,Standard,True
+CUST000154,gene.miller.154@hotmail.com,Gene,Miller,CA,Calgary,2023-07-11,Standard,True
+CUST000155,elizabeth.harvey.155@gmail.com,Elizabeth,Harvey,CO,Barranquilla,2024-03-15,Standard,True
+CUST000156,loretta.potter.156@hotmail.com,Loretta,Potter,AR,Cordoba,2021-04-03,Standard,True
+CUST000157,lance.drake.157@gmail.com,Lance,Drake,US,New York,2023-08-13,Standard,True
+CUST000158,andrew.sanchez.158@yahoo.com,Andrew,Sanchez,CO,Medellin,2025-12-02,Standard,True
+CUST000159,cheryl.mack.159@yahoo.com,Cheryl,Mack,CL,Santiago,2024-09-27,Standard,True
+CUST000160,robert.soto.160@gmail.com,Robert,Soto,CO,Bogota,2023-11-19,Premium,True
+CUST000161,jennifer.cruz.161@yahoo.com,Jennifer,Cruz,MX,Puebla,2025-09-05,Standard,True
+CUST000162,john.douglas.162@gmail.com,John,Douglas,BR,Recife,2025-03-18,Premium,True
+CUST000163,patricia.dalton.163@gmail.com,Patricia,Dalton,AR,Mendoza,2021-05-09,Standard,True
+CUST000164,kimberly.robinson.164@hotmail.com,Kimberly,Robinson,CL,Antofagasta,2022-03-16,Standard,True
+CUST000165,april.williams.165@gmail.com,April,Williams,CO,Cali,2024-06-07,Standard,True
+CUST000166,samantha.martinez.166@gmail.com,Samantha,Martinez,CL,Valparaiso,2022-05-03,Standard,True
+CUST000167,laurie.contreras.167@hotmail.com,Laurie,Contreras,CL,Santiago,2026-01-25,Premium,True
+CUST000168,caitlin.dodson.168@yahoo.com,Caitlin,Dodson,ES,Barcelona,2022-04-24,Premium,True
+CUST000169,cheyenne.ball.169@hotmail.com,Cheyenne,Ball,BR,Brasilia,2024-08-05,Standard,True
+CUST000170,ronald.meadows.170@yahoo.com,Ronald,Meadows,CA,Vancouver,2021-04-13,VIP,True
+CUST000171,phyllis.manning.171@yahoo.com,Phyllis,Manning,CO,Barranquilla,2025-11-26,Standard,True
+CUST000172,shannon.walton.172@hotmail.com,Shannon,Walton,MX,Guadalajara,2020-07-18,Standard,True
+CUST000173,joshua.strickland.173@yahoo.com,Joshua,Strickland,AR,Mendoza,2022-10-25,Standard,True
+CUST000174,courtney.hill.174@gmail.com,Courtney,Hill,CL,Antofagasta,2020-07-12,Premium,True
+CUST000175,jennifer.young.175@yahoo.com,Jennifer,Young,CO,Barranquilla,2023-04-25,Standard,True
+CUST000176,luis.fernandez.176@gmail.com,Luis,Fernandez,US,Austin,2024-01-21,Standard,True
+CUST000177,edward.reyes.177@gmail.com,Edward,Reyes,US,Chicago,2022-07-16,Standard,True
+CUST000178,jasmine.brown.178@yahoo.com,Jasmine,Brown,AR,Mendoza,2024-07-30,VIP,True
+CUST000179,mark.owens.179@gmail.com,Mark,Owens,CO,Barranquilla,2021-11-12,Premium,True
+CUST000180,jamie.fisher.180@hotmail.com,Jamie,Fisher,ES,Seville,2024-02-17,Standard,True
+CUST000181,sophia.smith.181@hotmail.com,Sophia,Smith,US,Austin,2022-11-10,Premium,True
+CUST000182,omar.smith.182@yahoo.com,Omar,Smith,AR,Cordoba,2023-12-23,Premium,True
+CUST000183,kenneth.price.183@yahoo.com,Kenneth,Price,MX,Mexico City,2023-05-09,Standard,True
+CUST000184,amanda.navarro.184@hotmail.com,Amanda,Navarro,US,New York,2025-06-19,Standard,True
+CUST000185,rachael.freeman.185@yahoo.com,Rachael,Freeman,AR,Cordoba,2023-12-05,Premium,True
+CUST000186,ryan.johnson.186@yahoo.com,Ryan,Johnson,MX,Mexico City,2022-03-19,Standard,True
+CUST000187,elizabeth.yates.187@hotmail.com,Elizabeth,Yates,AR,Rosario,2021-10-19,Standard,True
+CUST000188,frederick.mcdonald.188@gmail.com,Frederick,Mcdonald,CL,Concepcion,2022-11-14,Standard,False
+CUST000189,tina.ferguson.189@yahoo.com,Tina,Ferguson,AR,Rosario,2023-08-02,Standard,True
+CUST000190,brittany.alvarado.190@gmail.com,Brittany,Alvarado,ES,Madrid,2024-01-01,Standard,True
+CUST000191,dawn.taylor.191@yahoo.com,Dawn,Taylor,US,New York,2022-12-23,Premium,True
+CUST000192,hunter.green.192@yahoo.com,Hunter,Green,CO,Bogota,2025-07-17,Standard,True
+CUST000193,jason.murphy.193@yahoo.com,Jason,Murphy,US,New York,2022-02-07,Standard,True
+CUST000194,joshua.bean.194@yahoo.com,Joshua,Bean,CO,Bogota,2025-04-14,Premium,False
+CUST000195,johnny.miller.195@gmail.com,Johnny,Miller,MX,Guadalajara,2021-01-27,Standard,True
+CUST000196,kaitlyn.williams.196@yahoo.com,Kaitlyn,Williams,CL,Santiago,2024-10-18,Standard,True
+CUST000197,jeffrey.jones.197@hotmail.com,Jeffrey,Jones,CO,Barranquilla,2025-12-13,Standard,True
+CUST000198,billy.johnson.198@gmail.com,Billy,Johnson,ES,Valencia,2021-06-05,Premium,True
+CUST000199,james.smith.199@gmail.com,James,Smith,CA,Vancouver,2022-08-24,Standard,True
+CUST000200,john.wells.200@gmail.com,John,Wells,CA,Toronto,2022-08-27,Standard,True
+CUST000201,anne.robinson.201@hotmail.com,Anne,Robinson,AR,Mendoza,2026-01-30,Premium,True
+CUST000202,jonathan.wood.202@hotmail.com,Jonathan,Wood,CO,Bogota,2025-01-13,VIP,True
+CUST000203,catherine.adkins.203@gmail.com,Catherine,Adkins,CO,Bogota,2025-12-06,Standard,True
+CUST000204,kimberly.martin.204@yahoo.com,Kimberly,Martin,ES,Madrid,2024-10-24,Standard,True
+CUST000205,daniel.johnson.205@yahoo.com,Daniel,Johnson,US,Chicago,2024-07-13,Standard,True
+CUST000206,barbara.odonnell.206@yahoo.com,Barbara,Odonnell,AR,Rosario,2020-08-02,Standard,True
+CUST000207,randy.espinoza.207@gmail.com,Randy,Espinoza,BR,Sao Paulo,2023-07-29,Standard,True
+CUST000208,brittany.rivas.208@gmail.com,Brittany,Rivas,CL,Santiago,2023-09-08,Standard,True
+CUST000209,curtis.barton.209@hotmail.com,Curtis,Barton,BR,Recife,2026-01-06,Standard,True
+CUST000210,caroline.martinez.210@hotmail.com,Caroline,Martinez,MX,Puebla,2021-07-01,Standard,True
+CUST000211,kimberly.reed.211@yahoo.com,Kimberly,Reed,ES,Seville,2023-12-15,Standard,True
+CUST000212,doris.jones.212@hotmail.com,Doris,Jones,AR,Rosario,2022-09-28,Standard,True
+CUST000213,matthew.atkinson.213@yahoo.com,Matthew,Atkinson,CO,Bogota,2022-05-16,Standard,True
+CUST000214,daniel.yu.214@hotmail.com,Daniel,Yu,CL,Valparaiso,2023-12-14,Premium,True
+CUST000215,patricia.stevens.215@gmail.com,Patricia,Stevens,AR,Rosario,2020-03-30,Standard,True
+CUST000216,ryan.gross.216@hotmail.com,Ryan,Gross,CL,Concepcion,2021-07-18,Standard,True
+CUST000217,joseph.morton.217@hotmail.com,Joseph,Morton,CL,Valparaiso,2023-01-07,Standard,True
+CUST000218,kim.marshall.218@hotmail.com,Kim,Marshall,ES,Valencia,2022-05-18,Standard,True
+CUST000219,brittany.morris.219@gmail.com,Brittany,Morris,ES,Madrid,2024-05-24,Premium,True
+CUST000220,mariah.miller.220@yahoo.com,Mariah,Miller,CO,Bogota,2022-01-19,Standard,True
+CUST000221,john.marshall.221@hotmail.com,John,Marshall,AR,Mendoza,2024-09-20,Standard,True
+CUST000222,elizabeth.rogers.222@yahoo.com,Elizabeth,Rogers,CO,Barranquilla,2025-06-29,Standard,True
+CUST000223,melissa.white.223@gmail.com,Melissa,White,CL,Antofagasta,2020-02-23,Standard,True
+CUST000224,michael.green.224@yahoo.com,Michael,Green,CA,Montreal,2021-11-19,VIP,True
+CUST000225,nicole.haynes.225@yahoo.com,Nicole,Haynes,AR,Cordoba,2022-08-09,Standard,True
+CUST000226,angela.black.226@gmail.com,Angela,Black,BR,Recife,2024-09-15,Premium,True
+CUST000227,christopher.cortez.227@yahoo.com,Christopher,Cortez,BR,Recife,2024-09-05,Standard,True
+CUST000228,angela.allen.228@yahoo.com,Angela,Allen,BR,Brasilia,2025-12-23,Standard,True
+CUST000229,debbie.henry.229@gmail.com,Debbie,Henry,CL,Concepcion,2022-08-10,Standard,False
+CUST000230,christopher.walker.230@hotmail.com,Christopher,Walker,ES,Barcelona,2021-01-09,Standard,True
+CUST000231,john.beck.231@yahoo.com,John,Beck,CO,Cali,2021-01-06,Standard,True
+CUST000232,thomas.schmidt.232@yahoo.com,Thomas,Schmidt,MX,Guadalajara,2021-11-03,Standard,True
+CUST000233,wendy.pierce.233@yahoo.com,Wendy,Pierce,CL,Concepcion,2025-01-05,VIP,True
+CUST000234,jacqueline.nelson.234@yahoo.com,Jacqueline,Nelson,ES,Madrid,2021-08-26,Standard,True
+CUST000235,jerry.griffith.235@yahoo.com,Jerry,Griffith,ES,Barcelona,2023-01-26,Premium,True
+CUST000236,david.herrera.236@hotmail.com,David,Herrera,MX,Monterrey,2020-02-13,Premium,True
+CUST000237,jacob.robinson.237@yahoo.com,Jacob,Robinson,MX,Monterrey,2020-05-21,Standard,True
+CUST000238,joshua.lawrence.238@hotmail.com,Joshua,Lawrence,US,Chicago,2025-12-06,Premium,True
+CUST000239,candice.hooper.239@gmail.com,Candice,Hooper,MX,Puebla,2020-11-14,Standard,True
+CUST000240,kenneth.ward.240@yahoo.com,Kenneth,Ward,US,Chicago,2023-12-29,Standard,True
+CUST000241,alexis.ferguson.241@yahoo.com,Alexis,Ferguson,CL,Antofagasta,2022-11-24,Premium,True
+CUST000242,brandon.brown.242@yahoo.com,Brandon,Brown,MX,Mexico City,2022-02-23,Premium,True
+CUST000243,heidi.martinez.243@yahoo.com,Heidi,Martinez,CL,Santiago,2020-07-22,Standard,True
+CUST000244,curtis.smith.244@yahoo.com,Curtis,Smith,AR,Mendoza,2020-08-18,Standard,True
+CUST000245,taylor.alexander.245@gmail.com,Taylor,Alexander,US,Los Angeles,2021-04-08,Standard,True
+CUST000246,tammy.king.246@yahoo.com,Tammy,King,ES,Madrid,2022-02-10,Premium,True
+CUST000247,danny.jones.247@yahoo.com,Danny,Jones,CA,Calgary,2025-02-26,Standard,True
+CUST000248,charles.soto.248@gmail.com,Charles,Soto,CO,Barranquilla,2023-10-31,Standard,True
+CUST000249,edward.shepherd.249@yahoo.com,Edward,Shepherd,CL,Concepcion,2025-01-02,Standard,True
+CUST000250,christopher.wright.250@hotmail.com,Christopher,Wright,AR,Rosario,2024-11-01,Standard,False
+CUST000251,kathy.obrien.251@hotmail.com,Kathy,Obrien,US,New York,2021-10-07,Standard,True
+CUST000252,jeremiah.mills.252@yahoo.com,Jeremiah,Mills,CO,Cali,2025-08-13,Premium,True
+CUST000253,rebekah.evans.253@hotmail.com,Rebekah,Evans,CA,Vancouver,2022-01-15,Standard,True
+CUST000254,veronica.torres.254@hotmail.com,Veronica,Torres,MX,Mexico City,2021-05-01,Standard,True
+CUST000255,brian.choi.255@gmail.com,Brian,Choi,US,Austin,2023-10-31,Standard,True
+CUST000256,stacey.clark.256@gmail.com,Stacey,Clark,CL,Concepcion,2020-04-11,Standard,True
+CUST000257,joseph.miller.257@gmail.com,Joseph,Miller,CO,Cali,2026-01-05,Premium,True
+CUST000258,glenn.jones.258@gmail.com,Glenn,Jones,ES,Seville,2020-08-09,Standard,True
+CUST000259,ricky.norris.259@yahoo.com,Ricky,Norris,CO,Cali,2025-04-25,Standard,True
+CUST000260,kelly.hall.260@hotmail.com,Kelly,Hall,CO,Barranquilla,2020-12-22,Standard,False
+CUST000261,justin.heath.261@gmail.com,Justin,Heath,CO,Medellin,2022-04-05,Standard,True
+CUST000262,grace.bradshaw.262@hotmail.com,Grace,Bradshaw,MX,Mexico City,2020-07-04,Premium,True
+CUST000263,brittany.lara.263@gmail.com,Brittany,Lara,MX,Monterrey,2025-01-22,Standard,True
+CUST000264,ronald.stephens.264@hotmail.com,Ronald,Stephens,ES,Seville,2021-01-21,Standard,False
+CUST000265,edward.baker.265@gmail.com,Edward,Baker,CL,Concepcion,2025-12-13,Premium,True
+CUST000266,charles.martin.266@yahoo.com,Charles,Martin,AR,Rosario,2024-04-03,Standard,True
+CUST000267,brooke.holloway.267@yahoo.com,Brooke,Holloway,CL,Antofagasta,2020-09-06,Standard,True
+CUST000268,scott.harrison.268@yahoo.com,Scott,Harrison,US,Austin,2022-09-28,Standard,False
+CUST000269,holly.bender.269@hotmail.com,Holly,Bender,ES,Madrid,2020-10-10,Standard,True
+CUST000270,amber.kim.270@hotmail.com,Amber,Kim,CO,Bogota,2025-09-19,Standard,True
+CUST000271,bill.reynolds.271@yahoo.com,Bill,Reynolds,ES,Madrid,2021-06-28,Standard,False
+CUST000272,cassandra.johnson.272@gmail.com,Cassandra,Johnson,CL,Antofagasta,2022-05-14,Standard,True
+CUST000273,suzanne.huff.273@hotmail.com,Suzanne,Huff,MX,Puebla,2025-05-26,Standard,True
+CUST000274,brenda.smith.274@hotmail.com,Brenda,Smith,CL,Santiago,2023-12-31,Standard,True
+CUST000275,lori.johnston.275@gmail.com,Lori,Johnston,BR,Recife,2022-11-01,Standard,True
+CUST000276,thomas.pearson.276@yahoo.com,Thomas,Pearson,BR,Sao Paulo,2021-05-14,Standard,True
+CUST000277,howard.richards.277@hotmail.com,Howard,Richards,BR,Recife,2025-11-25,Standard,True
+CUST000278,lisa.costa.278@yahoo.com,Lisa,Costa,CL,Concepcion,2025-08-20,Standard,True
+CUST000279,michael.cook.279@hotmail.com,Michael,Cook,AR,Buenos Aires,2023-11-14,Premium,True
+CUST000280,daniel.martin.280@yahoo.com,Daniel,Martin,CA,Montreal,2022-02-23,Premium,True
+CUST000281,heather.roberts.281@yahoo.com,Heather,Roberts,BR,Sao Paulo,2023-06-09,Standard,True
+CUST000282,lisa.pierce.282@yahoo.com,Lisa,Pierce,US,Austin,2023-07-07,Standard,True
+CUST000283,christopher.king.283@gmail.com,Christopher,King,US,Los Angeles,2024-05-29,Standard,True
+CUST000284,tara.powell.284@hotmail.com,Tara,Powell,BR,Recife,2025-04-27,Standard,True
+CUST000285,mallory.smith.285@hotmail.com,Mallory,Smith,CL,Santiago,2021-09-24,Standard,False
+CUST000286,steven.brown.286@hotmail.com,Steven,Brown,ES,Barcelona,2022-06-13,Standard,False
+CUST000287,michael.avila.287@hotmail.com,Michael,Avila,CL,Antofagasta,2021-01-12,Standard,True
+CUST000288,scott.williams.288@yahoo.com,Scott,Williams,US,Los Angeles,2026-01-14,Standard,True
+CUST000289,andrea.pennington.289@yahoo.com,Andrea,Pennington,MX,Monterrey,2024-09-07,Standard,True
+CUST000290,nicole.washington.290@gmail.com,Nicole,Washington,US,Austin,2020-10-16,Standard,True
+CUST000291,teresa.lynch.291@gmail.com,Teresa,Lynch,CO,Bogota,2023-12-04,Premium,True
+CUST000292,jennifer.collins.292@gmail.com,Jennifer,Collins,CA,Vancouver,2024-03-28,Standard,True
+CUST000293,andrea.davis.293@gmail.com,Andrea,Davis,ES,Valencia,2023-07-14,Premium,True
+CUST000294,steven.wilson.294@gmail.com,Steven,Wilson,CL,Antofagasta,2022-01-27,Standard,True
+CUST000295,tyrone.moran.295@hotmail.com,Tyrone,Moran,CL,Valparaiso,2023-04-06,Premium,True
+CUST000296,janice.perry.296@yahoo.com,Janice,Perry,CO,Medellin,2020-08-04,Premium,True
+CUST000297,tina.sanchez.297@hotmail.com,Tina,Sanchez,ES,Seville,2022-11-21,VIP,True
+CUST000298,duane.lee.298@hotmail.com,Duane,Lee,ES,Madrid,2022-05-28,Premium,True
+CUST000299,william.suarez.299@gmail.com,William,Suarez,ES,Seville,2021-04-06,Premium,True
+CUST000300,joshua.tyler.300@yahoo.com,Joshua,Tyler,CL,Antofagasta,2022-12-08,Standard,True
+CUST000301,matthew.french.301@yahoo.com,Matthew,French,BR,Recife,2023-11-15,Premium,True
+CUST000302,lori.campbell.302@yahoo.com,Lori,Campbell,BR,Rio de Janeiro,2025-12-07,Standard,True
+CUST000303,mary.carpenter.303@hotmail.com,Mary,Carpenter,CO,Barranquilla,2021-12-26,Standard,True
+CUST000304,tracy.hernandez.304@hotmail.com,Tracy,Hernandez,AR,Buenos Aires,2022-09-15,Standard,True
+CUST000305,todd.cook.305@hotmail.com,Todd,Cook,CL,Antofagasta,2023-04-14,Premium,True
+CUST000306,nicholas.cantu.306@gmail.com,Nicholas,Cantu,MX,Puebla,2020-04-25,Standard,False
+CUST000307,tina.allen.307@yahoo.com,Tina,Allen,MX,Monterrey,2020-11-07,Standard,True
+CUST000308,jesus.rowe.308@gmail.com,Jesus,Rowe,CL,Santiago,2024-06-22,Standard,True
+CUST000309,louis.kennedy.309@yahoo.com,Louis,Kennedy,CL,Santiago,2026-02-22,Standard,True
+CUST000310,paul.alvarado.310@hotmail.com,Paul,Alvarado,MX,Puebla,2025-07-27,Standard,False
+CUST000311,tina.simpson.311@gmail.com,Tina,Simpson,MX,Mexico City,2023-12-29,Standard,True
+CUST000312,david.sanford.312@yahoo.com,David,Sanford,ES,Valencia,2025-04-20,Standard,False
+CUST000313,molly.sawyer.313@yahoo.com,Molly,Sawyer,AR,Buenos Aires,2022-10-17,Standard,True
+CUST000314,cory.lozano.314@gmail.com,Cory,Lozano,AR,Rosario,2025-05-01,Standard,True
+CUST000315,jennifer.ortiz.315@hotmail.com,Jennifer,Ortiz,CL,Santiago,2025-04-02,Standard,True
+CUST000316,tara.jones.316@yahoo.com,Tara,Jones,CA,Vancouver,2025-05-14,Standard,True
+CUST000317,matthew.schwartz.317@hotmail.com,Matthew,Schwartz,ES,Barcelona,2020-10-07,Standard,True
+CUST000318,christopher.murphy.318@hotmail.com,Christopher,Murphy,AR,Buenos Aires,2025-05-22,Standard,True
+CUST000319,michele.james.319@yahoo.com,Michele,James,CA,Calgary,2021-05-31,Standard,True
+CUST000320,courtney.clay.320@yahoo.com,Courtney,Clay,ES,Madrid,2020-05-22,Premium,True
+CUST000321,monique.johnson.321@gmail.com,Monique,Johnson,BR,Sao Paulo,2022-06-30,Premium,True
+CUST000322,jimmy.cohen.322@yahoo.com,Jimmy,Cohen,BR,Brasilia,2023-08-31,Standard,True
+CUST000323,wendy.francis.323@yahoo.com,Wendy,Francis,MX,Guadalajara,2024-07-08,Standard,True
+CUST000324,tiffany.hodges.324@hotmail.com,Tiffany,Hodges,AR,Cordoba,2021-06-12,Standard,True
+CUST000325,monique.wallace.325@hotmail.com,Monique,Wallace,MX,Mexico City,2025-03-08,Premium,True
+CUST000326,kevin.johnson.326@yahoo.com,Kevin,Johnson,AR,Cordoba,2024-03-26,Standard,True
+CUST000327,laura.carter.327@yahoo.com,Laura,Carter,MX,Guadalajara,2023-12-03,Premium,True
+CUST000328,ryan.sanchez.328@yahoo.com,Ryan,Sanchez,ES,Seville,2022-03-04,Standard,True
+CUST000329,ashlee.sparks.329@gmail.com,Ashlee,Sparks,US,Austin,2022-06-12,Standard,True
+CUST000330,gregory.lynch.330@yahoo.com,Gregory,Lynch,MX,Mexico City,2023-10-04,Standard,True
+CUST000331,christine.allen.331@hotmail.com,Christine,Allen,BR,Brasilia,2025-06-08,Standard,True
+CUST000332,douglas.murray.332@yahoo.com,Douglas,Murray,AR,Rosario,2023-11-20,Standard,True
+CUST000333,steve.estrada.333@yahoo.com,Steve,Estrada,ES,Barcelona,2023-04-10,Standard,True
+CUST000334,rachel.byrd.334@gmail.com,Rachel,Byrd,CL,Santiago,2022-01-06,Premium,False
+CUST000335,charles.landry.335@hotmail.com,Charles,Landry,AR,Rosario,2024-11-20,Standard,False
+CUST000336,kevin.hayden.336@hotmail.com,Kevin,Hayden,ES,Valencia,2020-03-09,Standard,True
+CUST000337,john.bruce.337@gmail.com,John,Bruce,AR,Rosario,2020-01-26,Standard,True
+CUST000338,yvonne.castaneda.338@gmail.com,Yvonne,Castaneda,US,Austin,2022-06-08,Standard,True
+CUST000339,john.armstrong.339@hotmail.com,John,Armstrong,CO,Cali,2021-11-11,Standard,True
+CUST000340,kenneth.lyons.340@gmail.com,Kenneth,Lyons,CO,Cali,2025-10-06,Premium,True
+CUST000341,tiffany.barrett.341@yahoo.com,Tiffany,Barrett,MX,Mexico City,2025-05-03,Standard,True
+CUST000342,alan.grimes.342@hotmail.com,Alan,Grimes,US,Chicago,2023-10-01,VIP,True
+CUST000343,teresa.lozano.343@hotmail.com,Teresa,Lozano,US,Chicago,2021-02-12,Premium,True
+CUST000344,tyler.strong.344@yahoo.com,Tyler,Strong,CA,Montreal,2022-10-12,Standard,True
+CUST000345,kimberly.hall.345@yahoo.com,Kimberly,Hall,AR,Cordoba,2021-09-15,Premium,False
+CUST000346,jeffery.lee.346@yahoo.com,Jeffery,Lee,MX,Monterrey,2024-07-07,Premium,True
+CUST000347,erica.le.347@hotmail.com,Erica,Le,ES,Barcelona,2022-03-09,Premium,True
+CUST000348,erin.taylor.348@gmail.com,Erin,Taylor,CL,Concepcion,2022-11-18,Standard,True
+CUST000349,rebecca.lucas.349@yahoo.com,Rebecca,Lucas,CA,Calgary,2020-08-21,Standard,True
+CUST000350,kristina.johnson.350@yahoo.com,Kristina,Johnson,MX,Guadalajara,2025-10-02,Standard,True
+CUST000351,jessica.davis.351@yahoo.com,Jessica,Davis,AR,Rosario,2020-10-07,Standard,True
+CUST000352,mark.perry.352@gmail.com,Mark,Perry,AR,Buenos Aires,2022-04-01,Standard,True
+CUST000353,david.ryan.353@yahoo.com,David,Ryan,CA,Calgary,2023-02-19,Standard,True
+CUST000354,alyssa.mcintyre.354@gmail.com,Alyssa,Mcintyre,ES,Seville,2025-06-06,Standard,True
+CUST000355,jonathan.summers.355@yahoo.com,Jonathan,Summers,BR,Sao Paulo,2025-09-27,Standard,True
+CUST000356,tammy.phillips.356@yahoo.com,Tammy,Phillips,CO,Barranquilla,2020-03-18,Standard,True
+CUST000357,linda.mcdonald.357@gmail.com,Linda,Mcdonald,BR,Rio de Janeiro,2025-07-05,Premium,True
+CUST000358,donald.levy.358@hotmail.com,Donald,Levy,CA,Calgary,2025-12-18,Premium,True
+CUST000359,jennifer.whitney.359@hotmail.com,Jennifer,Whitney,ES,Seville,2020-12-28,Standard,True
+CUST000360,michael.gibbs.360@gmail.com,Michael,Gibbs,MX,Mexico City,2020-04-25,Standard,True
+CUST000361,joseph.martinez.361@yahoo.com,Joseph,Martinez,ES,Seville,2020-12-26,Premium,True
+CUST000362,emily.chambers.362@hotmail.com,Emily,Chambers,CA,Vancouver,2024-07-28,Standard,True
+CUST000363,parker.little.363@yahoo.com,Parker,Little,MX,Puebla,2023-11-10,Standard,True
+CUST000364,daniel.hall.364@gmail.com,Daniel,Hall,BR,Recife,2024-12-29,Standard,True
+CUST000365,christine.hahn.365@yahoo.com,Christine,Hahn,MX,Puebla,2025-07-27,Standard,True
+CUST000366,rose.walker.366@gmail.com,Rose,Walker,CA,Calgary,2025-03-27,Standard,True
+CUST000367,cynthia.marshall.367@hotmail.com,Cynthia,Marshall,AR,Rosario,2020-04-11,Premium,True
+CUST000368,kevin.ortiz.368@gmail.com,Kevin,Ortiz,BR,Rio de Janeiro,2023-10-09,Standard,True
+CUST000369,brandon.johnson.369@yahoo.com,Brandon,Johnson,CL,Valparaiso,2023-01-31,Standard,True
+CUST000370,darren.young.370@hotmail.com,Darren,Young,CA,Montreal,2024-08-18,Premium,True
+CUST000371,derek.chavez.371@hotmail.com,Derek,Chavez,BR,Sao Paulo,2023-05-21,Premium,True
+CUST000372,stacy.horton.372@hotmail.com,Stacy,Horton,ES,Barcelona,2021-01-14,Standard,False
+CUST000373,robert.newton.373@gmail.com,Robert,Newton,CL,Santiago,2025-08-21,Standard,True
+CUST000374,nicole.pena.374@yahoo.com,Nicole,Pena,CO,Bogota,2020-06-06,Standard,True
+CUST000375,christina.crosby.375@yahoo.com,Christina,Crosby,BR,Rio de Janeiro,2021-01-26,Standard,False
+CUST000376,antonio.wood.376@yahoo.com,Antonio,Wood,CO,Bogota,2024-09-17,Standard,True
+CUST000377,sean.young.377@yahoo.com,Sean,Young,CO,Medellin,2021-12-24,Premium,True
+CUST000378,cory.jennings.378@hotmail.com,Cory,Jennings,BR,Rio de Janeiro,2025-01-25,Standard,True
+CUST000379,rachel.newman.379@gmail.com,Rachel,Newman,US,Chicago,2021-03-25,Standard,True
+CUST000380,raymond.lopez.380@gmail.com,Raymond,Lopez,MX,Monterrey,2021-06-26,Standard,True
+CUST000381,stacy.holloway.381@gmail.com,Stacy,Holloway,CA,Toronto,2021-02-13,Standard,True
+CUST000382,elizabeth.may.382@hotmail.com,Elizabeth,May,US,Chicago,2022-01-09,Premium,True
+CUST000383,tasha.williams.383@yahoo.com,Tasha,Williams,BR,Sao Paulo,2021-06-25,Premium,True
+CUST000384,john.martinez.384@hotmail.com,John,Martinez,ES,Madrid,2021-01-28,Standard,False
+CUST000385,jamie.gallegos.385@hotmail.com,Jamie,Gallegos,AR,Buenos Aires,2020-07-16,Standard,False
+CUST000386,jamie.robinson.386@gmail.com,Jamie,Robinson,CL,Antofagasta,2023-01-29,VIP,True
+CUST000387,mark.hernandez.387@hotmail.com,Mark,Hernandez,CA,Calgary,2024-04-14,Standard,True
+CUST000388,aaron.garrison.388@gmail.com,Aaron,Garrison,CO,Bogota,2025-08-09,VIP,True
+CUST000389,vanessa.fernandez.389@gmail.com,Vanessa,Fernandez,ES,Seville,2025-06-21,Standard,True
+CUST000390,daniel.delacruz.390@gmail.com,Daniel,Delacruz,US,New York,2024-01-28,Premium,True
+CUST000391,alexis.tyler.391@gmail.com,Alexis,Tyler,AR,Mendoza,2025-11-01,Standard,False
+CUST000392,brianna.smith.392@yahoo.com,Brianna,Smith,CA,Calgary,2026-01-22,Standard,True
+CUST000393,brian.harmon.393@hotmail.com,Brian,Harmon,CL,Santiago,2020-09-08,Standard,True
+CUST000394,daniel.brown.394@yahoo.com,Daniel,Brown,BR,Rio de Janeiro,2020-07-23,Standard,True
+CUST000395,kimberly.palmer.395@gmail.com,Kimberly,Palmer,MX,Monterrey,2025-04-23,Standard,True
+CUST000396,shannon.walker.396@hotmail.com,Shannon,Walker,BR,Recife,2025-01-30,Standard,True
+CUST000397,bradley.logan.397@hotmail.com,Bradley,Logan,ES,Seville,2024-04-19,Premium,True
+CUST000398,adrienne.ellis.398@gmail.com,Adrienne,Ellis,AR,Buenos Aires,2025-12-20,Standard,True
+CUST000399,bruce.mendoza.399@yahoo.com,Bruce,Mendoza,CA,Vancouver,2023-08-29,Standard,True
+CUST000400,ronald.rodriguez.400@hotmail.com,Ronald,Rodriguez,CL,Valparaiso,2023-07-09,Standard,True
+CUST000401,renee.jones.401@gmail.com,Renee,Jones,BR,Recife,2023-05-23,Standard,True
+CUST000402,marc.hernandez.402@gmail.com,Marc,Hernandez,AR,Buenos Aires,2022-08-29,Premium,True
+CUST000403,joshua.schultz.403@hotmail.com,Joshua,Schultz,AR,Rosario,2025-08-28,Premium,False
+CUST000404,jennifer.james.404@hotmail.com,Jennifer,James,ES,Valencia,2021-04-19,Standard,True
+CUST000405,alyssa.chavez.405@hotmail.com,Alyssa,Chavez,CL,Santiago,2020-10-10,VIP,True
+CUST000406,russell.mcguire.406@gmail.com,Russell,Mcguire,CA,Toronto,2023-09-03,Premium,True
+CUST000407,melissa.curtis.407@hotmail.com,Melissa,Curtis,CA,Montreal,2021-02-08,Standard,False
+CUST000408,jennifer.lewis.408@yahoo.com,Jennifer,Lewis,US,Chicago,2025-09-12,Premium,True
+CUST000409,pamela.gutierrez.409@yahoo.com,Pamela,Gutierrez,CA,Calgary,2023-01-03,Standard,True
+CUST000410,raymond.blair.410@yahoo.com,Raymond,Blair,AR,Buenos Aires,2022-06-12,VIP,True
+CUST000411,ronald.ortega.411@yahoo.com,Ronald,Ortega,ES,Valencia,2020-11-17,Standard,True
+CUST000412,stephanie.mcdaniel.412@yahoo.com,Stephanie,Mcdaniel,CO,Medellin,2025-08-02,Standard,False
+CUST000413,carlos.decker.413@gmail.com,Carlos,Decker,CL,Valparaiso,2020-12-02,Standard,True
+CUST000414,ryan.garner.414@yahoo.com,Ryan,Garner,BR,Brasilia,2020-12-22,Premium,False
+CUST000415,lisa.hawkins.415@hotmail.com,Lisa,Hawkins,ES,Barcelona,2023-08-26,Standard,True
+CUST000416,sue.hoffman.416@hotmail.com,Sue,Hoffman,US,Chicago,2020-03-30,Standard,True
+CUST000417,david.gomez.417@hotmail.com,David,Gomez,MX,Monterrey,2025-12-23,Standard,True
+CUST000418,shelley.henderson.418@hotmail.com,Shelley,Henderson,ES,Valencia,2022-12-26,Premium,True
+CUST000419,brett.roberts.419@yahoo.com,Brett,Roberts,US,Los Angeles,2021-03-21,Standard,True
+CUST000420,michael.lane.420@gmail.com,Michael,Lane,AR,Buenos Aires,2021-03-16,Premium,False
+CUST000421,eric.olson.421@gmail.com,Eric,Olson,US,New York,2024-07-06,Standard,True
+CUST000422,michael.hawkins.422@gmail.com,Michael,Hawkins,CO,Barranquilla,2023-07-28,Standard,True
+CUST000423,kathryn.andrews.423@yahoo.com,Kathryn,Andrews,CL,Concepcion,2021-05-04,Standard,True
+CUST000424,megan.villegas.424@hotmail.com,Megan,Villegas,BR,Brasilia,2026-02-19,Standard,True
+CUST000425,christina.day.425@gmail.com,Christina,Day,BR,Sao Paulo,2020-06-12,Standard,True
+CUST000426,chelsea.barrett.426@hotmail.com,Chelsea,Barrett,MX,Guadalajara,2025-04-03,Premium,True
+CUST000427,joseph.white.427@hotmail.com,Joseph,White,US,New York,2022-04-25,Standard,True
+CUST000428,kathryn.dorsey.428@yahoo.com,Kathryn,Dorsey,CL,Antofagasta,2024-02-17,Premium,True
+CUST000429,adam.kane.429@hotmail.com,Adam,Kane,CL,Antofagasta,2022-04-28,Standard,True
+CUST000430,diane.jones.430@hotmail.com,Diane,Jones,CO,Bogota,2022-12-08,Premium,True
+CUST000431,cynthia.johnson.431@hotmail.com,Cynthia,Johnson,AR,Buenos Aires,2022-05-30,Premium,False
+CUST000432,alyssa.bennett.432@yahoo.com,Alyssa,Bennett,CL,Concepcion,2020-05-21,Premium,True
+CUST000433,matthew.wood.433@hotmail.com,Matthew,Wood,CO,Barranquilla,2025-02-05,Standard,True
+CUST000434,mark.pugh.434@hotmail.com,Mark,Pugh,US,New York,2021-09-27,Premium,True
+CUST000435,christopher.williams.435@gmail.com,Christopher,Williams,ES,Barcelona,2021-03-02,Standard,True
+CUST000436,karen.williams.436@gmail.com,Karen,Williams,ES,Valencia,2022-10-16,Standard,False
+CUST000437,joseph.stanley.437@yahoo.com,Joseph,Stanley,CA,Toronto,2024-03-25,Standard,True
+CUST000438,catherine.perry.438@gmail.com,Catherine,Perry,AR,Cordoba,2021-02-05,Standard,True
+CUST000439,kari.wilson.439@yahoo.com,Kari,Wilson,AR,Cordoba,2024-04-03,Standard,False
+CUST000440,daniel.gregory.440@hotmail.com,Daniel,Gregory,BR,Sao Paulo,2023-05-18,Standard,False
+CUST000441,tommy.estrada.441@gmail.com,Tommy,Estrada,US,Austin,2020-02-28,Premium,True
+CUST000442,jeffrey.joyce.442@gmail.com,Jeffrey,Joyce,CL,Santiago,2022-08-30,Standard,True
+CUST000443,adrian.turner.443@gmail.com,Adrian,Turner,AR,Mendoza,2026-01-13,Standard,True
+CUST000444,katrina.duran.444@yahoo.com,Katrina,Duran,AR,Rosario,2020-12-23,Standard,True
+CUST000445,mark.smith.445@hotmail.com,Mark,Smith,AR,Buenos Aires,2022-10-06,Standard,True
+CUST000446,ryan.anderson.446@hotmail.com,Ryan,Anderson,MX,Puebla,2025-11-12,Standard,True
+CUST000447,jane.mason.447@hotmail.com,Jane,Mason,BR,Sao Paulo,2023-09-18,VIP,True
+CUST000448,linda.jones.448@hotmail.com,Linda,Jones,CA,Vancouver,2023-09-15,Standard,True
+CUST000449,bobby.smith.449@gmail.com,Bobby,Smith,AR,Buenos Aires,2023-05-14,Standard,True
+CUST000450,michelle.johnston.450@hotmail.com,Michelle,Johnston,ES,Valencia,2021-11-19,Standard,True
+CUST000451,richard.bowman.451@yahoo.com,Richard,Bowman,BR,Rio de Janeiro,2020-08-25,Standard,True
+CUST000452,darius.smith.452@yahoo.com,Darius,Smith,CA,Vancouver,2022-12-21,Premium,True
+CUST000453,george.meza.453@yahoo.com,George,Meza,BR,Rio de Janeiro,2022-01-04,Standard,True
+CUST000454,marilyn.gillespie.454@gmail.com,Marilyn,Gillespie,CA,Vancouver,2022-03-06,Standard,False
+CUST000455,samuel.rodriguez.455@yahoo.com,Samuel,Rodriguez,CO,Medellin,2025-02-14,Standard,True
+CUST000456,brianna.warren.456@yahoo.com,Brianna,Warren,MX,Mexico City,2021-07-04,Standard,True
+CUST000457,monica.reese.457@gmail.com,Monica,Reese,CL,Antofagasta,2024-10-17,VIP,True
+CUST000458,mason.jackson.458@hotmail.com,Mason,Jackson,CL,Concepcion,2025-05-02,Standard,True
+CUST000459,cynthia.schmidt.459@gmail.com,Cynthia,Schmidt,BR,Rio de Janeiro,2023-09-28,Premium,False
+CUST000460,rebecca.bailey.460@hotmail.com,Rebecca,Bailey,CA,Calgary,2023-10-05,Standard,True
+CUST000461,susan.brewer.461@gmail.com,Susan,Brewer,ES,Valencia,2025-01-11,Standard,True
+CUST000462,joel.thomas.462@gmail.com,Joel,Thomas,US,Chicago,2024-04-25,Standard,True
+CUST000463,glenn.hernandez.463@hotmail.com,Glenn,Hernandez,CA,Montreal,2023-12-05,Premium,True
+CUST000464,charles.bean.464@hotmail.com,Charles,Bean,CL,Santiago,2020-06-25,Standard,True
+CUST000465,troy.webster.465@hotmail.com,Troy,Webster,BR,Brasilia,2020-08-26,Standard,True
+CUST000466,shane.glass.466@hotmail.com,Shane,Glass,CA,Calgary,2023-12-08,Standard,True
+CUST000467,dawn.downs.467@yahoo.com,Dawn,Downs,US,Austin,2024-11-11,Standard,True
+CUST000468,michelle.burton.468@gmail.com,Michelle,Burton,CO,Cali,2025-02-22,Premium,True
+CUST000469,scott.harrison.469@hotmail.com,Scott,Harrison,CL,Valparaiso,2020-07-11,Standard,True
+CUST000470,kevin.hill.470@gmail.com,Kevin,Hill,CL,Santiago,2022-12-03,Standard,True
+CUST000471,michael.jones.471@yahoo.com,Michael,Jones,CA,Vancouver,2020-05-01,Standard,False
+CUST000472,shannon.brown.472@yahoo.com,Shannon,Brown,CO,Barranquilla,2023-09-27,Standard,True
+CUST000473,chase.lin.473@gmail.com,Chase,Lin,MX,Monterrey,2023-03-04,Standard,True
+CUST000474,christina.hunter.474@yahoo.com,Christina,Hunter,ES,Seville,2023-06-24,Standard,True
+CUST000475,betty.best.475@hotmail.com,Betty,Best,BR,Sao Paulo,2025-05-14,Standard,True
+CUST000476,paula.cole.476@hotmail.com,Paula,Cole,BR,Sao Paulo,2022-10-21,Standard,True
+CUST000477,denise.morris.477@yahoo.com,Denise,Morris,CA,Calgary,2022-06-01,Standard,True
+CUST000478,walter.rosario.478@yahoo.com,Walter,Rosario,ES,Barcelona,2022-11-01,Standard,False
+CUST000479,dale.nolan.479@yahoo.com,Dale,Nolan,CA,Vancouver,2022-12-22,Standard,True
+CUST000480,toni.miller.480@hotmail.com,Toni,Miller,ES,Seville,2021-02-04,Standard,True
+CUST000481,gerald.wright.481@yahoo.com,Gerald,Wright,CA,Montreal,2024-10-02,Standard,True
+CUST000482,vickie.warren.482@hotmail.com,Vickie,Warren,AR,Rosario,2021-02-01,Standard,True
+CUST000483,erik.watson.483@yahoo.com,Erik,Watson,CA,Calgary,2024-04-28,Standard,True
+CUST000484,paul.schroeder.484@hotmail.com,Paul,Schroeder,BR,Sao Paulo,2023-01-31,Standard,True
+CUST000485,carla.mccormick.485@hotmail.com,Carla,Mccormick,ES,Barcelona,2021-10-27,Standard,True
+CUST000486,matthew.rivera.486@hotmail.com,Matthew,Rivera,BR,Recife,2021-08-19,Standard,True
+CUST000487,erika.mitchell.487@hotmail.com,Erika,Mitchell,CO,Medellin,2021-04-26,Standard,False
+CUST000488,melissa.brandt.488@hotmail.com,Melissa,Brandt,CA,Montreal,2020-11-10,Standard,True
+CUST000489,morgan.cook.489@hotmail.com,Morgan,Cook,US,Chicago,2025-04-04,Standard,True
+CUST000490,elizabeth.rangel.490@yahoo.com,Elizabeth,Rangel,MX,Puebla,2021-04-24,Standard,True
+CUST000491,tammy.hale.491@yahoo.com,Tammy,Hale,MX,Guadalajara,2025-11-22,Standard,True
+CUST000492,david.fletcher.492@gmail.com,David,Fletcher,MX,Puebla,2020-05-15,Standard,True
+CUST000493,kyle.bennett.493@yahoo.com,Kyle,Bennett,AR,Rosario,2025-10-02,Standard,True
+CUST000494,lisa.santiago.494@hotmail.com,Lisa,Santiago,CO,Barranquilla,2025-03-12,Standard,True
+CUST000495,wendy.gaines.495@gmail.com,Wendy,Gaines,ES,Seville,2021-12-28,Premium,True
+CUST000496,debbie.henderson.496@yahoo.com,Debbie,Henderson,CO,Cali,2023-12-28,Standard,True
+CUST000497,andrew.parker.497@gmail.com,Andrew,Parker,CO,Cali,2025-10-08,Standard,True
+CUST000498,matthew.miranda.498@gmail.com,Matthew,Miranda,CL,Antofagasta,2022-05-25,Standard,True
+CUST000499,jeremy.taylor.499@gmail.com,Jeremy,Taylor,AR,Mendoza,2021-05-18,Standard,True
+CUST000500,kenneth.french.500@hotmail.com,Kenneth,French,CO,Medellin,2022-02-15,Standard,True
+CUST000501,kelli.conley.501@hotmail.com,Kelli,Conley,US,Austin,2023-02-27,Standard,True
+CUST000502,benjamin.rogers.502@hotmail.com,Benjamin,Rogers,CA,Toronto,2022-06-04,Premium,False
+CUST000503,david.bennett.503@gmail.com,David,Bennett,CA,Vancouver,2022-04-27,Premium,True
+CUST000504,henry.schwartz.504@hotmail.com,Henry,Schwartz,CL,Valparaiso,2023-09-21,Standard,True
+CUST000505,lisa.martin.505@yahoo.com,Lisa,Martin,CA,Vancouver,2023-11-02,Standard,True
+CUST000506,bradley.diaz.506@hotmail.com,Bradley,Diaz,BR,Sao Paulo,2023-07-13,Premium,True
+CUST000507,john.wallace.507@yahoo.com,John,Wallace,US,Austin,2024-04-08,Standard,True
+CUST000508,karen.bowers.508@gmail.com,Karen,Bowers,BR,Rio de Janeiro,2023-04-14,Premium,True
+CUST000509,amanda.collins.509@yahoo.com,Amanda,Collins,CA,Montreal,2021-11-28,Standard,True
+CUST000510,rebecca.lee.510@hotmail.com,Rebecca,Lee,US,Chicago,2020-11-03,Standard,True
+CUST000511,stacey.joyce.511@yahoo.com,Stacey,Joyce,BR,Rio de Janeiro,2021-03-03,Standard,True
+CUST000512,kayla.strickland.512@hotmail.com,Kayla,Strickland,US,Chicago,2024-01-07,Premium,True
+CUST000513,allison.burch.513@gmail.com,Allison,Burch,MX,Puebla,2023-10-25,Standard,True
+CUST000514,laurie.taylor.514@yahoo.com,Laurie,Taylor,US,New York,2020-02-29,Standard,True
+CUST000515,brett.castillo.515@yahoo.com,Brett,Castillo,ES,Barcelona,2021-04-09,Standard,True
+CUST000516,angela.garcia.516@hotmail.com,Angela,Garcia,AR,Buenos Aires,2022-06-14,Standard,True
+CUST000517,melissa.mitchell.517@gmail.com,Melissa,Mitchell,CO,Cali,2021-01-13,Standard,True
+CUST000518,joshua.whitehead.518@gmail.com,Joshua,Whitehead,US,Los Angeles,2023-07-28,Standard,False
+CUST000519,mariah.davis.519@gmail.com,Mariah,Davis,CL,Santiago,2020-12-10,Standard,True
+CUST000520,lisa.wilkerson.520@gmail.com,Lisa,Wilkerson,CL,Santiago,2025-05-17,Premium,True
+CUST000521,robert.sanders.521@yahoo.com,Robert,Sanders,CO,Medellin,2022-06-23,Premium,True
+CUST000522,joe.vang.522@yahoo.com,Joe,Vang,AR,Buenos Aires,2025-03-25,Standard,True
+CUST000523,jeffrey.flores.523@gmail.com,Jeffrey,Flores,BR,Rio de Janeiro,2024-11-07,Standard,True
+CUST000524,mary.santos.524@gmail.com,Mary,Santos,AR,Cordoba,2025-08-26,Standard,True
+CUST000525,devin.mitchell.525@yahoo.com,Devin,Mitchell,CA,Montreal,2020-07-29,Standard,True
+CUST000526,heather.taylor.526@hotmail.com,Heather,Taylor,US,Austin,2023-12-31,Standard,True
+CUST000527,taylor.gilbert.527@gmail.com,Taylor,Gilbert,US,Austin,2023-03-05,VIP,True
+CUST000528,andrew.lewis.528@gmail.com,Andrew,Lewis,ES,Madrid,2023-01-14,VIP,True
+CUST000529,ana.acosta.529@hotmail.com,Ana,Acosta,CA,Montreal,2022-01-19,Premium,True
+CUST000530,rodney.parsons.530@gmail.com,Rodney,Parsons,CA,Montreal,2021-02-18,Standard,True
+CUST000531,kevin.williams.531@yahoo.com,Kevin,Williams,US,Chicago,2024-08-23,Standard,True
+CUST000532,danielle.dean.532@gmail.com,Danielle,Dean,BR,Rio de Janeiro,2025-10-28,Standard,True
+CUST000533,daniel.stein.533@hotmail.com,Daniel,Stein,CL,Antofagasta,2025-05-16,Standard,True
+CUST000534,amanda.chen.534@hotmail.com,Amanda,Chen,MX,Guadalajara,2020-07-15,Standard,True
+CUST000535,john.thomas.535@yahoo.com,John,Thomas,CL,Santiago,2022-06-30,Standard,True
+CUST000536,aaron.gomez.536@hotmail.com,Aaron,Gomez,CO,Bogota,2021-09-11,Standard,True
+CUST000537,robert.beck.537@gmail.com,Robert,Beck,US,Chicago,2022-08-21,Standard,True
+CUST000538,alexandra.ward.538@hotmail.com,Alexandra,Ward,AR,Mendoza,2022-02-26,Standard,True
+CUST000539,amy.hartman.539@hotmail.com,Amy,Hartman,US,Los Angeles,2022-06-07,Standard,True
+CUST000540,angela.myers.540@yahoo.com,Angela,Myers,BR,Sao Paulo,2025-07-30,Premium,True
+CUST000541,bradley.hughes.541@yahoo.com,Bradley,Hughes,BR,Brasilia,2021-01-21,VIP,True
+CUST000542,jon.smith.542@gmail.com,Jon,Smith,BR,Recife,2023-05-27,Standard,True
+CUST000543,michael.quinn.543@hotmail.com,Michael,Quinn,CL,Antofagasta,2022-11-19,Premium,True
+CUST000544,dale.perkins.544@yahoo.com,Dale,Perkins,MX,Puebla,2025-11-20,VIP,True
+CUST000545,dennis.bell.545@yahoo.com,Dennis,Bell,CL,Concepcion,2024-06-01,Standard,True
+CUST000546,lisa.thompson.546@hotmail.com,Lisa,Thompson,ES,Madrid,2023-08-11,Standard,True
+CUST000547,steven.dominguez.547@hotmail.com,Steven,Dominguez,CA,Calgary,2025-02-14,Standard,True
+CUST000548,ian.taylor.548@hotmail.com,Ian,Taylor,MX,Monterrey,2022-09-24,Standard,True
+CUST000549,kimberly.ellis.549@yahoo.com,Kimberly,Ellis,CA,Toronto,2022-10-15,Premium,True
+CUST000550,james.moody.550@gmail.com,James,Moody,ES,Valencia,2023-10-17,Standard,True
+CUST000551,leslie.collins.551@yahoo.com,Leslie,Collins,AR,Cordoba,2025-11-13,Standard,True
+CUST000552,veronica.daniels.552@yahoo.com,Veronica,Daniels,CL,Concepcion,2023-10-21,Standard,True
+CUST000553,benjamin.lucas.553@yahoo.com,Benjamin,Lucas,US,Chicago,2025-03-25,Standard,True
+CUST000554,michael.norman.554@hotmail.com,Michael,Norman,AR,Rosario,2025-06-09,Premium,True
+CUST000555,martin.martinez.555@yahoo.com,Martin,Martinez,US,New York,2025-09-16,Standard,True
+CUST000556,samuel.ross.556@yahoo.com,Samuel,Ross,AR,Rosario,2024-05-13,Standard,True
+CUST000557,patricia.hughes.557@gmail.com,Patricia,Hughes,MX,Mexico City,2021-03-19,Standard,False
+CUST000558,tyler.jimenez.558@hotmail.com,Tyler,Jimenez,CL,Santiago,2021-01-27,Standard,True
+CUST000559,joseph.miller.559@yahoo.com,Joseph,Miller,CA,Vancouver,2025-06-27,Standard,True
+CUST000560,christian.morrison.560@gmail.com,Christian,Morrison,BR,Brasilia,2023-04-04,Standard,True
+CUST000561,amy.morris.561@gmail.com,Amy,Morris,US,Los Angeles,2025-10-10,Standard,False
+CUST000562,mark.phillips.562@yahoo.com,Mark,Phillips,CL,Concepcion,2023-03-01,Standard,True
+CUST000563,carrie.simmons.563@hotmail.com,Carrie,Simmons,CL,Santiago,2024-11-18,Premium,True
+CUST000564,scott.west.564@hotmail.com,Scott,West,MX,Monterrey,2023-05-21,Standard,True
+CUST000565,molly.gomez.565@yahoo.com,Molly,Gomez,BR,Brasilia,2022-02-14,Standard,True
+CUST000566,joshua.whitney.566@gmail.com,Joshua,Whitney,CA,Toronto,2021-08-01,Standard,True
+CUST000567,charles.walsh.567@yahoo.com,Charles,Walsh,CL,Antofagasta,2024-10-11,Premium,True
+CUST000568,william.brady.568@gmail.com,William,Brady,CA,Montreal,2022-03-19,Standard,True
+CUST000569,stephanie.thomas.569@hotmail.com,Stephanie,Thomas,CL,Valparaiso,2025-03-16,Standard,True
+CUST000570,erika.kim.570@gmail.com,Erika,Kim,ES,Seville,2021-09-13,Standard,True
+CUST000571,carlos.osborne.571@yahoo.com,Carlos,Osborne,CA,Vancouver,2020-08-18,Standard,True
+CUST000572,michael.herring.572@gmail.com,Michael,Herring,CL,Valparaiso,2026-01-25,Premium,True
+CUST000573,cassie.shelton.573@yahoo.com,Cassie,Shelton,CL,Santiago,2025-10-19,Standard,True
+CUST000574,nathan.hines.574@hotmail.com,Nathan,Hines,BR,Brasilia,2026-01-13,Premium,True
+CUST000575,devin.richardson.575@yahoo.com,Devin,Richardson,CA,Montreal,2022-07-20,Premium,True
+CUST000576,debra.wright.576@gmail.com,Debra,Wright,MX,Guadalajara,2023-01-28,Standard,True
+CUST000577,anthony.lopez.577@hotmail.com,Anthony,Lopez,CO,Bogota,2021-09-16,Premium,True
+CUST000578,paul.hoffman.578@yahoo.com,Paul,Hoffman,MX,Guadalajara,2024-03-14,Standard,True
+CUST000579,kimberly.padilla.579@gmail.com,Kimberly,Padilla,US,Chicago,2024-09-17,Premium,False
+CUST000580,wendy.mitchell.580@yahoo.com,Wendy,Mitchell,BR,Recife,2024-09-09,Standard,True
+CUST000581,james.taylor.581@gmail.com,James,Taylor,MX,Mexico City,2020-07-23,Standard,True
+CUST000582,shannon.roach.582@yahoo.com,Shannon,Roach,ES,Seville,2026-02-05,Standard,True
+CUST000583,wendy.cochran.583@yahoo.com,Wendy,Cochran,CL,Antofagasta,2023-06-26,Standard,True
+CUST000584,elizabeth.mckinney.584@hotmail.com,Elizabeth,Mckinney,CA,Vancouver,2022-09-11,Standard,True
+CUST000585,amber.vance.585@gmail.com,Amber,Vance,CA,Calgary,2023-12-18,Premium,True
+CUST000586,jennifer.ho.586@hotmail.com,Jennifer,Ho,BR,Rio de Janeiro,2024-09-08,Standard,False
+CUST000587,grant.ward.587@gmail.com,Grant,Ward,MX,Guadalajara,2023-09-06,Standard,True
+CUST000588,david.harris.588@gmail.com,David,Harris,US,New York,2024-05-28,Standard,True
+CUST000589,joel.snyder.589@yahoo.com,Joel,Snyder,MX,Monterrey,2021-05-26,Standard,True
+CUST000590,angela.wood.590@hotmail.com,Angela,Wood,MX,Monterrey,2026-01-12,Standard,True
+CUST000591,david.henson.591@gmail.com,David,Henson,CO,Cali,2024-05-31,Premium,True
+CUST000592,kyle.key.592@hotmail.com,Kyle,Key,ES,Madrid,2022-02-17,Standard,True
+CUST000593,timothy.jenkins.593@yahoo.com,Timothy,Jenkins,CO,Cali,2021-01-23,Standard,False
+CUST000594,madeline.jones.594@yahoo.com,Madeline,Jones,ES,Madrid,2024-04-10,Standard,True
+CUST000595,dawn.cole.595@hotmail.com,Dawn,Cole,MX,Guadalajara,2021-06-15,Standard,True
+CUST000596,zachary.anderson.596@hotmail.com,Zachary,Anderson,BR,Sao Paulo,2020-03-29,Standard,True
+CUST000597,danielle.white.597@gmail.com,Danielle,White,CA,Toronto,2025-06-15,Standard,True
+CUST000598,ryan.bartlett.598@gmail.com,Ryan,Bartlett,ES,Barcelona,2024-11-12,Standard,True
+CUST000599,marie.holmes.599@yahoo.com,Marie,Holmes,AR,Buenos Aires,2024-03-27,VIP,True
+CUST000600,fred.morris.600@hotmail.com,Fred,Morris,ES,Valencia,2024-02-09,Standard,True
+CUST000601,jeremiah.meza.601@hotmail.com,Jeremiah,Meza,CO,Barranquilla,2022-07-13,Standard,True
+CUST000602,patty.singleton.602@yahoo.com,Patty,Singleton,CL,Santiago,2025-11-09,Premium,True
+CUST000603,james.huber.603@yahoo.com,James,Huber,US,Los Angeles,2023-09-27,Premium,True
+CUST000604,david.turner.604@hotmail.com,David,Turner,AR,Mendoza,2023-12-13,Standard,True
+CUST000605,clarence.davidson.605@hotmail.com,Clarence,Davidson,CO,Cali,2025-02-27,VIP,True
+CUST000606,shelly.moore.606@hotmail.com,Shelly,Moore,MX,Monterrey,2026-02-09,Premium,True
+CUST000607,claudia.winters.607@yahoo.com,Claudia,Winters,BR,Brasilia,2023-05-23,Premium,False
+CUST000608,megan.elliott.608@gmail.com,Megan,Elliott,MX,Monterrey,2024-05-18,Standard,True
+CUST000609,christopher.fry.609@hotmail.com,Christopher,Fry,CA,Montreal,2022-01-21,Standard,True
+CUST000610,joseph.clark.610@hotmail.com,Joseph,Clark,CL,Santiago,2022-04-11,Standard,True
+CUST000611,robert.fowler.611@yahoo.com,Robert,Fowler,CL,Valparaiso,2021-03-13,Standard,True
+CUST000612,pamela.gardner.612@hotmail.com,Pamela,Gardner,CA,Toronto,2022-06-20,Standard,True
+CUST000613,sue.webb.613@hotmail.com,Sue,Webb,AR,Mendoza,2022-02-10,VIP,True
+CUST000614,richard.chavez.614@hotmail.com,Richard,Chavez,MX,Monterrey,2024-11-29,VIP,True
+CUST000615,brian.gonzales.615@yahoo.com,Brian,Gonzales,BR,Rio de Janeiro,2021-05-10,Standard,True
+CUST000616,steven.peterson.616@gmail.com,Steven,Peterson,CL,Antofagasta,2024-03-29,Standard,True
+CUST000617,larry.higgins.617@hotmail.com,Larry,Higgins,ES,Seville,2020-03-13,Standard,True
+CUST000618,vanessa.reed.618@yahoo.com,Vanessa,Reed,CA,Calgary,2024-04-19,Standard,True
+CUST000619,david.wood.619@hotmail.com,David,Wood,CL,Valparaiso,2021-10-30,Standard,False
+CUST000620,daniel.allen.620@gmail.com,Daniel,Allen,BR,Sao Paulo,2020-06-06,Standard,True
+CUST000621,joseph.wright.621@gmail.com,Joseph,Wright,ES,Seville,2025-01-30,Premium,True
+CUST000622,brent.dougherty.622@hotmail.com,Brent,Dougherty,CL,Concepcion,2024-07-25,Standard,True
+CUST000623,robert.estes.623@gmail.com,Robert,Estes,US,New York,2023-08-31,VIP,True
+CUST000624,lisa.peck.624@hotmail.com,Lisa,Peck,MX,Monterrey,2023-02-10,Standard,True
+CUST000625,larry.hines.625@yahoo.com,Larry,Hines,AR,Rosario,2020-05-20,VIP,True
+CUST000626,wendy.owens.626@yahoo.com,Wendy,Owens,AR,Buenos Aires,2024-11-06,Standard,True
+CUST000627,tyler.davis.627@yahoo.com,Tyler,Davis,CO,Cali,2024-09-14,Premium,True
+CUST000628,william.levy.628@gmail.com,William,Levy,ES,Madrid,2023-04-15,Standard,True
+CUST000629,brandy.williams.629@yahoo.com,Brandy,Williams,CL,Concepcion,2025-04-20,Standard,True
+CUST000630,troy.khan.630@hotmail.com,Troy,Khan,CA,Vancouver,2020-10-27,Premium,True
+CUST000631,emily.mitchell.631@gmail.com,Emily,Mitchell,AR,Rosario,2022-11-19,Premium,True
+CUST000632,melanie.jordan.632@yahoo.com,Melanie,Jordan,BR,Rio de Janeiro,2021-09-10,Premium,True
+CUST000633,jessica.gallagher.633@yahoo.com,Jessica,Gallagher,AR,Buenos Aires,2020-05-20,Standard,True
+CUST000634,brandon.williams.634@hotmail.com,Brandon,Williams,US,Los Angeles,2026-01-26,Standard,True
+CUST000635,james.tran.635@gmail.com,James,Tran,BR,Recife,2024-06-01,Standard,False
+CUST000636,paul.cole.636@hotmail.com,Paul,Cole,CL,Valparaiso,2025-02-26,Standard,True
+CUST000637,joshua.hays.637@hotmail.com,Joshua,Hays,MX,Monterrey,2025-03-19,Standard,True
+CUST000638,cheryl.anderson.638@gmail.com,Cheryl,Anderson,BR,Rio de Janeiro,2023-05-05,Standard,False
+CUST000639,phillip.norton.639@yahoo.com,Phillip,Norton,ES,Valencia,2024-04-25,Premium,True
+CUST000640,angela.diaz.640@gmail.com,Angela,Diaz,CL,Concepcion,2024-01-15,Premium,True
+CUST000641,james.hicks.641@hotmail.com,James,Hicks,US,Chicago,2022-10-26,Standard,True
+CUST000642,billy.williams.642@hotmail.com,Billy,Williams,CA,Calgary,2024-12-18,Premium,True
+CUST000643,mason.wells.643@yahoo.com,Mason,Wells,ES,Madrid,2025-01-28,Standard,True
+CUST000644,eduardo.barry.644@gmail.com,Eduardo,Barry,CL,Concepcion,2025-07-29,Standard,True
+CUST000645,mark.austin.645@gmail.com,Mark,Austin,CO,Bogota,2024-12-17,Standard,True
+CUST000646,phillip.jensen.646@yahoo.com,Phillip,Jensen,CL,Valparaiso,2024-06-16,Premium,True
+CUST000647,brittney.romero.647@hotmail.com,Brittney,Romero,AR,Cordoba,2025-10-15,Standard,True
+CUST000648,amanda.erickson.648@yahoo.com,Amanda,Erickson,CO,Bogota,2024-11-13,Standard,True
+CUST000649,thomas.smith.649@yahoo.com,Thomas,Smith,CA,Vancouver,2020-02-28,Standard,True
+CUST000650,emily.whitney.650@hotmail.com,Emily,Whitney,CL,Concepcion,2023-07-25,Standard,True
+CUST000651,kyle.roach.651@hotmail.com,Kyle,Roach,MX,Puebla,2025-11-15,Standard,True
+CUST000652,crystal.carlson.652@yahoo.com,Crystal,Carlson,CO,Barranquilla,2024-04-08,Premium,True
+CUST000653,tammy.patton.653@hotmail.com,Tammy,Patton,CL,Santiago,2026-01-01,Standard,True
+CUST000654,becky.griffith.654@hotmail.com,Becky,Griffith,MX,Guadalajara,2024-10-08,Standard,True
+CUST000655,timothy.warren.655@hotmail.com,Timothy,Warren,BR,Recife,2024-06-20,Premium,False
+CUST000656,christine.randall.656@gmail.com,Christine,Randall,AR,Rosario,2021-06-22,Standard,True
+CUST000657,lorraine.allen.657@hotmail.com,Lorraine,Allen,CL,Concepcion,2024-08-24,Premium,True
+CUST000658,stacy.rodriguez.658@gmail.com,Stacy,Rodriguez,BR,Brasilia,2025-03-10,Standard,True
+CUST000659,scott.barnes.659@yahoo.com,Scott,Barnes,CL,Valparaiso,2022-02-04,Standard,True
+CUST000660,hannah.jenkins.660@hotmail.com,Hannah,Jenkins,ES,Valencia,2021-11-29,Standard,True
+CUST000661,samantha.salas.661@hotmail.com,Samantha,Salas,ES,Valencia,2025-12-30,Standard,True
+CUST000662,jessica.thornton.662@hotmail.com,Jessica,Thornton,CO,Barranquilla,2022-09-12,Premium,True
+CUST000663,jared.nguyen.663@hotmail.com,Jared,Nguyen,CL,Concepcion,2024-10-07,Standard,True
+CUST000664,timothy.bennett.664@gmail.com,Timothy,Bennett,ES,Valencia,2021-01-13,Standard,True
+CUST000665,steve.patel.665@hotmail.com,Steve,Patel,AR,Mendoza,2022-12-08,Standard,True
+CUST000666,michael.ingram.666@hotmail.com,Michael,Ingram,MX,Monterrey,2020-05-10,Standard,True
+CUST000667,erin.lara.667@yahoo.com,Erin,Lara,ES,Madrid,2022-12-12,Premium,True
+CUST000668,chelsea.lee.668@gmail.com,Chelsea,Lee,CL,Concepcion,2024-01-28,VIP,True
+CUST000669,joshua.evans.669@yahoo.com,Joshua,Evans,CO,Medellin,2024-07-31,Standard,True
+CUST000670,kellie.bush.670@hotmail.com,Kellie,Bush,ES,Valencia,2021-03-02,Standard,True
+CUST000671,janet.stewart.671@yahoo.com,Janet,Stewart,CA,Vancouver,2022-01-23,Standard,True
+CUST000672,ann.michael.672@hotmail.com,Ann,Michael,US,Los Angeles,2025-06-05,Standard,True
+CUST000673,joshua.martinez.673@hotmail.com,Joshua,Martinez,CO,Bogota,2020-11-07,VIP,True
+CUST000674,amy.huang.674@yahoo.com,Amy,Huang,AR,Rosario,2026-02-06,Standard,True
+CUST000675,loretta.blevins.675@gmail.com,Loretta,Blevins,CL,Santiago,2025-10-17,Standard,True
+CUST000676,kelly.roberts.676@hotmail.com,Kelly,Roberts,MX,Mexico City,2024-09-05,Standard,False
+CUST000677,christian.bradshaw.677@hotmail.com,Christian,Bradshaw,MX,Puebla,2025-07-21,Premium,True
+CUST000678,jonathan.mendoza.678@gmail.com,Jonathan,Mendoza,CL,Antofagasta,2025-07-14,Standard,True
+CUST000679,maria.nelson.679@hotmail.com,Maria,Nelson,CO,Cali,2022-09-24,Standard,True
+CUST000680,heather.taylor.680@hotmail.com,Heather,Taylor,ES,Madrid,2020-10-04,Standard,True
+CUST000681,joyce.allen.681@gmail.com,Joyce,Allen,CO,Bogota,2021-06-27,Standard,True
+CUST000682,elizabeth.schmidt.682@hotmail.com,Elizabeth,Schmidt,AR,Cordoba,2020-04-22,Standard,True
+CUST000683,jesse.garcia.683@yahoo.com,Jesse,Garcia,AR,Mendoza,2021-08-01,Standard,True
+CUST000684,jennifer.garcia.684@gmail.com,Jennifer,Garcia,ES,Madrid,2020-01-29,Standard,True
+CUST000685,adam.pierce.685@gmail.com,Adam,Pierce,ES,Madrid,2022-11-06,Standard,True
+CUST000686,richard.donovan.686@yahoo.com,Richard,Donovan,ES,Seville,2025-06-15,Standard,True
+CUST000687,thomas.gonzalez.687@yahoo.com,Thomas,Gonzalez,CL,Valparaiso,2024-04-15,Standard,True
+CUST000688,manuel.brewer.688@gmail.com,Manuel,Brewer,CL,Concepcion,2021-08-22,VIP,True
+CUST000689,denise.hall.689@hotmail.com,Denise,Hall,CA,Montreal,2021-05-19,Premium,True
+CUST000690,jennifer.zuniga.690@gmail.com,Jennifer,Zuniga,CL,Concepcion,2026-02-10,Standard,True
+CUST000691,robert.monroe.691@gmail.com,Robert,Monroe,MX,Mexico City,2022-11-13,Standard,True
+CUST000692,wendy.sanders.692@yahoo.com,Wendy,Sanders,ES,Barcelona,2021-06-29,Premium,True
+CUST000693,jacob.curry.693@yahoo.com,Jacob,Curry,AR,Mendoza,2024-05-19,Standard,True
+CUST000694,nancy.smith.694@hotmail.com,Nancy,Smith,BR,Sao Paulo,2023-05-30,Standard,True
+CUST000695,carrie.hebert.695@yahoo.com,Carrie,Hebert,CA,Vancouver,2021-03-12,Premium,True
+CUST000696,justin.hays.696@hotmail.com,Justin,Hays,CL,Concepcion,2022-02-09,Standard,True
+CUST000697,alice.small.697@gmail.com,Alice,Small,US,Chicago,2023-04-06,Standard,True
+CUST000698,melissa.mcdonald.698@gmail.com,Melissa,Mcdonald,CO,Barranquilla,2022-04-09,Standard,True
+CUST000699,lisa.rivera.699@hotmail.com,Lisa,Rivera,BR,Brasilia,2024-12-14,Standard,False
+CUST000700,stephen.scott.700@gmail.com,Stephen,Scott,US,Chicago,2025-07-23,Standard,True
+CUST000701,alexis.rogers.701@yahoo.com,Alexis,Rogers,BR,Rio de Janeiro,2020-07-12,Standard,True
+CUST000702,ashley.todd.702@gmail.com,Ashley,Todd,CA,Calgary,2022-08-11,Standard,False
+CUST000703,cheryl.fowler.703@yahoo.com,Cheryl,Fowler,MX,Puebla,2025-11-01,Standard,True
+CUST000704,margaret.robertson.704@gmail.com,Margaret,Robertson,ES,Madrid,2025-06-07,Premium,True
+CUST000705,richard.davis.705@gmail.com,Richard,Davis,ES,Valencia,2025-03-24,Standard,True
+CUST000706,thomas.boyle.706@gmail.com,Thomas,Boyle,CO,Medellin,2021-02-18,Standard,False
+CUST000707,jose.young.707@yahoo.com,Jose,Young,CL,Valparaiso,2023-11-14,Premium,True
+CUST000708,stephanie.turner.708@hotmail.com,Stephanie,Turner,BR,Recife,2025-12-20,Premium,True
+CUST000709,ashley.green.709@yahoo.com,Ashley,Green,CL,Valparaiso,2022-02-07,Standard,True
+CUST000710,heather.brown.710@gmail.com,Heather,Brown,CA,Calgary,2024-06-28,Standard,True
+CUST000711,steven.moore.711@hotmail.com,Steven,Moore,BR,Sao Paulo,2024-10-18,VIP,True
+CUST000712,wayne.jacobson.712@hotmail.com,Wayne,Jacobson,CA,Toronto,2024-08-28,Standard,True
+CUST000713,kayla.vaughn.713@hotmail.com,Kayla,Vaughn,CO,Medellin,2021-05-26,Premium,False
+CUST000714,sabrina.phillips.714@hotmail.com,Sabrina,Phillips,BR,Recife,2020-12-27,Premium,True
+CUST000715,jeffrey.bernard.715@yahoo.com,Jeffrey,Bernard,CO,Barranquilla,2020-10-09,Premium,True
+CUST000716,eric.adkins.716@hotmail.com,Eric,Adkins,CL,Santiago,2023-11-09,Standard,True
+CUST000717,nathaniel.miles.717@yahoo.com,Nathaniel,Miles,MX,Puebla,2023-11-20,Standard,True
+CUST000718,katherine.pham.718@gmail.com,Katherine,Pham,US,Austin,2025-09-21,Standard,True
+CUST000719,kathleen.becker.719@hotmail.com,Kathleen,Becker,ES,Madrid,2023-05-15,Standard,True
+CUST000720,morgan.miller.720@yahoo.com,Morgan,Miller,ES,Madrid,2021-11-07,VIP,True
+CUST000721,allison.cox.721@hotmail.com,Allison,Cox,CA,Toronto,2023-08-09,Standard,True
+CUST000722,daniel.poole.722@hotmail.com,Daniel,Poole,BR,Sao Paulo,2024-08-08,Standard,True
+CUST000723,james.herrera.723@gmail.com,James,Herrera,US,New York,2024-01-06,Standard,True
+CUST000724,mark.meyer.724@gmail.com,Mark,Meyer,US,Chicago,2023-06-24,VIP,True
+CUST000725,erin.love.725@yahoo.com,Erin,Love,MX,Guadalajara,2025-06-16,Standard,True
+CUST000726,christopher.dixon.726@gmail.com,Christopher,Dixon,AR,Rosario,2023-04-03,Standard,True
+CUST000727,shawn.palmer.727@yahoo.com,Shawn,Palmer,CL,Antofagasta,2023-03-13,Standard,True
+CUST000728,anne.hansen.728@hotmail.com,Anne,Hansen,CA,Vancouver,2025-07-23,Standard,True
+CUST000729,lindsay.cummings.729@yahoo.com,Lindsay,Cummings,BR,Sao Paulo,2021-07-08,Standard,True
+CUST000730,jonathan.smith.730@gmail.com,Jonathan,Smith,AR,Cordoba,2021-11-22,Standard,True
+CUST000731,beth.williams.731@yahoo.com,Beth,Williams,US,New York,2022-07-15,Standard,False
+CUST000732,isabella.weaver.732@gmail.com,Isabella,Weaver,CL,Antofagasta,2024-07-10,Standard,True
+CUST000733,sarah.jones.733@yahoo.com,Sarah,Jones,AR,Cordoba,2022-02-07,Standard,True
+CUST000734,anthony.ortiz.734@gmail.com,Anthony,Ortiz,CL,Concepcion,2021-04-26,Standard,True
+CUST000735,katie.good.735@hotmail.com,Katie,Good,ES,Barcelona,2020-12-16,Standard,True
+CUST000736,tamara.brooks.736@yahoo.com,Tamara,Brooks,US,Austin,2025-03-25,Standard,True
+CUST000737,shane.stark.737@yahoo.com,Shane,Stark,US,Los Angeles,2021-10-02,Standard,True
+CUST000738,nicholas.vega.738@hotmail.com,Nicholas,Vega,CA,Toronto,2025-01-19,Standard,True
+CUST000739,nancy.anderson.739@yahoo.com,Nancy,Anderson,US,Austin,2025-01-31,Standard,True
+CUST000740,david.haney.740@yahoo.com,David,Haney,US,Los Angeles,2020-05-17,Standard,True
+CUST000741,allison.luna.741@gmail.com,Allison,Luna,AR,Mendoza,2021-12-29,Standard,True
+CUST000742,mary.avila.742@yahoo.com,Mary,Avila,CO,Bogota,2021-03-11,Standard,True
+CUST000743,steven.ball.743@yahoo.com,Steven,Ball,ES,Barcelona,2024-11-24,Premium,True
+CUST000744,amanda.morrow.744@gmail.com,Amanda,Morrow,BR,Brasilia,2022-01-06,Standard,False
+CUST000745,steven.moore.745@gmail.com,Steven,Moore,ES,Barcelona,2025-08-13,Standard,True
+CUST000746,sharon.hardy.746@gmail.com,Sharon,Hardy,CO,Barranquilla,2022-07-22,Standard,True
+CUST000747,antonio.keller.747@hotmail.com,Antonio,Keller,ES,Madrid,2024-09-25,Standard,True
+CUST000748,katie.stephenson.748@gmail.com,Katie,Stephenson,MX,Puebla,2024-09-22,Standard,True
+CUST000749,john.jones.749@hotmail.com,John,Jones,CL,Santiago,2022-12-06,Premium,True
+CUST000750,arthur.harper.750@hotmail.com,Arthur,Harper,AR,Rosario,2025-12-03,Premium,True
+CUST000751,monica.sanchez.751@gmail.com,Monica,Sanchez,AR,Mendoza,2021-04-08,Standard,True
+CUST000752,richard.young.752@gmail.com,Richard,Young,ES,Seville,2021-07-25,Standard,True
+CUST000753,karen.parsons.753@gmail.com,Karen,Parsons,CL,Valparaiso,2021-12-01,Standard,True
+CUST000754,william.roberts.754@hotmail.com,William,Roberts,ES,Barcelona,2023-12-09,Standard,True
+CUST000755,barbara.ray.755@hotmail.com,Barbara,Ray,US,Austin,2023-07-18,Standard,True
+CUST000756,loretta.young.756@gmail.com,Loretta,Young,MX,Puebla,2022-01-24,Standard,True
+CUST000757,valerie.boyd.757@yahoo.com,Valerie,Boyd,ES,Barcelona,2022-10-23,Standard,True
+CUST000758,kevin.brown.758@hotmail.com,Kevin,Brown,CA,Calgary,2023-02-26,Premium,False
+CUST000759,nichole.buck.759@hotmail.com,Nichole,Buck,CA,Vancouver,2020-06-09,Standard,True
+CUST000760,erika.peters.760@gmail.com,Erika,Peters,ES,Seville,2025-09-24,Standard,False
+CUST000761,teresa.david.761@hotmail.com,Teresa,David,US,New York,2021-08-07,Standard,True
+CUST000762,patrick.warren.762@hotmail.com,Patrick,Warren,CO,Barranquilla,2021-10-10,Standard,True
+CUST000763,robert.hernandez.763@yahoo.com,Robert,Hernandez,BR,Brasilia,2020-02-17,Standard,True
+CUST000764,ivan.medina.764@gmail.com,Ivan,Medina,CO,Medellin,2020-12-30,Standard,True
+CUST000765,melissa.turner.765@hotmail.com,Melissa,Turner,CL,Valparaiso,2025-12-01,Premium,True
+CUST000766,drew.ford.766@gmail.com,Drew,Ford,CO,Barranquilla,2022-01-13,Standard,True
+CUST000767,anna.faulkner.767@hotmail.com,Anna,Faulkner,BR,Brasilia,2023-03-28,Standard,False
+CUST000768,alyssa.price.768@yahoo.com,Alyssa,Price,CL,Concepcion,2022-08-16,Standard,True
+CUST000769,james.lucas.769@yahoo.com,James,Lucas,ES,Valencia,2024-05-12,Standard,True
+CUST000770,melanie.davis.770@hotmail.com,Melanie,Davis,CL,Antofagasta,2020-11-02,Standard,True
+CUST000771,maria.williams.771@yahoo.com,Maria,Williams,CL,Concepcion,2021-09-23,Standard,True
+CUST000772,emily.morrison.772@gmail.com,Emily,Morrison,BR,Brasilia,2023-07-10,Standard,True
+CUST000773,jacob.gill.773@hotmail.com,Jacob,Gill,US,Los Angeles,2021-03-29,Standard,True
+CUST000774,emily.robinson.774@gmail.com,Emily,Robinson,US,Chicago,2024-09-15,Premium,True
+CUST000775,molly.cook.775@gmail.com,Molly,Cook,AR,Rosario,2021-04-18,Standard,True
+CUST000776,jason.lee.776@hotmail.com,Jason,Lee,CO,Cali,2021-12-15,Premium,True
+CUST000777,david.key.777@yahoo.com,David,Key,AR,Cordoba,2024-03-31,Standard,True
+CUST000778,robin.dominguez.778@hotmail.com,Robin,Dominguez,BR,Brasilia,2024-02-27,Standard,True
+CUST000779,james.herman.779@hotmail.com,James,Herman,CL,Antofagasta,2021-06-06,Premium,True
+CUST000780,marc.campbell.780@yahoo.com,Marc,Campbell,BR,Rio de Janeiro,2021-03-10,Premium,True
+CUST000781,amanda.howard.781@yahoo.com,Amanda,Howard,CL,Valparaiso,2024-08-11,Standard,True
+CUST000782,michael.andrade.782@yahoo.com,Michael,Andrade,US,New York,2020-08-18,Premium,True
+CUST000783,corey.zavala.783@yahoo.com,Corey,Zavala,US,New York,2023-07-05,Standard,True
+CUST000784,kathleen.flores.784@gmail.com,Kathleen,Flores,MX,Guadalajara,2020-07-30,Standard,True
+CUST000785,nathan.gutierrez.785@hotmail.com,Nathan,Gutierrez,MX,Mexico City,2021-11-10,VIP,True
+CUST000786,michelle.figueroa.786@gmail.com,Michelle,Figueroa,CL,Concepcion,2020-07-06,Standard,True
+CUST000787,jose.donovan.787@hotmail.com,Jose,Donovan,CL,Antofagasta,2020-02-18,Premium,True
+CUST000788,jennifer.phillips.788@gmail.com,Jennifer,Phillips,US,Austin,2020-02-06,Standard,True
+CUST000789,mark.james.789@gmail.com,Mark,James,US,Chicago,2024-07-22,Premium,True
+CUST000790,victor.pena.790@hotmail.com,Victor,Pena,ES,Madrid,2024-04-09,Standard,True
+CUST000791,matthew.hines.791@yahoo.com,Matthew,Hines,AR,Cordoba,2020-11-28,Standard,True
+CUST000792,tammy.may.792@yahoo.com,Tammy,May,CA,Vancouver,2022-01-18,Standard,True
+CUST000793,steven.oconnor.793@yahoo.com,Steven,Oconnor,CO,Cali,2023-01-06,Standard,True
+CUST000794,gary.cortez.794@yahoo.com,Gary,Cortez,ES,Seville,2020-09-02,Standard,True
+CUST000795,jack.preston.795@hotmail.com,Jack,Preston,BR,Recife,2023-11-27,Standard,True
+CUST000796,susan.warren.796@gmail.com,Susan,Warren,CO,Medellin,2022-07-20,Standard,True
+CUST000797,sierra.barnett.797@gmail.com,Sierra,Barnett,CA,Toronto,2020-10-17,Standard,True
+CUST000798,robert.kirby.798@gmail.com,Robert,Kirby,AR,Mendoza,2023-03-17,Standard,True
+CUST000799,carlos.hernandez.799@gmail.com,Carlos,Hernandez,CL,Santiago,2025-06-01,Standard,True
+CUST000800,william.brooks.800@hotmail.com,William,Brooks,US,Los Angeles,2020-09-13,Standard,True
+CUST000801,dana.peck.801@yahoo.com,Dana,Peck,CL,Antofagasta,2025-06-26,Standard,True
+CUST000802,donna.smith.802@hotmail.com,Donna,Smith,BR,Sao Paulo,2024-06-28,Standard,True
+CUST000803,andrea.smith.803@hotmail.com,Andrea,Smith,US,Los Angeles,2021-10-18,Premium,True
+CUST000804,jennifer.nichols.804@yahoo.com,Jennifer,Nichols,CL,Concepcion,2020-05-24,Standard,True
+CUST000805,andre.li.805@hotmail.com,Andre,Li,CA,Montreal,2024-08-14,Standard,True
+CUST000806,russell.case.806@gmail.com,Russell,Case,US,Los Angeles,2022-09-04,Standard,True
+CUST000807,daniel.davis.807@gmail.com,Daniel,Davis,US,Los Angeles,2024-12-28,Standard,True
+CUST000808,john.harvey.808@yahoo.com,John,Harvey,MX,Puebla,2020-08-27,Standard,True
+CUST000809,lisa.adams.809@yahoo.com,Lisa,Adams,ES,Barcelona,2024-10-18,Standard,True
+CUST000810,christian.chung.810@yahoo.com,Christian,Chung,CO,Barranquilla,2025-10-04,VIP,True
+CUST000811,annette.branch.811@gmail.com,Annette,Branch,BR,Recife,2021-03-10,Standard,True
+CUST000812,kevin.clayton.812@gmail.com,Kevin,Clayton,CA,Montreal,2020-06-15,Standard,True
+CUST000813,desiree.garrison.813@gmail.com,Desiree,Garrison,CA,Calgary,2021-12-22,VIP,True
+CUST000814,clayton.gray.814@hotmail.com,Clayton,Gray,CA,Montreal,2025-02-23,Standard,True
+CUST000815,thomas.walsh.815@hotmail.com,Thomas,Walsh,AR,Rosario,2020-04-02,Standard,True
+CUST000816,george.porter.816@yahoo.com,George,Porter,ES,Seville,2024-03-04,Premium,True
+CUST000817,deanna.rivera.817@gmail.com,Deanna,Rivera,CO,Cali,2024-09-14,Premium,True
+CUST000818,patricia.ellison.818@gmail.com,Patricia,Ellison,AR,Mendoza,2021-07-31,Standard,True
+CUST000819,jason.parrish.819@hotmail.com,Jason,Parrish,AR,Buenos Aires,2025-04-05,Standard,True
+CUST000820,thomas.williams.820@gmail.com,Thomas,Williams,ES,Barcelona,2026-01-24,Standard,True
+CUST000821,gabrielle.ramirez.821@hotmail.com,Gabrielle,Ramirez,CA,Toronto,2022-04-12,Standard,False
+CUST000822,anna.johnson.822@yahoo.com,Anna,Johnson,MX,Puebla,2026-01-20,Standard,True
+CUST000823,alexis.clark.823@gmail.com,Alexis,Clark,MX,Puebla,2022-09-10,Standard,True
+CUST000824,karen.marquez.824@yahoo.com,Karen,Marquez,BR,Sao Paulo,2020-10-11,Standard,True
+CUST000825,sarah.evans.825@hotmail.com,Sarah,Evans,US,Chicago,2023-10-13,Premium,True
+CUST000826,john.davenport.826@yahoo.com,John,Davenport,BR,Brasilia,2020-11-13,Standard,True
+CUST000827,erica.fernandez.827@yahoo.com,Erica,Fernandez,MX,Mexico City,2021-08-05,Standard,True
+CUST000828,karla.taylor.828@hotmail.com,Karla,Taylor,AR,Mendoza,2024-09-26,Standard,True
+CUST000829,jennifer.mason.829@yahoo.com,Jennifer,Mason,AR,Buenos Aires,2020-03-22,Premium,False
+CUST000830,brian.kim.830@gmail.com,Brian,Kim,CA,Montreal,2024-09-17,Standard,True
+CUST000831,matthew.mack.831@hotmail.com,Matthew,Mack,CA,Montreal,2023-04-11,Standard,True
+CUST000832,randy.ayala.832@gmail.com,Randy,Ayala,US,Chicago,2023-07-09,Standard,False
+CUST000833,cynthia.bowers.833@yahoo.com,Cynthia,Bowers,AR,Buenos Aires,2024-10-04,Standard,True
+CUST000834,tracy.kelly.834@yahoo.com,Tracy,Kelly,CO,Medellin,2025-10-30,Standard,True
+CUST000835,ryan.frazier.835@hotmail.com,Ryan,Frazier,AR,Cordoba,2021-03-07,Standard,True
+CUST000836,norman.barton.836@yahoo.com,Norman,Barton,ES,Valencia,2022-04-13,Standard,True
+CUST000837,lauren.marquez.837@gmail.com,Lauren,Marquez,CL,Valparaiso,2020-07-15,Premium,True
+CUST000838,joseph.james.838@hotmail.com,Joseph,James,MX,Puebla,2022-05-07,VIP,True
+CUST000839,eric.price.839@yahoo.com,Eric,Price,AR,Rosario,2024-02-13,Standard,True
+CUST000840,daniel.smith.840@yahoo.com,Daniel,Smith,CA,Montreal,2022-02-21,Standard,True
+CUST000841,sean.juarez.841@gmail.com,Sean,Juarez,CO,Barranquilla,2025-01-18,Standard,True
+CUST000842,david.lopez.842@yahoo.com,David,Lopez,CO,Barranquilla,2020-11-28,Premium,True
+CUST000843,angela.hunt.843@gmail.com,Angela,Hunt,MX,Monterrey,2020-01-22,Standard,True
+CUST000844,anthony.gomez.844@gmail.com,Anthony,Gomez,AR,Rosario,2025-04-10,Standard,False
+CUST000845,candice.mueller.845@yahoo.com,Candice,Mueller,AR,Rosario,2023-09-29,Standard,True
+CUST000846,alexander.gutierrez.846@gmail.com,Alexander,Gutierrez,BR,Recife,2025-07-15,Premium,True
+CUST000847,jenny.hansen.847@gmail.com,Jenny,Hansen,MX,Monterrey,2022-09-23,Standard,True
+CUST000848,ashley.jackson.848@yahoo.com,Ashley,Jackson,CO,Barranquilla,2022-09-03,Standard,True
+CUST000849,gavin.adams.849@yahoo.com,Gavin,Adams,MX,Puebla,2022-09-18,Standard,True
+CUST000850,trevor.brown.850@yahoo.com,Trevor,Brown,ES,Seville,2024-11-24,VIP,True
+CUST000851,joshua.evans.851@gmail.com,Joshua,Evans,CO,Cali,2023-03-14,Standard,True
+CUST000852,michael.raymond.852@hotmail.com,Michael,Raymond,ES,Seville,2023-02-08,Standard,True
+CUST000853,colleen.wheeler.853@gmail.com,Colleen,Wheeler,CA,Vancouver,2025-01-13,Premium,True
+CUST000854,stephen.taylor.854@gmail.com,Stephen,Taylor,MX,Mexico City,2023-12-05,Premium,True
+CUST000855,stacy.cook.855@hotmail.com,Stacy,Cook,CO,Barranquilla,2022-06-24,Standard,True
+CUST000856,noah.atkins.856@yahoo.com,Noah,Atkins,CA,Calgary,2025-09-21,Standard,False
+CUST000857,matthew.ochoa.857@hotmail.com,Matthew,Ochoa,CL,Valparaiso,2025-05-21,Standard,True
+CUST000858,terri.taylor.858@yahoo.com,Terri,Taylor,ES,Barcelona,2022-02-24,Premium,True
+CUST000859,carrie.dominguez.859@yahoo.com,Carrie,Dominguez,MX,Puebla,2023-03-17,Standard,True
+CUST000860,leon.oconnell.860@yahoo.com,Leon,Oconnell,CA,Calgary,2025-01-31,Standard,True
+CUST000861,kelly.neal.861@yahoo.com,Kelly,Neal,CL,Antofagasta,2024-07-18,Standard,True
+CUST000862,tammy.casey.862@yahoo.com,Tammy,Casey,AR,Buenos Aires,2023-01-22,Standard,False
+CUST000863,nicholas.velasquez.863@yahoo.com,Nicholas,Velasquez,CA,Toronto,2022-02-10,Premium,False
+CUST000864,michael.frederick.864@gmail.com,Michael,Frederick,BR,Rio de Janeiro,2025-07-03,Standard,True
+CUST000865,brittany.gardner.865@hotmail.com,Brittany,Gardner,US,Austin,2022-10-27,Standard,True
+CUST000866,katrina.johnson.866@hotmail.com,Katrina,Johnson,AR,Buenos Aires,2020-02-02,Premium,True
+CUST000867,steven.erickson.867@yahoo.com,Steven,Erickson,CA,Montreal,2021-11-20,Premium,False
+CUST000868,lauren.guerra.868@gmail.com,Lauren,Guerra,CO,Barranquilla,2023-03-08,Premium,True
+CUST000869,lori.flynn.869@yahoo.com,Lori,Flynn,AR,Mendoza,2025-10-12,Standard,True
+CUST000870,emily.taylor.870@yahoo.com,Emily,Taylor,MX,Monterrey,2020-03-17,Standard,True
+CUST000871,john.hopkins.871@hotmail.com,John,Hopkins,CL,Santiago,2022-07-06,Standard,True
+CUST000872,rodney.bennett.872@yahoo.com,Rodney,Bennett,AR,Buenos Aires,2020-12-26,Standard,True
+CUST000873,vicki.mendoza.873@yahoo.com,Vicki,Mendoza,MX,Monterrey,2022-08-27,VIP,False
+CUST000874,amanda.mclean.874@hotmail.com,Amanda,Mclean,BR,Recife,2021-10-04,Standard,False
+CUST000875,robert.johnson.875@yahoo.com,Robert,Johnson,CL,Concepcion,2024-01-19,Standard,True
+CUST000876,jacqueline.burnett.876@hotmail.com,Jacqueline,Burnett,CA,Calgary,2026-02-21,Premium,True
+CUST000877,danielle.miller.877@gmail.com,Danielle,Miller,CL,Concepcion,2020-07-27,Standard,True
+CUST000878,diane.kelly.878@hotmail.com,Diane,Kelly,ES,Madrid,2026-01-17,Standard,True
+CUST000879,cheyenne.hart.879@hotmail.com,Cheyenne,Hart,CA,Toronto,2022-12-01,Standard,True
+CUST000880,erica.ross.880@yahoo.com,Erica,Ross,CA,Vancouver,2022-01-27,Standard,True
+CUST000881,tammy.jordan.881@gmail.com,Tammy,Jordan,MX,Guadalajara,2022-10-25,Standard,True
+CUST000882,corey.walker.882@hotmail.com,Corey,Walker,AR,Mendoza,2021-12-21,Standard,True
+CUST000883,april.carpenter.883@hotmail.com,April,Carpenter,AR,Cordoba,2021-08-02,Premium,True
+CUST000884,jeffrey.brooks.884@yahoo.com,Jeffrey,Brooks,AR,Mendoza,2020-03-31,Standard,True
+CUST000885,kelsey.chapman.885@hotmail.com,Kelsey,Chapman,CO,Barranquilla,2025-01-13,Standard,True
+CUST000886,edward.cuevas.886@yahoo.com,Edward,Cuevas,AR,Mendoza,2020-01-14,Standard,True
+CUST000887,dan.perry.887@gmail.com,Dan,Perry,CO,Medellin,2022-05-14,Standard,True
+CUST000888,darren.shepard.888@gmail.com,Darren,Shepard,CA,Toronto,2024-07-26,Standard,True
+CUST000889,michael.cooper.889@gmail.com,Michael,Cooper,MX,Monterrey,2022-10-09,Standard,True
+CUST000890,adriana.bailey.890@gmail.com,Adriana,Bailey,CO,Barranquilla,2020-12-20,Standard,True
+CUST000891,samuel.horton.891@yahoo.com,Samuel,Horton,ES,Seville,2024-06-27,Standard,True
+CUST000892,carlos.williams.892@hotmail.com,Carlos,Williams,BR,Recife,2025-03-14,VIP,True
+CUST000893,darin.sweeney.893@hotmail.com,Darin,Sweeney,AR,Buenos Aires,2022-12-16,Standard,True
+CUST000894,daniel.marsh.894@hotmail.com,Daniel,Marsh,BR,Recife,2025-04-02,Standard,True
+CUST000895,john.thompson.895@gmail.com,John,Thompson,MX,Monterrey,2025-03-24,Premium,True
+CUST000896,mark.simmons.896@yahoo.com,Mark,Simmons,CA,Vancouver,2022-08-31,Premium,True
+CUST000897,jesse.sullivan.897@gmail.com,Jesse,Sullivan,CA,Vancouver,2022-08-06,Standard,True
+CUST000898,jacob.sandoval.898@yahoo.com,Jacob,Sandoval,CA,Vancouver,2023-03-05,Standard,True
+CUST000899,anthony.mendez.899@gmail.com,Anthony,Mendez,MX,Puebla,2023-07-23,Standard,True
+CUST000900,shannon.jordan.900@gmail.com,Shannon,Jordan,MX,Puebla,2023-08-07,Standard,True
+CUST000901,janet.harris.901@hotmail.com,Janet,Harris,MX,Puebla,2025-05-28,Standard,True
+CUST000902,lindsey.brown.902@gmail.com,Lindsey,Brown,MX,Guadalajara,2024-03-01,Standard,True
+CUST000903,lauren.herrera.903@yahoo.com,Lauren,Herrera,ES,Barcelona,2021-08-04,Standard,True
+CUST000904,mark.ellis.904@yahoo.com,Mark,Ellis,BR,Recife,2025-04-08,Standard,True
+CUST000905,emily.burns.905@hotmail.com,Emily,Burns,US,Chicago,2020-01-30,VIP,True
+CUST000906,lawrence.price.906@yahoo.com,Lawrence,Price,CL,Valparaiso,2021-08-29,Standard,True
+CUST000907,brenda.bailey.907@yahoo.com,Brenda,Bailey,AR,Mendoza,2023-06-25,Standard,True
+CUST000908,christina.cervantes.908@hotmail.com,Christina,Cervantes,CL,Antofagasta,2026-01-15,Standard,True
+CUST000909,lauren.sellers.909@hotmail.com,Lauren,Sellers,CL,Antofagasta,2021-06-03,Standard,True
+CUST000910,christopher.anderson.910@gmail.com,Christopher,Anderson,CA,Toronto,2021-11-16,Standard,True
+CUST000911,john.wilson.911@yahoo.com,John,Wilson,ES,Madrid,2022-05-03,Premium,True
+CUST000912,heather.dixon.912@yahoo.com,Heather,Dixon,CO,Cali,2021-06-06,Premium,True
+CUST000913,candace.andrews.913@yahoo.com,Candace,Andrews,CL,Antofagasta,2024-09-03,Premium,True
+CUST000914,jacob.reid.914@hotmail.com,Jacob,Reid,CA,Toronto,2022-04-12,VIP,True
+CUST000915,samantha.arias.915@gmail.com,Samantha,Arias,BR,Sao Paulo,2026-02-11,VIP,True
+CUST000916,angela.burns.916@gmail.com,Angela,Burns,CL,Valparaiso,2023-08-13,VIP,True
+CUST000917,jacob.wilkinson.917@hotmail.com,Jacob,Wilkinson,CA,Vancouver,2022-07-13,Standard,True
+CUST000918,brian.howard.918@gmail.com,Brian,Howard,US,Austin,2022-03-27,Standard,True
+CUST000919,todd.lee.919@yahoo.com,Todd,Lee,BR,Sao Paulo,2023-09-26,Standard,True
+CUST000920,tamara.wagner.920@yahoo.com,Tamara,Wagner,CA,Vancouver,2021-10-14,Standard,False
+CUST000921,robert.vasquez.921@hotmail.com,Robert,Vasquez,BR,Recife,2021-05-30,Standard,True
+CUST000922,mary.burns.922@gmail.com,Mary,Burns,MX,Guadalajara,2021-10-04,Premium,True
+CUST000923,ariana.flynn.923@gmail.com,Ariana,Flynn,US,Chicago,2024-07-11,Standard,True
+CUST000924,kelly.hill.924@hotmail.com,Kelly,Hill,ES,Barcelona,2022-10-02,Standard,True
+CUST000925,keith.norman.925@hotmail.com,Keith,Norman,ES,Valencia,2024-11-14,Standard,True
+CUST000926,julia.cannon.926@hotmail.com,Julia,Cannon,ES,Madrid,2021-02-25,Standard,True
+CUST000927,william.armstrong.927@yahoo.com,William,Armstrong,AR,Buenos Aires,2022-05-11,Standard,True
+CUST000928,kimberly.morrow.928@yahoo.com,Kimberly,Morrow,MX,Guadalajara,2022-02-14,Premium,True
+CUST000929,amber.sherman.929@hotmail.com,Amber,Sherman,MX,Monterrey,2022-02-08,Standard,True
+CUST000930,scott.robinson.930@yahoo.com,Scott,Robinson,AR,Mendoza,2021-03-17,Standard,True
+CUST000931,curtis.greer.931@gmail.com,Curtis,Greer,ES,Seville,2023-03-11,Standard,True
+CUST000932,kenneth.kidd.932@yahoo.com,Kenneth,Kidd,CL,Santiago,2025-05-22,Standard,True
+CUST000933,jose.atkins.933@gmail.com,Jose,Atkins,CA,Calgary,2024-05-20,Standard,True
+CUST000934,scott.mcknight.934@gmail.com,Scott,Mcknight,ES,Valencia,2023-11-13,Premium,True
+CUST000935,jason.rojas.935@hotmail.com,Jason,Rojas,CL,Concepcion,2024-12-13,Premium,True
+CUST000936,michael.page.936@hotmail.com,Michael,Page,US,New York,2023-11-25,Standard,True
+CUST000937,ronnie.jensen.937@gmail.com,Ronnie,Jensen,BR,Sao Paulo,2024-07-18,Premium,True
+CUST000938,lisa.trujillo.938@hotmail.com,Lisa,Trujillo,AR,Cordoba,2023-08-27,Standard,True
+CUST000939,michael.campbell.939@hotmail.com,Michael,Campbell,CO,Barranquilla,2022-04-14,Premium,True
+CUST000940,gary.werner.940@yahoo.com,Gary,Werner,BR,Brasilia,2022-11-15,Standard,True
+CUST000941,keith.adams.941@hotmail.com,Keith,Adams,MX,Puebla,2022-12-03,Standard,True
+CUST000942,tricia.shelton.942@gmail.com,Tricia,Shelton,US,New York,2020-11-05,Premium,True
+CUST000943,derek.brady.943@yahoo.com,Derek,Brady,CL,Santiago,2021-01-20,Standard,True
+CUST000944,samantha.riddle.944@hotmail.com,Samantha,Riddle,MX,Puebla,2023-11-19,Standard,True
+CUST000945,david.cline.945@gmail.com,David,Cline,US,Austin,2021-09-20,Standard,True
+CUST000946,dustin.morris.946@gmail.com,Dustin,Morris,MX,Monterrey,2021-05-08,Standard,False
+CUST000947,kathleen.lowe.947@yahoo.com,Kathleen,Lowe,ES,Madrid,2025-07-26,Standard,True
+CUST000948,douglas.chen.948@hotmail.com,Douglas,Chen,BR,Brasilia,2020-09-13,Premium,False
+CUST000949,robert.hayes.949@hotmail.com,Robert,Hayes,BR,Rio de Janeiro,2020-06-09,Premium,True
+CUST000950,laura.mack.950@yahoo.com,Laura,Mack,AR,Rosario,2025-12-13,Standard,False
+CUST000951,zachary.ramirez.951@yahoo.com,Zachary,Ramirez,CO,Barranquilla,2025-07-29,Standard,False
+CUST000952,shawn.freeman.952@hotmail.com,Shawn,Freeman,CA,Toronto,2020-01-04,Standard,True
+CUST000953,aaron.schroeder.953@hotmail.com,Aaron,Schroeder,CO,Barranquilla,2020-08-30,Standard,True
+CUST000954,christopher.stanton.954@hotmail.com,Christopher,Stanton,MX,Guadalajara,2024-06-01,Standard,False
+CUST000955,elizabeth.howard.955@gmail.com,Elizabeth,Howard,CL,Santiago,2020-01-26,Premium,True
+CUST000956,laura.sanders.956@yahoo.com,Laura,Sanders,BR,Sao Paulo,2023-08-05,Premium,False
+CUST000957,mallory.simpson.957@yahoo.com,Mallory,Simpson,MX,Puebla,2020-08-08,Premium,True
+CUST000958,maria.morgan.958@hotmail.com,Maria,Morgan,CO,Barranquilla,2020-10-04,Standard,True
+CUST000959,david.phelps.959@yahoo.com,David,Phelps,CA,Toronto,2022-08-31,Standard,True
+CUST000960,patricia.farmer.960@gmail.com,Patricia,Farmer,BR,Brasilia,2021-03-02,Standard,True
+CUST000961,cory.bowers.961@yahoo.com,Cory,Bowers,AR,Cordoba,2025-06-16,Standard,True
+CUST000962,allen.noble.962@gmail.com,Allen,Noble,MX,Mexico City,2024-07-06,Standard,True
+CUST000963,scott.smith.963@yahoo.com,Scott,Smith,US,Los Angeles,2023-09-29,Standard,True
+CUST000964,james.barker.964@gmail.com,James,Barker,BR,Rio de Janeiro,2025-05-05,Standard,True
+CUST000965,nicole.turner.965@yahoo.com,Nicole,Turner,MX,Puebla,2025-03-29,VIP,True
+CUST000966,clarence.ward.966@gmail.com,Clarence,Ward,CL,Valparaiso,2020-09-26,Standard,True
+CUST000967,nathan.mckee.967@gmail.com,Nathan,Mckee,CA,Vancouver,2021-01-17,VIP,True
+CUST000968,brett.garrett.968@hotmail.com,Brett,Garrett,AR,Rosario,2023-08-27,Standard,True
+CUST000969,holly.young.969@hotmail.com,Holly,Young,BR,Rio de Janeiro,2022-02-08,Standard,True
+CUST000970,christopher.davis.970@gmail.com,Christopher,Davis,ES,Madrid,2022-02-10,Standard,True
+CUST000971,thomas.anderson.971@gmail.com,Thomas,Anderson,ES,Madrid,2025-08-07,Standard,True
+CUST000972,april.wallace.972@gmail.com,April,Wallace,ES,Barcelona,2024-05-27,Standard,False
+CUST000973,heather.montoya.973@yahoo.com,Heather,Montoya,CO,Barranquilla,2022-07-07,Standard,True
+CUST000974,heather.woods.974@gmail.com,Heather,Woods,US,Los Angeles,2024-03-17,Premium,True
+CUST000975,patrick.cross.975@gmail.com,Patrick,Cross,AR,Buenos Aires,2022-01-19,Standard,True
+CUST000976,dakota.richardson.976@yahoo.com,Dakota,Richardson,CL,Santiago,2024-06-29,Standard,True
+CUST000977,derrick.ayala.977@gmail.com,Derrick,Ayala,US,Chicago,2022-09-10,Standard,True
+CUST000978,darlene.byrd.978@gmail.com,Darlene,Byrd,MX,Puebla,2024-10-31,Standard,False
+CUST000979,alyssa.smith.979@hotmail.com,Alyssa,Smith,AR,Rosario,2024-08-24,Standard,True
+CUST000980,frank.bell.980@gmail.com,Frank,Bell,MX,Puebla,2020-08-14,Standard,True
+CUST000981,courtney.hernandez.981@yahoo.com,Courtney,Hernandez,US,New York,2020-02-12,VIP,True
+CUST000982,christina.ramos.982@gmail.com,Christina,Ramos,ES,Barcelona,2020-05-03,Premium,True
+CUST000983,christopher.garcia.983@gmail.com,Christopher,Garcia,US,Austin,2024-04-22,Standard,True
+CUST000984,brittany.cruz.984@yahoo.com,Brittany,Cruz,ES,Seville,2023-08-09,Standard,True
+CUST000985,leonard.taylor.985@yahoo.com,Leonard,Taylor,AR,Buenos Aires,2025-06-13,Standard,True
+CUST000986,deanna.wright.986@hotmail.com,Deanna,Wright,MX,Monterrey,2020-09-16,Premium,False
+CUST000987,carol.lawson.987@hotmail.com,Carol,Lawson,ES,Madrid,2024-05-07,Standard,True
+CUST000988,anthony.boone.988@yahoo.com,Anthony,Boone,CO,Medellin,2024-07-24,Standard,True
+CUST000989,jamie.lawson.989@gmail.com,Jamie,Lawson,BR,Recife,2024-12-26,Standard,False
+CUST000990,julie.phillips.990@gmail.com,Julie,Phillips,CA,Montreal,2025-12-10,Premium,True
+CUST000991,kristen.leon.991@gmail.com,Kristen,Leon,AR,Cordoba,2020-06-28,Standard,True
+CUST000992,troy.rodriguez.992@yahoo.com,Troy,Rodriguez,CO,Bogota,2023-09-11,Premium,True
+CUST000993,danielle.jones.993@gmail.com,Danielle,Jones,CA,Calgary,2025-03-17,Premium,True
+CUST000994,valerie.peck.994@gmail.com,Valerie,Peck,US,Chicago,2025-08-31,Standard,True
+CUST000995,paul.combs.995@yahoo.com,Paul,Combs,MX,Mexico City,2020-02-09,Premium,True
+CUST000996,michael.vega.996@yahoo.com,Michael,Vega,MX,Mexico City,2021-05-24,Standard,True
+CUST000997,stephanie.townsend.997@gmail.com,Stephanie,Townsend,CL,Concepcion,2024-06-12,Standard,True
+CUST000998,brenda.smith.998@gmail.com,Brenda,Smith,ES,Barcelona,2023-03-01,Standard,True
+CUST000999,bill.brown.999@yahoo.com,Bill,Brown,MX,Monterrey,2021-01-01,VIP,True
+CUST001000,william.fuller.1000@hotmail.com,William,Fuller,US,Chicago,2023-08-26,Standard,True

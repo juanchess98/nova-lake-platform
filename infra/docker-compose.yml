@@ -27,6 +27,8 @@ services:
     container_name: novalake-spark-master
     environment:
       PYTHONPATH: /opt/novalake
+      PYSPARK_PYTHON: python3
+      PYSPARK_DRIVER_PYTHON: python3
     command:
       [
         "/opt/spark/bin/spark-class",
@@ -52,6 +54,8 @@ services:
       - spark-master
     environment:
       PYTHONPATH: /opt/novalake
+      PYSPARK_PYTHON: python3
+      PYSPARK_DRIVER_PYTHON: python3
     command:
       [
         "/opt/spark/bin/spark-class",
@@ -78,6 +82,8 @@ services:
       - spark-worker
     environment:
       PYTHONPATH: /opt/novalake
+      PYSPARK_PYTHON: python3
+      PYSPARK_DRIVER_PYTHON: python3
       PYSPARK_SUBMIT_ARGS: >-
         --master spark://spark-master:7077
         --conf spark.sql.catalogImplementation=in-memory

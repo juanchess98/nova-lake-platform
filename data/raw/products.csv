@@ -1,6 +1,251 @@
-product_id,product_name,category,list_price
-2001,NovaPhone X,electronics,1299.00
-2002,NovaBook Air,electronics,899.00
-2003,Orbit Earbuds,audio,249.00
-2004,CloudSleeve Backpack,accessories,89.00
-2005,HydraBottle 1L,home,39.00
+product_id,product_name,category,subcategory,brand,unit_price,cost,created_at,is_active
+PROD000001,"Ward, Porter and Bradley Men Boy",Fashion,Men,"Ward, Porter and Bradley",212.26,123.94,2025-01-22 02:40:15,False
+PROD000002,"Mueller, Stevenson and Sanchez Skincare Clearly",Beauty,Skincare,"Mueller, Stevenson and Sanchez",119.94,58.14,2022-11-15 06:00:23,True
+PROD000003,Herrera Group Haircare Born,Beauty,Haircare,Herrera Group,92.15,45.38,2023-04-02 05:37:19,True
+PROD000004,"Rios, Walker and Wright Board Games Community",Toys,Board Games,"Rios, Walker and Wright",153.76,71.38,2020-05-03 17:52:56,True
+PROD000005,"Franco, Wiley and Tapia Men Listen",Fashion,Men,"Franco, Wiley and Tapia",43.55,25.36,2024-09-25 10:03:45,True
+PROD000006,Nelson-Brown Fiction Man,Books,Fiction,Nelson-Brown,49.84,26.61,2025-04-20 12:33:26,True
+PROD000007,Miller-Mccall Skincare Former,Beauty,Skincare,Miller-Mccall,113.67,63.9,2019-02-08 04:15:55,True
+PROD000008,Wood LLC Kitchen Investment,Home,Kitchen,Wood LLC,83.03,37.71,2022-02-04 20:03:16,True
+PROD000009,"Logan, Le and Jackson Outdoor Camera",Sports,Outdoor,"Logan, Le and Jackson",213.6,121.37,2019-04-20 20:53:57,True
+PROD000010,Nelson-Brown Fragrance North,Beauty,Fragrance,Nelson-Brown,72.99,44.46,2021-09-26 19:17:50,True
+PROD000011,Green-Edwards Appliances Help,Home,Appliances,Green-Edwards,32.66,19.74,2021-09-21 00:05:34,True
+PROD000012,"Franco, Wiley and Tapia Men Speech",Fashion,Men,"Franco, Wiley and Tapia",111.11,53.34,2022-03-04 06:35:30,True
+PROD000013,"Logan, Le and Jackson Phones Despite",Electronics,Phones,"Logan, Le and Jackson",1700.94,776.79,2020-11-24 09:53:02,True
+PROD000014,Shaw Inc STEM Live,Toys,STEM,Shaw Inc,169.93,90.99,2019-08-03 03:31:39,True
+PROD000015,Taylor PLC Cycling Foot,Sports,Cycling,Taylor PLC,290.07,211.39,2021-08-23 07:18:19,False
+PROD000016,Hall LLC Men Major,Fashion,Men,Hall LLC,20.16,11.76,2022-11-20 01:27:48,True
+PROD000017,Brady LLC Audio Evidence,Electronics,Audio,Brady LLC,332.4,183.11,2021-06-24 22:54:21,False
+PROD000018,Haynes-Moss Haircare Together,Beauty,Haircare,Haynes-Moss,10.79,6.32,2024-04-18 17:11:02,True
+PROD000019,"Rios, Walker and Wright Appliances Call",Home,Appliances,"Rios, Walker and Wright",207.86,123.46,2024-01-13 07:40:24,False
+PROD000020,Green-Edwards Outdoor Believe,Sports,Outdoor,Green-Edwards,221.57,108.41,2023-08-26 02:24:39,True
+PROD000021,"Yang, Wilson and Zimmerman Board Games Coach",Toys,Board Games,"Yang, Wilson and Zimmerman",208.43,110.41,2019-01-20 19:34:08,True
+PROD000022,Nelson-Brown Fitness Surface,Sports,Fitness,Nelson-Brown,54.46,31.43,2023-08-10 12:32:12,True
+PROD000023,Mora-White Men Rich,Fashion,Men,Mora-White,130.58,96.8,2019-01-05 13:01:02,True
+PROD000024,Haynes-Moss Action Figures Fly,Toys,Action Figures,Haynes-Moss,114.96,81.38,2025-03-09 09:05:01,True
+PROD000025,"Tanner, Wise and Johnson Men The",Fashion,Men,"Tanner, Wise and Johnson",77.08,54.47,2023-07-05 01:49:52,True
+PROD000026,"Mueller, Stevenson and Sanchez Appliances Sea",Home,Appliances,"Mueller, Stevenson and Sanchez",327.82,243.56,2019-07-06 02:06:01,True
+PROD000027,Collins Group Decor Same,Home,Decor,Collins Group,194.81,89.48,2019-05-17 09:26:27,True
+PROD000028,Jones-Bradley Appliances Player,Home,Appliances,Jones-Bradley,136.11,89.02,2022-03-03 07:00:53,True
+PROD000029,Blake Group Fitness Amount,Sports,Fitness,Blake Group,308.54,163.23,2019-10-24 22:44:16,True
+PROD000030,Dawson Inc Makeup Dinner,Beauty,Makeup,Dawson Inc,68.0,45.22,2025-12-22 12:51:53,True
+PROD000031,Blake Group Fitness Thing,Sports,Fitness,Blake Group,172.17,121.52,2023-10-31 03:46:57,True
+PROD000032,Haynes-Watson Accessories Tough,Electronics,Accessories,Haynes-Watson,447.79,322.42,2020-02-11 02:18:59,True
+PROD000033,"Ward, Porter and Bradley Decor Generation",Home,Decor,"Ward, Porter and Bradley",42.61,25.5,2021-09-05 16:46:00,True
+PROD000034,Jones-Bradley Action Figures Choose,Toys,Action Figures,Jones-Bradley,58.55,39.47,2026-01-28 14:56:50,True
+PROD000035,Williams LLC Children Benefit,Books,Children,Williams LLC,73.78,53.94,2022-11-07 16:04:20,True
+PROD000036,"Walters, Davenport and Becker Women Seek",Fashion,Women,"Walters, Davenport and Becker",180.49,119.86,2020-09-21 19:20:56,False
+PROD000037,"Yang, Wilson and Zimmerman Kitchen Energy",Home,Kitchen,"Yang, Wilson and Zimmerman",218.09,108.8,2019-11-25 06:24:46,True
+PROD000038,Murphy-Tran Appliances Heart,Home,Appliances,Murphy-Tran,329.28,165.75,2021-09-02 16:01:09,True
+PROD000039,Hernandez Group Fitness Individual,Sports,Fitness,Hernandez Group,21.14,15.4,2022-01-18 03:50:52,True
+PROD000040,Cline-Ayala Board Games Must,Toys,Board Games,Cline-Ayala,16.39,7.91,2021-08-15 21:05:22,True
+PROD000041,Wilson-Salazar Cycling Appear,Sports,Cycling,Wilson-Salazar,134.15,61.69,2019-10-08 22:16:12,True
+PROD000042,Bates-Anderson Decor Research,Home,Decor,Bates-Anderson,131.91,74.34,2024-12-05 02:59:18,True
+PROD000043,"Tanner, Wise and Johnson Skincare Firm",Beauty,Skincare,"Tanner, Wise and Johnson",66.31,36.36,2026-02-10 03:04:01,True
+PROD000044,"Yang, Wilson and Zimmerman Plush Ever",Toys,Plush,"Yang, Wilson and Zimmerman",13.34,6.81,2019-10-11 09:19:37,True
+PROD000045,Tran Ltd Non-Fiction Ten,Books,Non-Fiction,Tran Ltd,89.23,65.01,2022-05-16 02:07:42,True
+PROD000046,"Miller, Davis and Anderson Skincare Contain",Beauty,Skincare,"Miller, Davis and Anderson",99.47,54.15,2021-07-17 11:10:43,True
+PROD000047,"Herrera, Jensen and Ramirez Women Allow",Fashion,Women,"Herrera, Jensen and Ramirez",193.54,136.11,2022-06-10 09:40:11,True
+PROD000048,Hall LLC Action Figures Interview,Toys,Action Figures,Hall LLC,100.08,68.06,2025-05-13 04:46:19,True
+PROD000049,"Ashley, Allen and Sanchez Makeup Top",Beauty,Makeup,"Ashley, Allen and Sanchez",61.06,44.5,2022-12-06 12:26:30,True
+PROD000050,Wilson-Salazar Laptops Local,Electronics,Laptops,Wilson-Salazar,1790.14,1219.13,2019-02-07 03:34:22,True
+PROD000051,Parker Ltd Laptops Only,Electronics,Laptops,Parker Ltd,1208.71,556.31,2020-09-07 13:52:10,True
+PROD000052,"Rios, Walker and Wright Action Figures Smile",Toys,Action Figures,"Rios, Walker and Wright",177.44,111.92,2024-11-02 05:08:16,True
+PROD000053,Blake Group Fiction Oil,Books,Fiction,Blake Group,14.22,7.58,2023-12-27 00:10:55,True
+PROD000054,"Herrera, Jensen and Ramirez Men Enjoy",Fashion,Men,"Herrera, Jensen and Ramirez",20.19,11.8,2019-07-20 07:23:00,True
+PROD000055,Parker Ltd Appliances Between,Home,Appliances,Parker Ltd,247.79,143.11,2019-10-13 18:25:26,True
+PROD000056,Wilson-Salazar Plush Maintain,Toys,Plush,Wilson-Salazar,65.31,46.9,2019-05-13 15:40:05,True
+PROD000057,"Smith, Crawford and Reed Fitness Blue",Sports,Fitness,"Smith, Crawford and Reed",157.6,94.68,2023-11-18 23:54:26,True
+PROD000058,"Mueller, Stevenson and Sanchez Team Sports Summer",Sports,Team Sports,"Mueller, Stevenson and Sanchez",126.96,76.28,2019-04-02 14:21:32,True
+PROD000059,"Logan, Le and Jackson Team Sports Student",Sports,Team Sports,"Logan, Le and Jackson",168.09,104.17,2022-01-04 15:55:19,True
+PROD000060,Moore-Ayala Furniture Challenge,Home,Furniture,Moore-Ayala,497.87,262.39,2021-05-19 11:28:04,False
+PROD000061,Miller-Mccall Outdoor Campaign,Sports,Outdoor,Miller-Mccall,356.35,263.8,2024-03-22 23:06:18,True
+PROD000062,Morse PLC Makeup Actually,Beauty,Makeup,Morse PLC,32.44,19.72,2021-07-05 20:38:09,True
+PROD000063,Hall LLC Team Sports Assume,Sports,Team Sports,Hall LLC,370.93,231.92,2023-01-28 07:08:06,True
+PROD000064,Moore-Ayala Phones Then,Electronics,Phones,Moore-Ayala,1678.91,813.53,2022-04-04 23:41:21,True
+PROD000065,Brady LLC Appliances Statement,Home,Appliances,Brady LLC,438.2,204.93,2024-06-19 15:38:43,True
+PROD000066,Dawson Inc Board Games Doctor,Toys,Board Games,Dawson Inc,180.97,85.1,2025-10-28 05:59:14,True
+PROD000067,"Flores, Mckenzie and Duncan Skincare Case",Beauty,Skincare,"Flores, Mckenzie and Duncan",52.47,34.05,2025-08-26 07:51:55,True
+PROD000068,Wood LLC Children Decade,Books,Children,Wood LLC,84.71,60.86,2023-08-19 18:11:24,True
+PROD000069,Tran Ltd Action Figures Than,Toys,Action Figures,Tran Ltd,76.53,47.93,2023-10-24 10:00:14,True
+PROD000070,"Flores, Mckenzie and Duncan Haircare Institution",Beauty,Haircare,"Flores, Mckenzie and Duncan",84.14,41.81,2021-04-20 05:08:47,True
+PROD000071,Williams LLC Kitchen Hotel,Home,Kitchen,Williams LLC,599.86,351.88,2024-01-30 04:13:20,True
+PROD000072,Taylor PLC Kitchen Rich,Home,Kitchen,Taylor PLC,299.78,217.85,2021-05-22 19:51:28,True
+PROD000073,Oconnor PLC Accessories Professor,Electronics,Accessories,Oconnor PLC,276.11,201.25,2022-01-15 12:07:41,True
+PROD000074,"Smith, Crawford and Reed Board Games Writer",Toys,Board Games,"Smith, Crawford and Reed",74.72,41.59,2019-11-08 02:33:26,True
+PROD000075,Moore-Ayala Furniture Quite,Home,Furniture,Moore-Ayala,261.37,132.52,2023-07-17 02:46:40,True
+PROD000076,Chavez-Hall STEM Become,Toys,STEM,Chavez-Hall,61.7,40.82,2020-11-12 16:30:48,True
+PROD000077,Tran Ltd Fragrance Pass,Beauty,Fragrance,Tran Ltd,14.67,9.48,2026-02-20 08:56:47,True
+PROD000078,"Logan, Le and Jackson Board Games Peace",Toys,Board Games,"Logan, Le and Jackson",146.96,70.28,2021-01-04 22:31:51,True
+PROD000079,Haynes-Moss Haircare Event,Beauty,Haircare,Haynes-Moss,136.74,97.48,2024-12-07 10:48:24,True
+PROD000080,Bates-Anderson Men Whose,Fashion,Men,Bates-Anderson,86.84,48.67,2024-12-16 13:35:59,True
+PROD000081,"Franco, Wiley and Tapia Women Tax",Fashion,Women,"Franco, Wiley and Tapia",81.25,38.04,2020-08-07 19:43:09,True
+PROD000082,Hernandez Group Action Figures Bad,Toys,Action Figures,Hernandez Group,61.96,35.06,2021-08-18 04:40:03,True
+PROD000083,Miller-Mccall Appliances Age,Home,Appliances,Miller-Mccall,171.9,109.69,2019-10-08 10:04:40,True
+PROD000084,"Acosta, Garcia and Moreno Laptops Attention",Electronics,Laptops,"Acosta, Garcia and Moreno",674.06,411.29,2020-11-10 19:34:38,True
+PROD000085,Henderson-Morales Accessories Decade,Electronics,Accessories,Henderson-Morales,731.65,458.2,2021-10-27 15:52:44,False
+PROD000086,Parker Ltd Makeup Weight,Beauty,Makeup,Parker Ltd,97.78,70.69,2021-11-24 16:50:09,True
+PROD000087,Williams LLC Non-Fiction Race,Books,Non-Fiction,Williams LLC,10.93,6.33,2019-07-05 00:48:52,True
+PROD000088,Blake Group Laptops Life,Electronics,Laptops,Blake Group,1777.14,1044.09,2024-12-29 09:58:03,True
+PROD000089,Oconnor PLC Kitchen Table,Home,Kitchen,Oconnor PLC,345.97,168.82,2022-02-07 16:09:32,True
+PROD000090,Bates-Anderson Audio Career,Electronics,Audio,Bates-Anderson,953.2,635.81,2024-08-19 04:42:13,True
+PROD000091,Mora-White Fitness Best,Sports,Fitness,Mora-White,288.59,182.89,2021-07-26 13:14:26,True
+PROD000092,"Smith, Crawford and Reed Women West",Fashion,Women,"Smith, Crawford and Reed",212.19,150.81,2025-03-25 08:07:28,True
+PROD000093,Morse PLC Team Sports Throw,Sports,Team Sports,Morse PLC,256.94,132.29,2021-09-12 18:21:52,True
+PROD000094,Nelson-Brown Decor Themselves,Home,Decor,Nelson-Brown,396.07,228.16,2024-08-29 17:38:17,True
+PROD000095,"Flores, Mckenzie and Duncan Makeup Table",Beauty,Makeup,"Flores, Mckenzie and Duncan",66.31,43.84,2021-08-11 06:23:52,True
+PROD000096,Parker Ltd Children Glass,Books,Children,Parker Ltd,13.86,9.93,2020-07-06 02:53:24,True
+PROD000097,Jones-Bradley Fiction Can,Books,Fiction,Jones-Bradley,22.78,12.25,2023-11-15 17:39:28,False
+PROD000098,"Logan, Le and Jackson Fitness And",Sports,Fitness,"Logan, Le and Jackson",323.06,204.55,2024-02-15 13:21:17,True
+PROD000099,Dawson Inc Women Year,Fashion,Women,Dawson Inc,81.79,37.78,2023-10-24 02:28:58,True
+PROD000100,"Yang, Wilson and Zimmerman Accessories Main",Electronics,Accessories,"Yang, Wilson and Zimmerman",154.26,69.64,2021-10-25 21:42:27,True
+PROD000101,"Proctor, Burton and Crawford Fiction Apply",Books,Fiction,"Proctor, Burton and Crawford",85.71,58.02,2021-12-13 12:02:12,True
+PROD000102,Dawson Inc Women Concern,Fashion,Women,Dawson Inc,126.65,73.56,2019-10-03 15:53:26,True
+PROD000103,Cline-Ayala Plush Window,Toys,Plush,Cline-Ayala,118.6,68.71,2019-02-05 09:43:09,True
+PROD000104,"Proctor, Burton and Crawford Women Painting",Fashion,Women,"Proctor, Burton and Crawford",225.55,168.82,2024-11-23 14:57:17,True
+PROD000105,"Ward, Porter and Bradley Audio Lead",Electronics,Audio,"Ward, Porter and Bradley",741.66,373.95,2025-09-11 04:27:54,True
+PROD000106,Herrera Group Phones Term,Electronics,Phones,Herrera Group,574.45,288.58,2022-04-14 01:33:20,True
+PROD000107,"Smith, Crawford and Reed Team Sports Shake",Sports,Team Sports,"Smith, Crawford and Reed",230.89,167.57,2022-07-10 07:30:22,True
+PROD000108,Tran Ltd Team Sports Indicate,Sports,Team Sports,Tran Ltd,44.14,25.2,2023-08-24 10:29:52,True
+PROD000109,Wood LLC Fitness Model,Sports,Fitness,Wood LLC,129.29,96.43,2025-09-16 11:58:14,True
+PROD000110,"Smith, Crawford and Reed Board Games All",Toys,Board Games,"Smith, Crawford and Reed",50.0,31.1,2022-11-03 02:25:44,True
+PROD000111,"Craig, Wilson and Yang Phones Idea",Electronics,Phones,"Craig, Wilson and Yang",1078.35,607.13,2019-03-04 09:07:27,True
+PROD000112,"Ashley, Allen and Sanchez Shoes Result",Fashion,Shoes,"Ashley, Allen and Sanchez",43.26,25.03,2019-08-19 12:46:58,True
+PROD000113,"Flores, Mckenzie and Duncan Women Last",Fashion,Women,"Flores, Mckenzie and Duncan",218.38,122.48,2020-05-14 21:54:31,True
+PROD000114,Hall LLC Fiction Consider,Books,Fiction,Hall LLC,11.81,5.92,2019-10-17 06:23:18,True
+PROD000115,Bates-Anderson Accessories Health,Fashion,Accessories,Bates-Anderson,184.69,99.07,2019-04-07 07:01:14,True
+PROD000116,"Acosta, Garcia and Moreno Outdoor Difficult",Sports,Outdoor,"Acosta, Garcia and Moreno",43.88,31.1,2022-09-11 00:19:39,True
+PROD000117,"Ashley, Allen and Sanchez Kitchen When",Home,Kitchen,"Ashley, Allen and Sanchez",71.58,32.72,2021-10-25 16:12:05,True
+PROD000118,Walker PLC Furniture Culture,Home,Furniture,Walker PLC,515.11,268.07,2024-12-06 02:45:15,True
+PROD000119,Haynes-Watson Haircare Face,Beauty,Haircare,Haynes-Watson,81.31,55.99,2021-05-24 15:52:54,True
+PROD000120,"Ashley, Allen and Sanchez Women Far",Fashion,Women,"Ashley, Allen and Sanchez",130.16,97.19,2019-06-04 05:05:13,True
+PROD000121,"Yang, Wilson and Zimmerman Team Sports Like",Sports,Team Sports,"Yang, Wilson and Zimmerman",376.36,175.2,2019-06-19 08:10:35,True
+PROD000122,Finley Inc Men Use,Fashion,Men,Finley Inc,222.72,144.67,2019-09-30 06:02:38,True
+PROD000123,Brady LLC Accessories Church,Fashion,Accessories,Brady LLC,73.2,42.13,2019-10-29 07:52:03,True
+PROD000124,"Smith, Crawford and Reed Laptops Already",Electronics,Laptops,"Smith, Crawford and Reed",976.88,575.06,2024-06-05 18:56:40,True
+PROD000125,Wood LLC Men Positive,Fashion,Men,Wood LLC,83.32,43.76,2019-12-25 20:58:11,True
+PROD000126,Wood LLC Accessories President,Fashion,Accessories,Wood LLC,45.99,32.73,2023-02-28 13:42:04,True
+PROD000127,Collins Group Children Practice,Books,Children,Collins Group,17.24,11.35,2024-06-17 05:01:34,True
+PROD000128,"Logan, Le and Jackson Fragrance Else",Beauty,Fragrance,"Logan, Le and Jackson",48.86,24.19,2022-02-26 17:17:42,True
+PROD000129,"Logan, Le and Jackson Cycling Radio",Sports,Cycling,"Logan, Le and Jackson",35.55,24.13,2022-10-16 23:24:49,False
+PROD000130,Cline-Ayala Audio Find,Electronics,Audio,Cline-Ayala,157.19,106.01,2022-12-15 21:14:05,True
+PROD000131,Moore-Ayala Women Moment,Fashion,Women,Moore-Ayala,152.11,102.95,2023-10-20 01:16:30,True
+PROD000132,Chavez-Hall Laptops Its,Electronics,Laptops,Chavez-Hall,98.81,62.11,2024-12-03 20:38:17,False
+PROD000133,Collins Group Fiction Us,Books,Fiction,Collins Group,27.64,14.01,2024-09-06 20:13:00,True
+PROD000134,Chavez-Hall Accessories Oil,Fashion,Accessories,Chavez-Hall,143.26,90.1,2024-01-07 05:11:27,True
+PROD000135,"Flores, Mckenzie and Duncan Kitchen Measure",Home,Kitchen,"Flores, Mckenzie and Duncan",456.78,327.86,2025-12-17 16:42:56,True
+PROD000136,Hernandez Group Fragrance Ask,Beauty,Fragrance,Hernandez Group,50.53,31.17,2024-11-04 15:29:53,True
+PROD000137,"Franco, Wiley and Tapia Action Figures Begin",Toys,Action Figures,"Franco, Wiley and Tapia",77.91,56.84,2021-01-02 02:44:32,True
+PROD000138,Collins Group Cycling Far,Sports,Cycling,Collins Group,438.95,252.43,2022-05-11 14:44:49,True
+PROD000139,Vargas-Snyder STEM Identify,Toys,STEM,Vargas-Snyder,111.27,53.65,2023-11-10 17:14:42,True
+PROD000140,Wilson-Salazar Makeup Certain,Beauty,Makeup,Wilson-Salazar,98.75,46.43,2025-06-10 12:05:08,True
+PROD000141,"Smith, Crawford and Reed Outdoor Kind",Sports,Outdoor,"Smith, Crawford and Reed",68.87,35.08,2020-10-20 07:40:31,True
+PROD000142,Parker Ltd Board Games Decision,Toys,Board Games,Parker Ltd,28.55,20.56,2019-05-13 14:08:44,True
+PROD000143,"Miller, Davis and Anderson Fitness Question",Sports,Fitness,"Miller, Davis and Anderson",44.85,29.49,2022-09-14 17:16:24,True
+PROD000144,"Acosta, Garcia and Moreno Furniture Usually",Home,Furniture,"Acosta, Garcia and Moreno",459.26,320.77,2021-03-12 05:24:03,True
+PROD000145,Collins Group Men Subject,Fashion,Men,Collins Group,150.68,82.38,2022-04-20 18:46:13,True
+PROD000146,Hall LLC Fragrance Never,Beauty,Fragrance,Hall LLC,172.6,108.09,2021-10-10 05:46:37,True
+PROD000147,Oconnor PLC Plush Enjoy,Toys,Plush,Oconnor PLC,100.67,68.14,2022-11-24 10:40:31,False
+PROD000148,Jones-Bradley STEM Professor,Toys,STEM,Jones-Bradley,42.0,21.45,2024-04-19 18:33:58,True
+PROD000149,Wilson-Salazar Fragrance Suffer,Beauty,Fragrance,Wilson-Salazar,90.8,56.43,2022-07-11 15:03:54,True
+PROD000150,"Franco, Wiley and Tapia Furniture Of",Home,Furniture,"Franco, Wiley and Tapia",254.48,159.02,2024-01-01 15:32:47,True
+PROD000151,"Ashley, Allen and Sanchez Skincare Study",Beauty,Skincare,"Ashley, Allen and Sanchez",121.06,80.63,2023-10-15 04:44:31,True
+PROD000152,"Craig, Wilson and Yang STEM After",Toys,STEM,"Craig, Wilson and Yang",175.53,111.89,2023-07-23 03:43:36,True
+PROD000153,"Ward, Porter and Bradley Accessories Idea",Fashion,Accessories,"Ward, Porter and Bradley",155.49,74.69,2022-04-05 01:47:28,True
+PROD000154,"Franco, Wiley and Tapia Education Station",Books,Education,"Franco, Wiley and Tapia",50.3,35.81,2024-03-06 23:30:33,True
+PROD000155,"Logan, Le and Jackson Fitness Sell",Sports,Fitness,"Logan, Le and Jackson",54.33,34.1,2021-05-05 16:22:00,True
+PROD000156,Barnes Inc Outdoor Her,Sports,Outdoor,Barnes Inc,334.3,233.42,2024-03-06 00:37:32,True
+PROD000157,Miller-Mccall Education Media,Books,Education,Miller-Mccall,55.67,30.71,2022-05-14 16:26:45,True
+PROD000158,Herrera Group Women Off,Fashion,Women,Herrera Group,217.39,145.0,2025-05-05 23:08:13,True
+PROD000159,"Rios, Walker and Wright Cycling Station",Sports,Cycling,"Rios, Walker and Wright",175.18,81.48,2019-03-04 20:40:25,True
+PROD000160,Williams Inc Shoes Memory,Fashion,Shoes,Williams Inc,56.33,31.66,2021-05-21 00:09:41,True
+PROD000161,Jones-Bradley Action Figures Guy,Toys,Action Figures,Jones-Bradley,115.09,59.9,2024-10-28 18:16:06,True
+PROD000162,Parker Ltd Laptops While,Electronics,Laptops,Parker Ltd,661.89,459.83,2021-07-22 13:26:45,True
+PROD000163,Taylor PLC Education Others,Books,Education,Taylor PLC,70.89,48.97,2026-01-09 17:51:02,True
+PROD000164,Green-Edwards Shoes Morning,Fashion,Shoes,Green-Edwards,156.08,115.14,2022-07-18 20:49:37,True
+PROD000165,Brady LLC Skincare Fund,Beauty,Skincare,Brady LLC,16.76,12.18,2022-10-04 08:46:37,True
+PROD000166,Haynes-Moss Appliances Important,Home,Appliances,Haynes-Moss,322.84,198.76,2023-02-14 03:58:49,True
+PROD000167,Herrera Group Plush Expect,Toys,Plush,Herrera Group,181.72,108.96,2023-05-20 21:17:36,True
+PROD000168,"Walters, Davenport and Becker Board Games Couple",Toys,Board Games,"Walters, Davenport and Becker",152.8,112.33,2021-08-24 15:01:09,True
+PROD000169,Parker Ltd Education Agree,Books,Education,Parker Ltd,29.28,13.64,2025-08-21 23:31:22,True
+PROD000170,"Logan, Le and Jackson STEM From",Toys,STEM,"Logan, Le and Jackson",206.66,126.01,2020-08-21 21:29:03,True
+PROD000171,Herrera Group Board Games Picture,Toys,Board Games,Herrera Group,106.07,61.09,2021-02-14 03:20:33,True
+PROD000172,Herrera Group Accessories Discuss,Electronics,Accessories,Herrera Group,246.41,128.09,2022-01-24 15:30:48,True
+PROD000173,Moore-Ayala Non-Fiction All,Books,Non-Fiction,Moore-Ayala,18.25,9.45,2022-02-18 10:18:37,True
+PROD000174,Vargas-Snyder Action Figures War,Toys,Action Figures,Vargas-Snyder,53.61,26.75,2022-05-18 06:09:41,True
+PROD000175,"Miller, Davis and Anderson Fiction Talk",Books,Fiction,"Miller, Davis and Anderson",36.92,23.55,2019-04-05 22:57:24,True
+PROD000176,"Mueller, Stevenson and Sanchez Decor Start",Home,Decor,"Mueller, Stevenson and Sanchez",107.58,77.89,2024-01-20 15:06:02,True
+PROD000177,Wood LLC Outdoor Fast,Sports,Outdoor,Wood LLC,375.65,240.19,2023-12-29 08:57:47,True
+PROD000178,Tran Ltd Haircare Article,Beauty,Haircare,Tran Ltd,117.94,77.5,2020-05-23 00:27:31,True
+PROD000179,Haynes-Moss Plush Table,Toys,Plush,Haynes-Moss,211.12,132.09,2026-01-25 10:10:20,True
+PROD000180,"Craig, Wilson and Yang Fiction Marriage",Books,Fiction,"Craig, Wilson and Yang",37.69,17.1,2019-03-27 06:51:24,True
+PROD000181,"Smith, Crawford and Reed Fitness Next",Sports,Fitness,"Smith, Crawford and Reed",235.63,136.92,2023-11-13 22:39:12,True
+PROD000182,Nelson-Brown Board Games Help,Toys,Board Games,Nelson-Brown,60.96,37.08,2024-07-04 08:08:37,True
+PROD000183,Moore-Ayala Furniture Speak,Home,Furniture,Moore-Ayala,582.56,292.37,2024-07-17 09:52:23,True
+PROD000184,Taylor PLC Fitness Pattern,Sports,Fitness,Taylor PLC,142.87,87.58,2025-07-12 18:22:15,True
+PROD000185,Wood LLC Fiction Early,Books,Fiction,Wood LLC,60.07,44.15,2020-02-16 02:03:12,True
+PROD000186,"Acosta, Garcia and Moreno Non-Fiction Collection",Books,Non-Fiction,"Acosta, Garcia and Moreno",64.19,29.37,2025-10-24 04:48:30,True
+PROD000187,"Ward, Porter and Bradley Laptops Black",Electronics,Laptops,"Ward, Porter and Bradley",877.6,403.08,2024-03-05 01:24:27,True
+PROD000188,Bates-Anderson Plush End,Toys,Plush,Bates-Anderson,151.8,102.32,2025-01-12 22:19:35,True
+PROD000189,Finley Inc Children Realize,Books,Children,Finley Inc,56.73,32.27,2022-03-15 16:02:38,True
+PROD000190,Murphy-Tran Plush Effect,Toys,Plush,Murphy-Tran,29.19,18.87,2021-02-21 22:23:09,False
+PROD000191,Williams Inc Appliances Exactly,Home,Appliances,Williams Inc,29.17,18.01,2024-10-04 23:24:18,True
+PROD000192,Blake Group Fragrance None,Beauty,Fragrance,Blake Group,150.21,92.16,2019-11-14 20:56:36,True
+PROD000193,Hall LLC Audio Team,Electronics,Audio,Hall LLC,1278.37,904.69,2024-07-04 05:19:37,True
+PROD000194,Williams Inc Haircare Strong,Beauty,Haircare,Williams Inc,167.3,76.59,2024-10-27 09:32:32,True
+PROD000195,"Walters, Davenport and Becker Accessories Whose",Electronics,Accessories,"Walters, Davenport and Becker",211.99,107.77,2021-11-10 19:07:35,True
+PROD000196,Moore-Ayala Shoes Since,Fashion,Shoes,Moore-Ayala,116.86,64.31,2021-03-22 08:31:28,True
+PROD000197,Brady LLC Children Arrive,Books,Children,Brady LLC,43.89,25.05,2020-04-10 19:32:18,True
+PROD000198,Herrera Group Makeup South,Beauty,Makeup,Herrera Group,161.62,104.37,2025-11-07 09:12:01,True
+PROD000199,Haynes-Watson Action Figures Yourself,Toys,Action Figures,Haynes-Watson,70.62,51.13,2021-09-19 22:02:23,True
+PROD000200,Green-Edwards Non-Fiction Discuss,Books,Non-Fiction,Green-Edwards,40.18,29.44,2019-03-21 02:04:56,False
+PROD000201,"Craig, Wilson and Yang Education Parent",Books,Education,"Craig, Wilson and Yang",40.54,26.36,2021-03-17 00:13:28,True
+PROD000202,"Flores, Mckenzie and Duncan Team Sports Throughout",Sports,Team Sports,"Flores, Mckenzie and Duncan",342.76,157.49,2025-04-07 22:43:37,True
+PROD000203,Mora-White Laptops Subject,Electronics,Laptops,Mora-White,1136.42,590.67,2025-03-07 07:29:06,True
+PROD000204,"Miller, Davis and Anderson Non-Fiction Important",Books,Non-Fiction,"Miller, Davis and Anderson",35.5,25.42,2023-07-20 01:16:56,True
+PROD000205,Haynes-Watson Education Hear,Books,Education,Haynes-Watson,47.4,32.32,2022-01-18 19:29:00,True
+PROD000206,"Smith, Crawford and Reed Haircare Worry",Beauty,Haircare,"Smith, Crawford and Reed",93.01,47.36,2026-02-24 18:33:51,True
+PROD000207,"Craig, Wilson and Yang Non-Fiction Those",Books,Non-Fiction,"Craig, Wilson and Yang",75.14,54.15,2019-10-31 05:48:43,True
+PROD000208,Haynes-Moss Outdoor Through,Sports,Outdoor,Haynes-Moss,432.42,224.21,2021-03-14 14:28:47,True
+PROD000209,"Miller, Davis and Anderson Non-Fiction Consumer",Books,Non-Fiction,"Miller, Davis and Anderson",53.98,31.13,2021-11-08 18:34:12,True
+PROD000210,Nelson-Brown Fiction Control,Books,Fiction,Nelson-Brown,34.78,18.66,2022-01-08 19:51:01,True
+PROD000211,Walker PLC Decor Economic,Home,Decor,Walker PLC,67.81,40.62,2025-09-14 12:16:55,True
+PROD000212,"Ward, Porter and Bradley Shoes Person",Fashion,Shoes,"Ward, Porter and Bradley",161.24,97.76,2023-12-25 07:18:57,True
+PROD000213,Wilson-Salazar Accessories Friend,Fashion,Accessories,Wilson-Salazar,121.46,62.28,2023-01-01 21:44:59,True
+PROD000214,Wood LLC Phones Sure,Electronics,Phones,Wood LLC,421.22,280.11,2020-08-27 10:14:14,True
+PROD000215,"Miller, Davis and Anderson Skincare Sing",Beauty,Skincare,"Miller, Davis and Anderson",106.88,75.76,2022-03-31 19:19:10,True
+PROD000216,Walker PLC Haircare Save,Beauty,Haircare,Walker PLC,159.64,106.77,2019-06-17 23:09:09,True
+PROD000217,Parker Ltd Board Games Her,Toys,Board Games,Parker Ltd,148.89,104.8,2020-09-14 07:11:47,False
+PROD000218,"Franco, Wiley and Tapia Accessories White",Fashion,Accessories,"Franco, Wiley and Tapia",110.84,76.94,2022-11-22 14:59:56,True
+PROD000219,Bates-Anderson Decor Perhaps,Home,Decor,Bates-Anderson,282.66,205.8,2020-07-14 08:22:30,True
+PROD000220,"Mueller, Stevenson and Sanchez STEM Ahead",Toys,STEM,"Mueller, Stevenson and Sanchez",127.88,61.61,2021-10-30 10:38:56,True
+PROD000221,Williams LLC Non-Fiction Score,Books,Non-Fiction,Williams LLC,76.62,43.59,2024-05-25 07:40:21,True
+PROD000222,Cline-Ayala Phones School,Electronics,Phones,Cline-Ayala,503.09,300.59,2021-04-29 19:42:56,True
+PROD000223,"Franco, Wiley and Tapia Furniture He",Home,Furniture,"Franco, Wiley and Tapia",539.2,253.98,2025-07-03 04:02:21,True
+PROD000224,Chavez-Hall Appliances Yourself,Home,Appliances,Chavez-Hall,291.02,184.59,2025-08-19 14:33:26,True
+PROD000225,Barnes Inc Laptops Out,Electronics,Laptops,Barnes Inc,765.67,452.94,2022-09-09 11:52:00,True
+PROD000226,Shaw Inc Education Organization,Books,Education,Shaw Inc,48.08,28.45,2022-08-25 22:27:21,True
+PROD000227,Henderson-Morales Team Sports Change,Sports,Team Sports,Henderson-Morales,339.36,187.47,2019-04-28 05:00:12,True
+PROD000228,Green-Edwards Makeup Order,Beauty,Makeup,Green-Edwards,154.83,76.8,2022-03-05 04:27:25,True
+PROD000229,Chavez-Hall Audio Cup,Electronics,Audio,Chavez-Hall,570.74,383.4,2026-02-01 18:01:56,True
+PROD000230,"Herrera, Jensen and Ramirez Makeup Think",Beauty,Makeup,"Herrera, Jensen and Ramirez",123.48,65.02,2024-10-03 13:59:57,True
+PROD000231,Nelson-Brown Laptops Take,Electronics,Laptops,Nelson-Brown,1711.67,966.05,2024-11-24 16:57:11,True
+PROD000232,Parker Ltd Shoes Upon,Fashion,Shoes,Parker Ltd,246.87,175.88,2019-11-16 02:28:48,True
+PROD000233,"Smith, Crawford and Reed Cycling Mind",Sports,Cycling,"Smith, Crawford and Reed",371.55,170.78,2019-07-22 20:09:10,True
+PROD000234,Williams Inc STEM Occur,Toys,STEM,Williams Inc,192.6,126.47,2021-06-22 13:41:31,True
+PROD000235,Finley Inc Cycling For,Sports,Cycling,Finley Inc,183.72,127.44,2024-11-03 18:02:23,True
+PROD000236,"Mueller, Stevenson and Sanchez Decor Continue",Home,Decor,"Mueller, Stevenson and Sanchez",291.68,209.35,2022-01-21 03:41:14,True
+PROD000237,"Smith, Crawford and Reed Board Games Military",Toys,Board Games,"Smith, Crawford and Reed",44.12,28.36,2025-11-27 19:43:43,False
+PROD000238,Nelson-Brown Fitness Always,Sports,Fitness,Nelson-Brown,122.56,64.33,2020-11-27 22:36:47,True
+PROD000239,"Tanner, Wise and Johnson Non-Fiction Believe",Books,Non-Fiction,"Tanner, Wise and Johnson",78.29,40.55,2025-03-30 16:43:13,True
+PROD000240,Wilson-Salazar Laptops Arrive,Electronics,Laptops,Wilson-Salazar,1784.3,809.43,2022-02-12 23:02:23,True
+PROD000241,"Flores, Mckenzie and Duncan Fiction Early",Books,Fiction,"Flores, Mckenzie and Duncan",49.03,33.94,2024-06-12 09:48:02,True
+PROD000242,"Acosta, Garcia and Moreno Men Play",Fashion,Men,"Acosta, Garcia and Moreno",108.48,54.28,2019-05-30 00:11:04,True
+PROD000243,Morse PLC Fiction Discuss,Books,Fiction,Morse PLC,71.92,35.31,2026-02-10 17:37:36,True
+PROD000244,Jones-Bradley Phones Again,Electronics,Phones,Jones-Bradley,1615.8,728.42,2019-12-26 17:54:55,True
+PROD000245,"Flores, Mckenzie and Duncan Team Sports New",Sports,Team Sports,"Flores, Mckenzie and Duncan",256.44,141.1,2020-01-19 23:54:57,True
+PROD000246,Wood LLC Haircare Mean,Beauty,Haircare,Wood LLC,87.13,43.95,2024-12-20 15:05:15,True
+PROD000247,Jones-Bradley Furniture A,Home,Furniture,Jones-Bradley,429.88,267.64,2024-10-31 12:28:56,True
+PROD000248,Williams Inc Fiction Glass,Books,Fiction,Williams Inc,76.93,38.66,2022-07-31 14:27:01,True
+PROD000249,Haynes-Watson Fiction Whose,Books,Fiction,Haynes-Watson,36.29,24.85,2023-06-05 13:04:07,True
+PROD000250,Walker PLC Women Positive,Fashion,Women,Walker PLC,54.8,32.83,2026-01-24 17:57:21,True
