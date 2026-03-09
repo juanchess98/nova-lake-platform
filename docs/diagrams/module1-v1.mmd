@@ -1,7 +1,7 @@
 flowchart LR
     GEN[Synthetic Data Generator\ngenerate_commerce_data.py]
 
-    subgraph RAW[Raw Datasets (data/raw)]
+    subgraph RAW[Raw Datasets]
         C[customers.csv]
         P[products.csv]
         O[orders.csv]
@@ -10,7 +10,7 @@ flowchart LR
         S[shipments.csv]
     end
 
-    subgraph SPK[Spark + Iceberg]
+    subgraph SPK[Spark Iceberg]
         B[Bronze\nnovalake.bronze.*]
         SI[Silver\nnovalake.silver.*]
         G[Gold\nnovalake.gold.*]
