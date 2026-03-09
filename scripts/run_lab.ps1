@@ -4,9 +4,16 @@ param(
     [string]$Step
 )
 
+$envFile = ".env"
+if (-not (Test-Path $envFile)) {
+    Write-Error "Missing .env file at project root. Create it from .env.example first."
+    Write-Host "Example: Copy-Item .env.example .env"
+    exit 1
+}
+
 function Invoke-Compose {
     param([string[]]$Args)
-    docker compose -f infra/docker-compose.yml --profile lab @Args
+    docker compose --env-file .env -f infra/docker-compose.yml --profile lab @Args
     if ($LASTEXITCODE -ne 0) {
         exit $LASTEXITCODE
     }

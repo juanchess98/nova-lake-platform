@@ -4,6 +4,13 @@ param(
     [string]$Step
 )
 
+$envFile = ".env"
+if (-not (Test-Path $envFile)) {
+    Write-Error "Missing .env file at project root. Create it from .env.example first."
+    Write-Host "Example: Copy-Item .env.example .env"
+    exit 1
+}
+
 $submitBase = @(
     "/opt/spark/bin/spark-submit",
     "--master",
@@ -39,7 +46,7 @@ $goldJobs = @(
 
 function Invoke-Compose {
     param([string[]]$Args)
-    docker compose -f infra/docker-compose.yml @Args
+    docker compose --env-file .env -f infra/docker-compose.yml @Args
     if ($LASTEXITCODE -ne 0) {
         exit $LASTEXITCODE
     }
@@ -56,7 +63,7 @@ switch ($Step) {
     "build" { Invoke-Compose -Args @("build", "spark-master") }
     "up" { Invoke-Compose -Args @("up", "-d", "--build") }
     "down" {
-        docker compose -f infra/docker-compose.yml --profile lab down --remove-orphans | Out-Null
+        docker compose --env-file .env -f infra/docker-compose.yml --profile lab down --remove-orphans | Out-Null
         Invoke-Compose -Args @("down", "--remove-orphans")
     }
     "bronze" { Invoke-JobList -JobPaths $bronzeJobs }

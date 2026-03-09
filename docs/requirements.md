@@ -47,6 +47,10 @@ The platform must produce six Gold analytical datasets (`novalake.gold.*`):
 
 Users must be able to query medallion layers via Spark SQL and explore outputs through the optional JupyterLab profile.
 
+### FR-07 Environment Configuration Contract
+
+Module 1 must require a project-root `.env` file (seeded from `.env.example`) for local credential/config loading in Docker Compose and operational scripts.
+
 ## Nonfunctional Requirements
 
 ### NFR-01 Reproducibility
@@ -72,3 +76,7 @@ Module 1 must remain intentionally simple and avoid introducing advanced infrast
 ### NFR-06 Evolution Readiness
 
 Module 1 artifacts (docs, metadata contract, medallion naming, shared utilities) must support future module evolution without foundation redesign.
+
+### NFR-07 Fail-Fast Configuration
+
+Local operational scripts should fail fast when `.env` is missing to avoid ambiguous defaults and improve reproducibility.

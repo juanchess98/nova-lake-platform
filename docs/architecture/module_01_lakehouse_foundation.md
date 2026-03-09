@@ -119,6 +119,7 @@ Reference: `docs/domain_model.md`.
 - `spark-master` + `spark-worker` for distributed local compute
 - `postgres` included as operational-source anchor for future ingestion evolution
 - optional `notebook-lab` profile for exploration
+- project-root `.env` file is required for compose/script credential resolution (`.env.example` is the template)
 
 ## Current Limitations
 

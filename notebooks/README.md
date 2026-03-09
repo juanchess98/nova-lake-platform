@@ -2,6 +2,9 @@
 
 This folder is for exploratory analytics and demo notebooks only.
 
+Prerequisite:
+- Ensure project-root `.env` exists (`cp .env.example .env` or `Copy-Item .env.example .env`) before starting lab scripts.
+
 Guidelines:
 - Keep production transformations in `ingestion/` and `transformations/`.
 - Use notebooks for ad-hoc analysis, profiling, and stakeholder-facing demos.

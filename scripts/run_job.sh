@@ -3,6 +3,7 @@ set -euo pipefail
 
 COMPOSE_FILE="infra/docker-compose.yml"
 SPARK_SUBMIT="/opt/spark/bin/spark-submit --master spark://spark-master:7077"
+ENV_FILE=".env"
 
 BRONZE_JOBS=(
   "/opt/novalake/ingestion/batch/load_customers_to_bronze.py"
@@ -40,8 +41,14 @@ if [[ $# -ne 1 ]]; then
   exit 1
 fi
 
+if [[ ! -f "$ENV_FILE" ]]; then
+  echo "Missing .env file at project root. Create it from .env.example first."
+  echo "Example: cp .env.example .env"
+  exit 1
+fi
+
 run_compose() {
-  MSYS_NO_PATHCONV=1 docker compose -f "$COMPOSE_FILE" "$@"
+  MSYS_NO_PATHCONV=1 docker compose --env-file "$ENV_FILE" -f "$COMPOSE_FILE" "$@"
 }
 
 run_jobs() {

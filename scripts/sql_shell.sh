@@ -2,6 +2,7 @@
 set -euo pipefail
 
 COMPOSE_FILE="infra/docker-compose.yml"
+ENV_FILE=".env"
 SPARK_SQL_BASE=(
   /opt/spark/bin/spark-sql
   --conf spark.sql.catalogImplementation=in-memory
@@ -19,8 +20,14 @@ usage() {
 }
 
 run_compose() {
-  MSYS_NO_PATHCONV=1 docker compose -f "$COMPOSE_FILE" "$@"
+  MSYS_NO_PATHCONV=1 docker compose --env-file "$ENV_FILE" -f "$COMPOSE_FILE" "$@"
 }
+
+if [[ ! -f "$ENV_FILE" ]]; then
+  echo "Missing .env file at project root. Create it from .env.example first."
+  echo "Example: cp .env.example .env"
+  exit 1
+fi
 
 if [[ $# -eq 0 ]]; then
   run_compose exec spark-master "${SPARK_SQL_BASE[@]}"

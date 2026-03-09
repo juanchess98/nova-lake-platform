@@ -44,6 +44,20 @@ NovaLake follows a medallion contract: raw -> bronze -> silver -> gold.
 
 ## Run Locally
 
+### Prerequisite: required environment file
+
+Module 1 scripts now require a project-root `.env` file. Create it before running any `run_*`, `sql_shell`, or `lab_health` script.
+
+PowerShell:
+```powershell
+Copy-Item .env.example .env
+```
+
+Bash:
+```bash
+cp .env.example .env
+```
+
 ### Start services
 
 PowerShell:
