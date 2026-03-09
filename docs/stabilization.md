@@ -2,6 +2,11 @@
 
 This document captures the initial integration issues encountered while making NovaLake fully operational on Windows + Docker + Git Bash, and how each issue was resolved.
 
+References:
+- architecture index: `docs/architecture.md`
+- Module 1 formal architecture: `docs/architecture/module_01_lakehouse_foundation.md`
+- ADRs: `docs/decisions.md`
+
 ## Summary
 
 The foundation architecture was correct, but multiple runtime/tooling edge cases had to be solved for a smooth local developer experience. These were mostly environment integration issues rather than data-model design issues.

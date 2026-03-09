@@ -4,57 +4,47 @@ NovaLake is a modular lakehouse platform that demonstrates how a modern data pla
 
 **Current baseline:** Module 1 - Lakehouse Foundation.
 
-## Module 1 Baseline
+## Module 1 Deliverables
 
-Module 1 establishes a local-first, production-style baseline with deterministic synthetic commerce data and end-to-end batch pipelines.
-
-Implemented in Module 1:
-- Synthetic commerce data generator (`scripts/data_generator/generate_commerce_data.py`)
-- Six operational raw datasets (`customers`, `products`, `orders`, `order_items`, `payments`, `shipments`)
-- Bronze ingestion jobs for all six datasets
-- Silver cleaning/validation jobs with referential integrity checks
-- Gold analytical data products for core business monitoring
-- Spark + Iceberg medallion architecture in a containerized local environment
+Module 1 is fully implemented and operational with:
+- synthetic commerce data generator (`scripts/data_generator/generate_commerce_data.py`)
+- six raw datasets (`customers`, `products`, `orders`, `order_items`, `payments`, `shipments`)
+- raw -> bronze -> silver -> gold batch pipeline on Spark + Iceberg
+- six gold analytical data products:
+  - `daily_revenue`
+  - `sales_by_country`
+  - `top_products`
+  - `customer_revenue`
+  - `payment_success_rate`
+  - `shipment_delivery_summary`
 
 Module 1 intentionally does not include MinIO, Kafka, Debezium, or dbt yet.
 
 ## Architecture Story
 
-NovaLake follows raw -> bronze -> silver -> gold:
+NovaLake follows a medallion contract: raw -> bronze -> silver -> gold.
 
-1. Raw: reproducible CSV operational snapshots generated locally
-2. Bronze: ingestion-aligned Iceberg tables with ingestion metadata
-3. Silver: standardized, validated, referentially consistent domain tables
-4. Gold: business-facing aggregates and monitoring datasets
+- Raw: reproducible CSV operational data
+- Bronze: ingestion-aligned Iceberg tables with technical lineage metadata
+- Silver: standardized and validated domain-conformed datasets
+- Gold: business-facing analytical data products
 
-Core architecture docs:
-- `docs/architecture.md`
-- `docs/domain_model.md`
-- `docs/use_case.md`
-- `docs/roadmap.md`
-- `docs/decisions.md`
+## Documentation Map
 
-## Module 1 Data Scope
-
-Raw entities:
-- `customers`
-- `products`
-- `orders`
-- `order_items`
-- `payments`
-- `shipments`
-
-Gold analytical datasets:
-- `daily_revenue`: daily commercial performance trend
-- `sales_by_country`: country-level revenue and order behavior
-- `top_products`: top product ranking by revenue and units sold
-- `customer_revenue`: customer lifetime revenue and order profile
-- `payment_success_rate`: payment execution health by method/date
-- `shipment_delivery_summary`: fulfillment and delivery performance
+- Architecture index: `docs/architecture.md`
+- Module 1 formal architecture: `docs/architecture/module_01_lakehouse_foundation.md`
+- Use case: `docs/use_case.md`
+- Domain model: `docs/domain_model.md`
+- Requirements: `docs/requirements.md`
+- Roadmap: `docs/roadmap.md`
+- Architectural decisions (ADRs): `docs/decisions.md`
+- Stabilization notes: `docs/stabilization.md`
+- Metadata contract: `metadata/datasets.yaml`
+- Diagrams: `docs/diagrams/module1-v1.mmd`, `docs/diagrams/module2-storage-evolution-stub.mmd`
 
 ## Run Locally
 
-### 1. Start services
+### Start services
 
 PowerShell:
 ```powershell
@@ -66,7 +56,7 @@ Bash:
 ./scripts/run_job.sh up
 ```
 
-### 2. Run full Module 1 pipeline
+### Run full Module 1 pipeline
 
 PowerShell:
 ```powershell
@@ -78,7 +68,7 @@ Bash:
 ./scripts/run_job.sh all
 ```
 
-### 3. Validate gold outputs
+### Validate gold outputs
 
 PowerShell:
 ```powershell
@@ -90,7 +80,7 @@ Bash:
 ./scripts/sql_shell.sh -q "SHOW TABLES IN novalake.gold"
 ```
 
-### 4. Optional notebook lab
+### Optional notebook lab
 
 PowerShell:
 ```powershell
@@ -112,5 +102,3 @@ Open `http://localhost:8888` and use kernel **PySpark (NovaLake)**.
 - Module 4: Streaming Analytics
 - Module 5: Metadata Intelligence
 - Module 6: AI Copilot
-
-The design goal is stable contracts and controlled capability growth across modules.

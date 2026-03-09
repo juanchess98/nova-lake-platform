@@ -1,38 +1,42 @@
 flowchart LR
-    %% NovaLake Module 1 - Lakehouse Foundation (GitHub-friendly)
+    GEN[Synthetic Data Generator\ngenerate_commerce_data.py]
 
-    subgraph SRC[Sources]
-        RAW[Raw CSV Data<br/>data/raw/*.csv]
-        PG[(PostgreSQL<br/>Operational Source)]
+    subgraph RAW[Raw Datasets (data/raw)]
+        C[customers.csv]
+        P[products.csv]
+        O[orders.csv]
+        OI[order_items.csv]
+        PAY[payments.csv]
+        S[shipments.csv]
     end
 
-    subgraph JOBS[Spark Jobs]
-        J1[Ingestion<br/>load_orders_to_bronze.py]
-        J2[Standardization<br/>orders_silver.py]
-        J3[Aggregation<br/>daily_revenue.py]
+    subgraph SPK[Spark + Iceberg]
+        B[Bronze\nnovalake.bronze.*]
+        SI[Silver\nnovalake.silver.*]
+        G[Gold\nnovalake.gold.*]
     end
 
-    subgraph CAT[Iceberg Catalog: novalake]
-        B[(bronze.orders)]
-        S[(silver.orders)]
-        G[(gold.daily_revenue)]
-    end
+    WH[(Local Warehouse\ndata/warehouse)]
+    NB[Optional Notebook Exploration]
 
-    subgraph STG[Storage]
-        WH[(Local Warehouse<br/>data/warehouse)]
-    end
+    GEN --> C
+    GEN --> P
+    GEN --> O
+    GEN --> OI
+    GEN --> PAY
+    GEN --> S
 
-    NB[Optional Notebooks<br/>JupyterLab]
+    C --> B
+    P --> B
+    O --> B
+    OI --> B
+    PAY --> B
+    S --> B
 
-    RAW --> J1 --> B
-    B --> J2 --> S
-    S --> J3 --> G
+    B --> SI --> G
 
     B --> WH
-    S --> WH
+    SI --> WH
     G --> WH
 
-    PG -. future source integration .-> J1
-    NB -. query and exploration .-> B
-    NB -. query and exploration .-> S
-    NB -. query and exploration .-> G
+    NB -. query .-> G

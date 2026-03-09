@@ -1,92 +1,99 @@
 # NovaLake Architecture Roadmap
 
-This roadmap defines how NovaLake evolves module by module while preserving continuity from the Module 1 foundation.
+This roadmap defines how NovaLake evolves module by module while preserving continuity from the Module 1 baseline.
 
 ## Planning Principles
 
-- Build one operational capability per module and keep previous modules stable.
-- Preserve medallion semantics across all modules.
-- Introduce new infrastructure only when the previous module value is already validated.
-- Keep code structure and naming consistent as capabilities expand.
+- Deliver one major capability focus per module while keeping previous modules stable.
+- Preserve medallion contracts (`bronze`, `silver`, `gold`) across modules.
+- Introduce new infrastructure only when prior module value is validated.
+- Keep shared interfaces and naming conventions consistent as scope expands.
 
 ## Module Plan
 
-### Module 1 - Lakehouse Foundation (Current)
+### Module 1 - Lakehouse Foundation (Current Baseline)
 
-### Scope
+#### Scope
 
-- Local Spark + Iceberg baseline
-- Raw CSV ingestion to bronze
-- Bronze to silver quality pipeline
-- Silver to gold business aggregate (`daily_revenue`)
-- Local warehouse storage (`data/warehouse`)
+- local Spark + Iceberg architecture
+- deterministic synthetic commerce data generator
+- six raw operational datasets (`customers`, `products`, `orders`, `order_items`, `payments`, `shipments`)
+- full raw -> bronze -> silver -> gold batch flow
+- six gold analytical products:
+  - `daily_revenue`
+  - `sales_by_country`
+  - `top_products`
+  - `customer_revenue`
+  - `payment_success_rate`
+  - `shipment_delivery_summary`
+- local warehouse storage (`data/warehouse`)
 
-### Outcome
+#### Outcome
 
-A deterministic, portfolio-grade local data platform that demonstrates clean lakehouse layering and reproducible execution.
+A portfolio-grade, reproducible local baseline with clear data contracts and modular evolution seams.
 
 ### Module 2 - Storage Evolution
 
-### Scope
+#### Scope
 
-- Evolve warehouse backing from local filesystem to S3-compatible object storage
-- Externalize storage endpoint/bucket configuration
-- Keep Spark job contracts and medallion naming unchanged
+- evolve warehouse backing from local filesystem to S3-compatible object storage
+- externalize storage endpoint/bucket configuration
+- keep Spark job contracts and medallion naming unchanged
 
-### Outcome
+#### Outcome
 
 Storage becomes environment-portable while pipelines remain behaviorally consistent.
 
 ### Module 3 - CDC Ingestion
 
-### Scope
+#### Scope
 
-- Introduce PostgreSQL change data capture ingestion
-- Support incremental/near-real-time bronze updates
-- Add ingestion observability for offsets/lag and failure visibility
+- introduce PostgreSQL change data capture ingestion
+- support incremental/near-real-time bronze updates
+- add ingestion observability for offsets/lag and failure visibility
 
-### Outcome
+#### Outcome
 
 NovaLake moves from batch snapshot ingestion toward operational-source continuity.
 
 ### Module 4 - Streaming Analytics
 
-### Scope
+#### Scope
 
-- Introduce stream processing for selected entities and KPIs
-- Blend micro-batch/streaming patterns with existing medallion layers
-- Extend gold outputs to lower-latency analytical use cases
+- introduce stream processing for selected entities and KPIs
+- blend micro-batch/streaming patterns with existing medallion layers
+- extend gold outputs to lower-latency analytical use cases
 
-### Outcome
+#### Outcome
 
 Platform supports both batch and streaming analytics patterns.
 
 ### Module 5 - Metadata Intelligence
 
-### Scope
+#### Scope
 
-- Formalize dataset contracts and data quality expectations
-- Add lineage/metadata enrichment and discoverability
-- Standardize ownership and semantic definitions for critical datasets
+- formalize dataset contracts and data quality expectations
+- add lineage/metadata enrichment and discoverability
+- standardize ownership and semantic definitions for critical datasets
 
-### Outcome
+#### Outcome
 
 Governance, trust, and discoverability become first-class platform capabilities.
 
 ### Module 6 - AI Copilot
 
-### Scope
+#### Scope
 
-- Add AI-assisted platform operations and analytical assistance
-- Enable guided diagnostics, data-product context, and workflow acceleration
-- Keep human review and deterministic pipeline logic as controls
+- add AI-assisted platform operations and analytical assistance
+- enable guided diagnostics, data-product context, and workflow acceleration
+- keep human review and deterministic pipeline logic as controls
 
-### Outcome
+#### Outcome
 
 A practical AI layer that improves operator productivity without replacing engineering discipline.
 
 ## Cross-Module Continuity
 
-- Bronze/silver/gold remains the core data contract.
+- Medallion layering remains the core data contract.
 - Shared utilities (`core/config.py`, `core/spark.py`) are the main evolution seam.
-- ADRs in `docs/decisions.md` continue recording architecture choices at each step.
+- ADRs in `docs/decisions.md` continue recording architecture decisions at each stage.

@@ -2,6 +2,11 @@
 
 This file tracks key architecture decisions for NovaLake Platform.
 
+References:
+- architecture index: `docs/architecture.md`
+- Module 1 formal architecture: `docs/architecture/module_01_lakehouse_foundation.md`
+- stabilization notes: `docs/stabilization.md`
+
 ## ADR-001: Adopt Apache Iceberg for Core Lakehouse Tables
 
 - Status: Accepted

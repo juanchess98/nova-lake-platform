@@ -1,5 +1,10 @@
 # NovaLake Domain Model (Module 1 Baseline)
 
+References:
+- architecture index: `docs/architecture.md`
+- Module 1 formal architecture: `docs/architecture/module_01_lakehouse_foundation.md`
+- metadata contract: `metadata/datasets.yaml`
+
 ## Overview
 
 NovaLake Module 1 models a simplified e-commerce domain with six operational entities that support both commercial and operational analytics.

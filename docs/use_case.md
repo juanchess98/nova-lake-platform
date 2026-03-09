@@ -1,5 +1,10 @@
 # NovaLake Use Case (Module 1 Baseline)
 
+References:
+- architecture index: `docs/architecture.md`
+- Module 1 formal architecture: `docs/architecture/module_01_lakehouse_foundation.md`
+- domain model: `docs/domain_model.md`
+
 ## Context
 
 NovaLake supports analytics for a fictional multi-country e-commerce business. Module 1 establishes the baseline lakehouse to consolidate commerce and operational data into trusted analytical products.

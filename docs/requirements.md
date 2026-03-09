@@ -1,153 +1,74 @@
-# NovaLake Platform — System Requirements
+# NovaLake System Requirements (Module 1 Baseline)
 
 ## Overview
 
-This document defines the functional and nonfunctional requirements for the NovaLake platform.
+This document defines the functional and nonfunctional requirements for the implemented NovaLake Module 1 baseline.
 
-The requirements are intentionally scoped for a modular architecture that evolves across multiple implementation stages.
+Module 1 scope is local-first and batch-oriented, with Spark + Iceberg medallion pipelines over deterministic synthetic commerce data.
 
----
+## Functional Requirements
 
-# Functional Requirements
+### FR-01 Data Generation
 
-Functional requirements define what the system must be able to do.
+The platform must provide a reproducible synthetic commerce data generator that outputs six operational raw datasets:
+- `customers`
+- `products`
+- `orders`
+- `order_items`
+- `payments`
+- `shipments`
 
-## Data Ingestion
+### FR-02 Raw Data Contract
 
-The platform must be able to ingest operational commerce datasets.
+The six datasets must be written as CSV files under `data/raw/` and documented in `metadata/datasets.yaml`.
 
-Initial ingestion sources include:
+### FR-03 Bronze Ingestion
 
-- CSV exports representing operational system extracts.
+The platform must ingest all six raw datasets into Iceberg Bronze tables (`novalake.bronze.*`) with ingestion metadata fields.
 
-Future modules may introduce additional ingestion mechanisms including:
+### FR-04 Silver Conformance
 
-- CDC pipelines
-- streaming event ingestion
-- API-based ingestion
+The platform must transform Bronze data into Silver tables (`novalake.silver.*`) with:
+- standardized types and naming
+- validation rules for statuses and monetary fields
+- referential integrity across related entities
 
----
+### FR-05 Gold Data Products
 
-## Data Storage
+The platform must produce six Gold analytical datasets (`novalake.gold.*`):
+- `daily_revenue`
+- `sales_by_country`
+- `top_products`
+- `customer_revenue`
+- `payment_success_rate`
+- `shipment_delivery_summary`
 
-The platform must store datasets using an open lakehouse table format.
+### FR-06 Query and Exploration
 
-Module 1 uses:
+Users must be able to query medallion layers via Spark SQL and explore outputs through the optional JupyterLab profile.
 
-- Apache Iceberg tables
-- Local filesystem warehouse storage
+## Nonfunctional Requirements
 
-Future modules will support:
+### NFR-01 Reproducibility
 
-- object storage backends
-- more advanced catalog services
+Module 1 must be fully reproducible in a local containerized environment.
 
----
+### NFR-02 Architectural Clarity
 
-## Data Organization
+The platform must preserve explicit medallion layer boundaries and clear job responsibilities.
 
-The platform must organize data into medallion layers.
+### NFR-03 Maintainability
 
-### Bronze Layer
+Shared utilities must be reused for Spark/session/table behavior to reduce duplicated logic and improve consistency.
 
-- Raw ingested data
-- Minimal transformations
-- Metadata about ingestion
+### NFR-04 Data Quality Baseline
 
-### Silver Layer
+Silver and Gold outputs must enforce core consistency checks (type integrity, arithmetic consistency, and entity references).
 
-- Cleaned and standardized data
-- Corrected data types
-- Deduplicated datasets
+### NFR-05 Scope Discipline
 
-### Gold Layer
+Module 1 must remain intentionally simple and avoid introducing advanced infrastructure prematurely (for example MinIO, Kafka, Debezium, dbt).
 
-- Curated analytical datasets
-- Business-oriented data models
-- Aggregated data products
+### NFR-06 Evolution Readiness
 
----
-
-## Data Transformation
-
-The platform must support batch transformation pipelines implemented with Apache Spark.
-
-These pipelines should:
-
-- read from lower medallion layers
-- apply transformations
-- produce higher-layer datasets
-
----
-
-## Analytical Outputs
-
-The system must produce curated datasets that support business analytics.
-
-Examples include:
-
-- daily revenue metrics
-- sales by country
-- product performance
-- customer revenue summaries
-
----
-
-## Data Exploration
-
-Users must be able to explore datasets through:
-
-- notebooks
-- Spark SQL queries
-
----
-
-# Nonfunctional Requirements
-
-Nonfunctional requirements describe how the system should behave.
-
----
-
-## Reproducibility
-
-The platform must be reproducible in a local environment.
-
-The entire system should be runnable through containerized infrastructure.
-
----
-
-## Modularity
-
-The architecture must support incremental evolution across modules without requiring redesign of the entire system.
-
----
-
-## Maintainability
-
-The codebase must remain clean and structured to support future development.
-
-Key expectations include:
-
-- clear project structure
-- reusable utilities
-- documented design decisions
-
----
-
-## Simplicity
-
-The platform should avoid unnecessary complexity in early modules.
-
-Technologies should be introduced only when justified by architectural evolution.
-
----
-
-## Extensibility
-
-The system must allow future integration of additional capabilities including:
-
-- object storage
-- CDC pipelines
-- streaming data processing
-- metadata services
-- AI-assisted exploration
+Module 1 artifacts (docs, metadata contract, medallion naming, shared utilities) must support future module evolution without foundation redesign.

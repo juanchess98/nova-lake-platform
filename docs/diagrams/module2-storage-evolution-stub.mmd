@@ -1,34 +1,42 @@
 flowchart LR
-    %% NovaLake Module 2 - Storage Evolution Stub
-    %% Change intent: replace local warehouse with MinIO/S3-compatible object storage.
+    GEN[Synthetic Data Generator\ngenerate_commerce_data.py]
 
-    subgraph SRC[Sources]
-        RAW[Raw CSV / Ingestion Inputs]
-        PG[(PostgreSQL)]
+    subgraph RAW[Raw Datasets (data/raw)]
+        C[customers.csv]
+        P[products.csv]
+        O[orders.csv]
+        OI[order_items.csv]
+        PAY[payments.csv]
+        S[shipments.csv]
     end
 
-    subgraph JOBS[Spark Jobs]
-        J1[Bronze Ingestion]
-        J2[Silver Transform]
-        J3[Gold Transform]
+    subgraph SPK[Spark + Iceberg]
+        B[Bronze\nnovalake.bronze.*]
+        SI[Silver\nnovalake.silver.*]
+        G[Gold\nnovalake.gold.*]
     end
 
-    subgraph CAT[Iceberg Catalog: novalake]
-        B[(bronze.*)]
-        S[(silver.*)]
-        G[(gold.*)]
-    end
+    OBJ[(S3-Compatible Object Storage\nIceberg Warehouse)]
+    NB[Optional Notebook Exploration]
 
-    subgraph OBJ[Object Storage]
-        S3[(MinIO / S3-Compatible<br/>Iceberg Warehouse)]
-    end
+    GEN --> C
+    GEN --> P
+    GEN --> O
+    GEN --> OI
+    GEN --> PAY
+    GEN --> S
 
-    RAW --> J1 --> B
-    B --> J2 --> S
-    S --> J3 --> G
+    C --> B
+    P --> B
+    O --> B
+    OI --> B
+    PAY --> B
+    S --> B
 
-    B --> S3
-    S --> S3
-    G --> S3
+    B --> SI --> G
 
-    PG -. CDC/incremental path in later modules .-> J1
+    B --> OBJ
+    SI --> OBJ
+    G --> OBJ
+
+    NB -. query .-> G
