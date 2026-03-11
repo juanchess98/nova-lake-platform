@@ -40,7 +40,8 @@ NovaLake follows a medallion contract: raw -> bronze -> silver -> gold.
 - Architectural decisions (ADRs): `docs/decisions.md`
 - Stabilization notes: `docs/stabilization.md`
 - Metadata contract: `metadata/datasets.yaml`
-- Diagrams: `docs/diagrams/module1-v1.mmd`, `docs/diagrams/module2-storage-evolution-stub.mmd`
+- Rendered diagrams: `docs/diagrams/module-1.png`, `docs/diagrams/module-2 Storage Evolution.png`
+- Diagram sources: `docs/diagrams/module1-v1.mmd`, `docs/diagrams/module2-storage-evolution-stub.mmd`
 
 ## Run Locally
 

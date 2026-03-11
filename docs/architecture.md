@@ -8,6 +8,10 @@ This page is the architecture entry point for NovaLake.
 
 Module 1 is the current production baseline of the project.
 
+Rendered diagram references:
+- Module 1 diagram: `docs/diagrams/module-1.png`
+- Module 2 storage evolution diagram: `docs/diagrams/module-2 Storage Evolution.png`
+
 ## Supporting Architecture Artifacts
 
 - Use case: `docs/use_case.md`

@@ -34,6 +34,10 @@ A portfolio-grade, reproducible local baseline with clear data contracts and mod
 
 ### Module 2 - Storage Evolution
 
+![Module 2 storage evolution diagram showing the transition from local warehouse-backed storage to S3-compatible object storage while preserving the medallion flow.](./diagrams/module-2%20Storage%20Evolution.png)
+
+Rendered concept diagram for the planned storage evolution. Source: `docs/diagrams/module2-storage-evolution-stub.mmd`.
+
 #### Scope
 
 - evolve warehouse backing from local filesystem to S3-compatible object storage

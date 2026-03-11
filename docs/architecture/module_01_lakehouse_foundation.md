@@ -4,6 +4,12 @@
 
 Establish NovaLake's formal architecture baseline as a local-first, reproducible lakehouse with end-to-end commerce analytics.
 
+## Architecture Diagram
+
+![Module 1 architecture diagram showing the synthetic data generator feeding raw CSV datasets, Spark Iceberg medallion layers, and the local warehouse.](../diagrams/module-1.png)
+
+Rendered reference for the current baseline. Source: `docs/diagrams/module1-v1.mmd`.
+
 ## Scope
 
 Module 1 includes:
