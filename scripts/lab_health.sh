@@ -14,6 +14,16 @@ if [[ ! -f "$ENV_FILE" ]]; then
   exit 1
 fi
 
+set -a
+source "$ENV_FILE"
+set +a
+
+: "${NOVALAKE_S3_BUCKET:=novalake-lakehouse}"
+: "${NOVALAKE_S3_WAREHOUSE_PREFIX:=warehouse}"
+: "${NOVALAKE_S3_ACCESS_KEY:=novalake}"
+: "${NOVALAKE_S3_SECRET_KEY:=novalake123}"
+: "${NOVALAKE_S3_PATH_STYLE_ACCESS:=true}"
+
 echo "[1/4] Checking notebook-lab container status..."
 status="$(run_compose ps --format json notebook-lab | tr -d '\r\n')"
 if [[ -z "$status" ]] || [[ "$status" != *"running"* ]]; then
@@ -46,7 +56,14 @@ run_compose exec spark-master /opt/spark/bin/spark-sql \
   --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions \
   --conf spark.sql.catalog.novalake=org.apache.iceberg.spark.SparkCatalog \
   --conf spark.sql.catalog.novalake.type=hadoop \
-  --conf spark.sql.catalog.novalake.warehouse=/opt/novalake/data/warehouse \
+  --conf "spark.sql.catalog.novalake.warehouse=s3a://${NOVALAKE_S3_BUCKET}/${NOVALAKE_S3_WAREHOUSE_PREFIX}" \
+  --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem \
+  --conf spark.hadoop.fs.s3a.endpoint=minio:9000 \
+  --conf "spark.hadoop.fs.s3a.access.key=${NOVALAKE_S3_ACCESS_KEY}" \
+  --conf "spark.hadoop.fs.s3a.secret.key=${NOVALAKE_S3_SECRET_KEY}" \
+  --conf "spark.hadoop.fs.s3a.path.style.access=${NOVALAKE_S3_PATH_STYLE_ACCESS}" \
+  --conf spark.hadoop.fs.s3a.connection.ssl.enabled=false \
+  --conf spark.hadoop.fs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider \
   -e "SHOW NAMESPACES IN novalake;"
 
 echo "Health check passed."

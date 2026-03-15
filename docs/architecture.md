@@ -5,8 +5,9 @@ This page is the architecture entry point for NovaLake.
 ## Baseline
 
 - Module 1 formal architecture: `docs/architecture/module_01_lakehouse_foundation.md`
+- Module 2 formal architecture: `docs/architecture/module_02_storage_evolution.md`
 
-Module 1 is the current production baseline of the project.
+Module 2 is the current production baseline of the project.
 
 Rendered diagram references:
 - Module 1 diagram: `docs/diagrams/module-1.png`

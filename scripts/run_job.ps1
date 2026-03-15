@@ -45,8 +45,8 @@ $goldJobs = @(
 )
 
 function Invoke-Compose {
-    param([string[]]$Args)
-    docker compose --env-file .env -f infra/docker-compose.yml @Args
+    param([string[]]$ComposeArgs)
+    docker compose --env-file .env -f infra/docker-compose.yml @ComposeArgs
     if ($LASTEXITCODE -ne 0) {
         exit $LASTEXITCODE
     }
@@ -55,16 +55,16 @@ function Invoke-Compose {
 function Invoke-JobList {
     param([string[]]$JobPaths)
     foreach ($jobPath in $JobPaths) {
-        Invoke-Compose -Args (@("exec", "spark-master") + $submitBase + @($jobPath))
+        Invoke-Compose -ComposeArgs (@("exec", "spark-master") + $submitBase + @($jobPath))
     }
 }
 
 switch ($Step) {
-    "build" { Invoke-Compose -Args @("build", "spark-master") }
-    "up" { Invoke-Compose -Args @("up", "-d", "--build") }
+    "build" { Invoke-Compose -ComposeArgs @("build", "spark-master") }
+    "up" { Invoke-Compose -ComposeArgs @("up", "-d", "--build") }
     "down" {
         docker compose --env-file .env -f infra/docker-compose.yml --profile lab down --remove-orphans | Out-Null
-        Invoke-Compose -Args @("down", "--remove-orphans")
+        Invoke-Compose -ComposeArgs @("down", "--remove-orphans")
     }
     "bronze" { Invoke-JobList -JobPaths $bronzeJobs }
     "silver" { Invoke-JobList -JobPaths $silverJobs }

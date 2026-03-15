@@ -19,12 +19,47 @@ services:
       timeout: 5s
       retries: 5
 
+  minio:
+    image: minio/minio:RELEASE.2025-02-28T09-55-16Z
+    container_name: novalake-minio
+    env_file:
+      - ../.env
+    environment:
+      MINIO_ROOT_USER: ${NOVALAKE_S3_ACCESS_KEY:?NOVALAKE_S3_ACCESS_KEY is required in .env}
+      MINIO_ROOT_PASSWORD: ${NOVALAKE_S3_SECRET_KEY:?NOVALAKE_S3_SECRET_KEY is required in .env}
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+
+  minio-init:
+    image: minio/mc:RELEASE.2025-02-21T16-00-46Z
+    container_name: novalake-minio-init
+    env_file:
+      - ../.env
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      until mc alias set novalake http://minio:9000 $$NOVALAKE_S3_ACCESS_KEY $$NOVALAKE_S3_SECRET_KEY; do
+        sleep 2;
+      done;
+      mc mb --ignore-existing novalake/$$NOVALAKE_S3_BUCKET;
+      mc anonymous set private novalake/$$NOVALAKE_S3_BUCKET;
+      "
+
   spark-master:
     build:
       context: ..
       dockerfile: infra/spark/Dockerfile
     image: novalake/spark-iceberg:3.5.1
     container_name: novalake-spark-master
+    env_file:
+      - ../.env
+    depends_on:
+      - minio-init
     environment:
       PYTHONPATH: /opt/novalake
       PYSPARK_PYTHON: python3
@@ -50,8 +85,11 @@ services:
   spark-worker:
     image: novalake/spark-iceberg:3.5.1
     container_name: novalake-spark-worker
+    env_file:
+      - ../.env
     depends_on:
       - spark-master
+      - minio-init
     environment:
       PYTHONPATH: /opt/novalake
       PYSPARK_PYTHON: python3
@@ -77,20 +115,32 @@ services:
     image: novalake/notebook-lab:3.5.1
     container_name: novalake-notebook-lab
     profiles: ["lab"]
+    env_file:
+      - ../.env
     depends_on:
       - spark-master
       - spark-worker
+      - minio-init
     environment:
       PYTHONPATH: /opt/novalake
       PYSPARK_PYTHON: python3
       PYSPARK_DRIVER_PYTHON: python3
       PYSPARK_SUBMIT_ARGS: >-
         --master spark://spark-master:7077
+        --conf spark.cores.max=1
+        --conf spark.executor.cores=1
         --conf spark.sql.catalogImplementation=in-memory
         --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
         --conf spark.sql.catalog.novalake=org.apache.iceberg.spark.SparkCatalog
         --conf spark.sql.catalog.novalake.type=hadoop
-        --conf spark.sql.catalog.novalake.warehouse=/opt/novalake/data/warehouse
+        --conf spark.sql.catalog.novalake.warehouse=s3a://${NOVALAKE_S3_BUCKET}/${NOVALAKE_S3_WAREHOUSE_PREFIX}
+        --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem
+        --conf spark.hadoop.fs.s3a.endpoint=minio:9000
+        --conf spark.hadoop.fs.s3a.access.key=${NOVALAKE_S3_ACCESS_KEY}
+        --conf spark.hadoop.fs.s3a.secret.key=${NOVALAKE_S3_SECRET_KEY}
+        --conf spark.hadoop.fs.s3a.path.style.access=${NOVALAKE_S3_PATH_STYLE_ACCESS}
+        --conf spark.hadoop.fs.s3a.connection.ssl.enabled=false
+        --conf spark.hadoop.fs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider
         pyspark-shell
     ports:
       - "8888:8888"
@@ -100,3 +150,4 @@ services:
 
 volumes:
   postgres_data:
+  minio_data:

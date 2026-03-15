@@ -1,6 +1,6 @@
 # NovaLake Architecture Roadmap
 
-This roadmap defines how NovaLake evolves module by module while preserving continuity from the Module 1 baseline.
+This roadmap defines how NovaLake evolves module by module while preserving continuity from the current Module 2 baseline.
 
 ## Planning Principles
 
@@ -11,7 +11,7 @@ This roadmap defines how NovaLake evolves module by module while preserving cont
 
 ## Module Plan
 
-### Module 1 - Lakehouse Foundation (Current Baseline)
+### Module 1 - Lakehouse Foundation
 
 #### Scope
 
@@ -47,6 +47,8 @@ Rendered concept diagram for the planned storage evolution. Source: `docs/diagra
 #### Outcome
 
 Storage becomes environment-portable while pipelines remain behaviorally consistent.
+
+Status: current baseline
 
 ### Module 3 - CDC Ingestion
 

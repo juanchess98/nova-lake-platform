@@ -132,7 +132,7 @@ Start ingestion from local CSV datasets while including PostgreSQL service as ne
 
 ### Follow-up
 
-Add Postgres incremental ingestion in Module 2, then CDC via Debezium in Module 3.
+Add object storage in Module 2, then CDC via Debezium in Module 3.
 
 ## ADR-005: Pre-Bundle Iceberg Runtime in Custom Spark Image
 
@@ -196,3 +196,36 @@ Add an optional JupyterLab service in Docker Compose under profile `lab`, keepin
 ### Follow-up
 
 Introduce notebook quality conventions (naming, output clearing, promotion rules) when notebook count grows.
+
+## ADR-007: Move Iceberg Warehouse Storage to S3-Compatible Object Storage
+
+- Status: Accepted
+- Date: 2026-03-14
+
+### Context
+
+The local Hadoop catalog from Module 1 is sufficient for a single-host baseline, but it keeps compute and storage coupled to the project filesystem. Module 2 requires object storage semantics while preserving existing Spark job contracts and medallion naming.
+
+### Decision
+
+Keep the Iceberg Hadoop catalog, but move the warehouse root to MinIO through the S3A filesystem (`s3a://novalake-lakehouse/warehouse`) and externalize the endpoint, credentials, bucket, and path-style access configuration through environment variables.
+
+### Alternatives Considered
+
+- Keep the local filesystem warehouse and only add MinIO for raw files
+- Introduce a REST or Hive-backed Iceberg catalog in Module 2
+- Use runtime `--packages` resolution instead of pre-bundled S3 dependencies
+
+### Consequences
+
+- Positive:
+  - Clear compute/storage separation in local development
+  - Storage configuration becomes portable across S3-compatible environments
+  - Existing ingestion and transformation entrypoints remain stable
+- Negative:
+  - Requires additional local infrastructure and S3A dependency management
+  - Catalog metadata is still file-backed rather than service-backed
+
+### Follow-up
+
+Evaluate a service-backed Iceberg catalog when NovaLake introduces multi-environment deployment or concurrent team workflows.

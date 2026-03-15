@@ -1,8 +1,8 @@
-"""Basic structural checks for local project conventions."""
+"""Basic structural checks for NovaLake project conventions."""
 
 from pathlib import Path
 
-from core.config import RAW_DATA_DIR, WAREHOUSE_DIR
+from core.config import RAW_DATA_DIR, STORAGE_BACKEND_S3, WAREHOUSE_DIR, warehouse_uri
 
 
 def test_data_directories_exist() -> None:
@@ -43,4 +43,12 @@ def test_notebook_templates_exist() -> None:
 def test_architecture_docs_exist() -> None:
     assert Path("docs/architecture.md").exists(), "Architecture document is missing."
     assert Path("docs/roadmap.md").exists(), "Roadmap document is missing."
+    assert Path("docs/architecture/module_02_storage_evolution.md").exists(), (
+        "Module 2 architecture document is missing."
+    )
     assert Path("docs/diagrams/module1-v1.mmd").exists(), "Module 1 architecture diagram is missing."
+
+
+def test_module_2_warehouse_defaults_to_s3() -> None:
+    assert STORAGE_BACKEND_S3 == "s3_compatible"
+    assert warehouse_uri().startswith("s3a://"), "Module 2 should default to object storage."
