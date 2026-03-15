@@ -47,11 +47,31 @@ NovaLake follows a medallion contract: raw -> bronze -> silver -> gold.
 - Rendered diagrams: `docs/diagrams/module-1.png`, `docs/diagrams/module-2 Storage Evolution.png`
 - Diagram sources: `docs/diagrams/module1-v1.mmd`, `docs/diagrams/module2-storage-evolution-stub.mmd`
 
-## Run Locally
+## Platform Initialization Guide
 
-### Prerequisite: required environment file
+This is the recommended local initialization flow for Module 2. It is written to keep startup deterministic, observable, and easy to repeat.
 
-Module 2 scripts require a project-root `.env` file. Create it before running any `run_*`, `sql_shell`, or `lab_health` script.
+### Step 0. Confirm local prerequisites
+
+Before starting the stack, make sure:
+
+- Docker Desktop or Docker Engine with Docker Compose v2 is installed and running
+- the following ports are free on your machine:
+  - `5432` for PostgreSQL
+  - `7077`, `8080`, `8081` for Spark
+  - `8888` for JupyterLab
+  - `9000`, `9001` for MinIO API and console
+- you are in the project root
+- you are on the expected branch for Module 2 work
+
+Best practice:
+- treat the local stack as an environment, not just a command sequence
+- confirm Docker is healthy before starting jobs
+- avoid editing credentials directly in scripts; keep them in `.env`
+
+### Step 1. Create the environment file
+
+NovaLake requires a project-root `.env` file before running any `run_*`, `sql_shell`, or `lab_health` script.
 
 PowerShell:
 ```powershell
@@ -63,7 +83,20 @@ Bash:
 cp .env.example .env
 ```
 
-### Start services
+Then review the values in `.env`:
+
+- PostgreSQL credentials
+- `NOVALAKE_STORAGE_BACKEND=s3_compatible`
+- MinIO access key / secret key
+- Iceberg warehouse bucket and prefix
+
+DataOps note:
+- do not commit `.env`
+- if `.env` already exists from an earlier setup, merge in the new MinIO variables from `.env.example` rather than replacing blindly
+
+### Step 2. Build and start the platform services
+
+This starts PostgreSQL, Spark, and MinIO. The startup command also builds the custom Spark image with Iceberg and S3A dependencies.
 
 PowerShell:
 ```powershell
@@ -75,9 +108,68 @@ Bash:
 ./scripts/run_job.sh up
 ```
 
-This starts PostgreSQL, Spark, and MinIO. MinIO API is exposed at `http://localhost:9000` and the console at `http://localhost:9001`.
+Service endpoints after startup:
 
-### Run full Module 2 pipeline
+- Spark master UI: `http://localhost:8080`
+- Spark worker UI: `http://localhost:8081`
+- MinIO API: `http://localhost:9000`
+- MinIO console: `http://localhost:9001`
+
+Optional direct status check:
+
+```powershell
+docker compose --env-file .env -f infra/docker-compose.yml ps
+```
+
+```bash
+docker compose --env-file .env -f infra/docker-compose.yml ps
+```
+
+Best practice:
+- always wait for services to settle before running Spark jobs
+- confirm MinIO is reachable before expecting Iceberg tables to be written
+
+### Step 3. Initialize the medallion pipeline
+
+For first-time platform initialization, run the pipeline layer by layer. This makes failures easier to isolate and follows a cleaner DataOps workflow than jumping straight to `all`.
+
+Bronze:
+
+PowerShell:
+```powershell
+.\scripts\run_job.ps1 bronze
+```
+
+Bash:
+```bash
+./scripts/run_job.sh bronze
+```
+
+Silver:
+
+PowerShell:
+```powershell
+.\scripts\run_job.ps1 silver
+```
+
+Bash:
+```bash
+./scripts/run_job.sh silver
+```
+
+Gold:
+
+PowerShell:
+```powershell
+.\scripts\run_job.ps1 gold
+```
+
+Bash:
+```bash
+./scripts/run_job.sh gold
+```
+
+For repeat runs, the full pipeline shortcut is available:
 
 PowerShell:
 ```powershell
@@ -89,9 +181,9 @@ Bash:
 ./scripts/run_job.sh all
 ```
 
-### Validate storage and gold outputs
+### Step 4. Validate the platform state
 
-Check that the medallion namespaces exist through Spark SQL:
+First, confirm the catalog is visible:
 
 PowerShell:
 ```powershell
@@ -103,7 +195,7 @@ Bash:
 ./scripts/sql_shell.sh -q "SHOW NAMESPACES IN novalake"
 ```
 
-Then validate a gold table:
+Then validate that a gold data product is queryable:
 
 PowerShell:
 ```powershell
@@ -115,7 +207,18 @@ Bash:
 ./scripts/sql_shell.sh -q "SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date"
 ```
 
-### Optional notebook lab
+Finally, inspect MinIO:
+
+- open `http://localhost:9001`
+- sign in with `NOVALAKE_S3_ACCESS_KEY` and `NOVALAKE_S3_SECRET_KEY` from `.env`
+- verify bucket `novalake-lakehouse` exists
+- verify the `warehouse/` prefix contains Iceberg-managed table data for `bronze`, `silver`, and `gold`
+
+Best practice:
+- validate both the catalog view and the physical storage view
+- check storage after the first successful run to confirm compute and storage are correctly separated
+
+### Step 5. Start the optional notebook lab
 
 PowerShell:
 ```powershell
@@ -127,16 +230,47 @@ Bash:
 ./scripts/run_lab.sh up
 ```
 
-Open `http://localhost:8888` and use kernel **PySpark (NovaLake)**.
+Then open `http://localhost:8888` and use kernel **PySpark (NovaLake)**.
 
-### Local validation steps
+Optional health check for the lab profile:
 
-1. Copy `.env.example` to `.env`.
-2. Start services with `.\scripts\run_job.ps1 up` or `./scripts/run_job.sh up`.
-3. Run the full pipeline with `.\scripts\run_job.ps1 all` or `./scripts/run_job.sh all`.
-4. Confirm catalog visibility with `SHOW NAMESPACES IN novalake`.
-5. Open the MinIO console at `http://localhost:9001` and verify bucket `novalake-lakehouse` contains the `warehouse/` prefix with `bronze/`, `silver/`, and `gold/` table data.
-6. Optionally start JupyterLab with `.\scripts\run_lab.ps1 up` or `./scripts/run_lab.sh up` and query the same tables interactively.
+PowerShell:
+```powershell
+.\scripts\lab_health.ps1
+```
+
+Bash:
+```bash
+./scripts/lab_health.sh
+```
+
+### Step 6. Stop the platform cleanly
+
+When you are done, stop the services to avoid leaving containers and ports running in the background.
+
+PowerShell:
+```powershell
+.\scripts\run_job.ps1 down
+```
+
+Bash:
+```bash
+./scripts/run_job.sh down
+```
+
+Best practice:
+- shut the stack down cleanly between major config changes
+- rebuild after dependency or Dockerfile changes to keep environments reproducible
+
+### Quick start summary
+
+If you want the shortest safe sequence:
+
+1. Copy `.env.example` to `.env`
+2. Run `.\scripts\run_job.ps1 up` or `./scripts/run_job.sh up`
+3. Run `bronze`, then `silver`, then `gold`
+4. Validate with `SHOW NAMESPACES IN novalake`
+5. Check MinIO at `http://localhost:9001`
 
 ## Module Evolution
 
