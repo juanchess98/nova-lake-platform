@@ -51,7 +51,17 @@ if ($resp.StatusCode -ne 200) {
 Write-Host "OK: Notebook endpoint reachable (HTTP 200)."
 
 Write-Host "[3/4] Checking Spark master service from lab container..."
-docker compose --env-file .env -f infra/docker-compose.yml --profile lab exec notebook-lab /bin/bash -lc "python3 -c \"import socket;s=socket.socket();s.settimeout(5);s.connect(('spark-master',7077));s.close();print('OK: TCP connection to spark-master:7077')\""
+$sparkConnectivityCheck = 'echo > /dev/tcp/spark-master/7077 && echo "OK: TCP connection to spark-master:7077"'
+$composeArgs = @(
+    "compose",
+    "--env-file", ".env",
+    "-f", "infra/docker-compose.yml",
+    "--profile", "lab",
+    "exec", "notebook-lab",
+    "/bin/bash", "-lc",
+    $sparkConnectivityCheck
+)
+& docker @composeArgs
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 Write-Host "[4/4] Checking Iceberg catalog visibility..."

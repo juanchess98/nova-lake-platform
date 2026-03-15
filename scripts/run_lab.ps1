@@ -12,8 +12,8 @@ if (-not (Test-Path $envFile)) {
 }
 
 function Invoke-Compose {
-    param([string[]]$Args)
-    docker compose --env-file .env -f infra/docker-compose.yml --profile lab @Args
+    param([string[]]$ComposeArgs)
+    docker compose --env-file .env -f infra/docker-compose.yml --profile lab @ComposeArgs
     if ($LASTEXITCODE -ne 0) {
         exit $LASTEXITCODE
     }
@@ -21,9 +21,9 @@ function Invoke-Compose {
 
 switch ($Step) {
     "up" {
-        Invoke-Compose -Args @("up", "-d", "--build")
+        Invoke-Compose -ComposeArgs @("up", "-d", "--build")
         Write-Host "Notebook Lab available at: http://localhost:8888"
     }
-    "down" { Invoke-Compose -Args @("down") }
-    "logs" { Invoke-Compose -Args @("logs", "-f", "notebook-lab") }
+    "down" { Invoke-Compose -ComposeArgs @("down") }
+    "logs" { Invoke-Compose -ComposeArgs @("logs", "-f", "notebook-lab") }
 }
