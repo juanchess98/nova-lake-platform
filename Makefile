@@ -12,7 +12,7 @@ down:
 	$(COMPOSE) down --remove-orphans
 
 build:
-	$(COMPOSE) build spark-master
+	$(COMPOSE) build spark-master notebook-lab
 
 bronze:
 	$(COMPOSE) exec spark-master $(SPARK_SUBMIT) /opt/novalake/ingestion/batch/load_customers_to_bronze.py

@@ -4,6 +4,7 @@ This folder is for exploratory analytics and demo notebooks only.
 
 Prerequisite:
 - Ensure project-root `.env` exists (`cp .env.example .env` or `Copy-Item .env.example .env`) before starting lab scripts.
+- Start the Module 2 stack so MinIO-backed Iceberg storage is available to Spark sessions.
 
 Guidelines:
 - Keep production transformations in `ingestion/` and `transformations/`.
@@ -17,6 +18,7 @@ from pyspark.sql import SparkSession
 
 spark = SparkSession.builder.appName("novalake_notebook").getOrCreate()
 
+spark.sql("SHOW NAMESPACES IN novalake").show(truncate=False)
 spark.sql("SHOW TABLES IN novalake.bronze").show(truncate=False)
 spark.sql("SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date").show()
 ```

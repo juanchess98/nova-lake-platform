@@ -9,7 +9,7 @@ from core.config import (
     ICEBERG_CATALOG,
     MEDALLION_LAYERS,
     RAW_DATA_DIR,
-    iceberg_catalog_config,
+    spark_runtime_config,
 )
 
 LOGGER_NAME = "novalake.jobs"
@@ -61,13 +61,10 @@ def add_ingestion_metadata(df: DataFrame) -> DataFrame:
 
 
 def create_spark_session(app_name: str) -> SparkSession:
-    """Create a Spark session configured for local Iceberg catalogs."""
-    builder = SparkSession.builder.appName(app_name).config(
-        "spark.sql.extensions",
-        "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",
-    )
+    """Create a Spark session configured for the active NovaLake catalog backend."""
+    builder = SparkSession.builder.appName(app_name)
 
-    for key, value in iceberg_catalog_config().items():
+    for key, value in spark_runtime_config().items():
         builder = builder.config(key, value)
 
     return builder.getOrCreate()
