@@ -51,6 +51,16 @@ NovaLake follows a medallion contract: raw -> bronze -> silver -> gold.
 
 This is the recommended local initialization flow for Module 2. It is written to keep startup deterministic, observable, and easy to repeat.
 
+Validated locally on March 15, 2026:
+- `.\scripts\run_job.ps1 up`
+- `.\scripts\run_job.ps1 bronze`
+- `.\scripts\run_job.ps1 silver`
+- `.\scripts\run_job.ps1 gold`
+- `.\scripts\lab_health.ps1`
+- `.\scripts\run_job.ps1 down`
+
+The PowerShell helper scripts are the recommended entrypoint on Windows.
+
 ### Step 0. Confirm local prerequisites
 
 Before starting the stack, make sure:
@@ -128,6 +138,7 @@ docker compose --env-file .env -f infra/docker-compose.yml ps
 Best practice:
 - always wait for services to settle before running Spark jobs
 - confirm MinIO is reachable before expecting Iceberg tables to be written
+- on Windows, prefer the PowerShell wrappers over raw `docker compose` commands for repeatable local operations
 
 ### Step 3. Initialize the medallion pipeline
 
@@ -244,6 +255,13 @@ Bash:
 ./scripts/lab_health.sh
 ```
 
+What a healthy result looks like:
+- notebook-lab is running
+- `http://localhost:8888` responds successfully
+- notebook-lab can reach `spark-master:7077`
+- Spark SQL returns the `bronze`, `silver`, and `gold` namespaces
+- the script ends with `Health check passed.`
+
 ### Step 6. Stop the platform cleanly
 
 When you are done, stop the services to avoid leaving containers and ports running in the background.
@@ -261,6 +279,7 @@ Bash:
 Best practice:
 - shut the stack down cleanly between major config changes
 - rebuild after dependency or Dockerfile changes to keep environments reproducible
+- treat `down` as part of the operational workflow, not just cleanup, because it confirms containers and the network can be removed cleanly
 
 ### Quick start summary
 
