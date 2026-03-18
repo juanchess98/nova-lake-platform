@@ -2,16 +2,17 @@
 
 NovaLake is a modular lakehouse platform that demonstrates how a modern data platform evolves module by module.
 
-**Current baseline:** Module 2 - Storage Evolution.
+**Current baseline:** Module 3 - Catalog & Metadata Foundation.
 
-## Module 2 Deliverables
+## Module 3 Deliverables
 
-Module 2 keeps the Module 1 lakehouse flow intact while moving Iceberg table storage to MinIO-backed object storage:
+Module 3 keeps the Module 2 lakehouse flow intact while introducing a dedicated metadata layer with Project Nessie:
 - synthetic commerce data generator (`scripts/data_generator/generate_commerce_data.py`)
 - six raw datasets (`customers`, `products`, `orders`, `order_items`, `payments`, `shipments`)
 - raw -> bronze -> silver -> gold batch pipeline on Spark + Iceberg
 - Iceberg warehouse rooted in MinIO via S3A
-- compute/storage separation between Spark runtime and object storage
+- Project Nessie catalog service for Iceberg metadata
+- separation of compute (Spark), storage (MinIO), and catalog (Nessie)
 - six gold analytical data products:
   - `daily_revenue`
   - `sales_by_country`
@@ -20,7 +21,7 @@ Module 2 keeps the Module 1 lakehouse flow intact while moving Iceberg table sto
   - `payment_success_rate`
   - `shipment_delivery_summary`
 
-MinIO is now part of the local platform runtime. Kafka, Debezium, and dbt remain out of scope.
+MinIO and Nessie are now part of the local platform runtime. Kafka, Debezium, and dbt remain out of scope.
 
 ## Architecture Story
 
@@ -31,12 +32,14 @@ NovaLake follows a medallion contract: raw -> bronze -> silver -> gold.
 - Silver: standardized and validated domain-conformed datasets
 - Gold: business-facing analytical data products
 - Storage: MinIO object storage for Iceberg table data and metadata
+- Metadata: Nessie catalog service for Iceberg namespace and table metadata
 
 ## Documentation Map
 
 - Architecture index: `docs/architecture.md`
 - Module 1 formal architecture: `docs/architecture/module_01_lakehouse_foundation.md`
 - Module 2 formal architecture: `docs/architecture/module_02_storage_evolution.md`
+- Module 3 formal architecture: `docs/architecture/module_03_catalog_metadata_foundation.md`
 - Use case: `docs/use_case.md`
 - Domain model: `docs/domain_model.md`
 - Requirements: `docs/requirements.md`
@@ -49,15 +52,7 @@ NovaLake follows a medallion contract: raw -> bronze -> silver -> gold.
 
 ## Platform Initialization Guide
 
-This is the recommended local initialization flow for Module 2. It is written to keep startup deterministic, observable, and easy to repeat.
-
-Validated locally on March 15, 2026:
-- `.\scripts\run_job.ps1 up`
-- `.\scripts\run_job.ps1 bronze`
-- `.\scripts\run_job.ps1 silver`
-- `.\scripts\run_job.ps1 gold`
-- `.\scripts\lab_health.ps1`
-- `.\scripts\run_job.ps1 down`
+This is the recommended local initialization flow for Module 3. It is written to keep startup deterministic, observable, and easy to repeat.
 
 The PowerShell helper scripts are the recommended entrypoint on Windows.
 
@@ -70,9 +65,10 @@ Before starting the stack, make sure:
   - `5432` for PostgreSQL
   - `7077`, `8080`, `8081` for Spark
   - `8888` for JupyterLab
+  - `19120` for Nessie
   - `9000`, `9001` for MinIO API and console
 - you are in the project root
-- you are on the expected branch for Module 2 work
+- you are on the expected branch for Module 3 work
 
 Best practice:
 - treat the local stack as an environment, not just a command sequence
@@ -96,17 +92,19 @@ cp .env.example .env
 Then review the values in `.env`:
 
 - PostgreSQL credentials
+- `NOVALAKE_CATALOG_BACKEND=nessie`
+- Nessie URI / ref / auth mode
 - `NOVALAKE_STORAGE_BACKEND=s3_compatible`
 - MinIO access key / secret key
 - Iceberg warehouse bucket and prefix
 
 DataOps note:
 - do not commit `.env`
-- if `.env` already exists from an earlier setup, merge in the new MinIO variables from `.env.example` rather than replacing blindly
+- if `.env` already exists from an earlier setup, merge in the new Nessie and MinIO variables from `.env.example` rather than replacing blindly
 
 ### Step 2. Build and start the platform services
 
-This starts PostgreSQL, Spark, and MinIO. The startup command also builds the custom Spark image with Iceberg and S3A dependencies.
+This starts PostgreSQL, Spark, MinIO, and Nessie. The startup command also builds the custom Spark image with Iceberg, Nessie, and S3A dependencies.
 
 PowerShell:
 ```powershell
@@ -122,6 +120,7 @@ Service endpoints after startup:
 
 - Spark master UI: `http://localhost:8080`
 - Spark worker UI: `http://localhost:8081`
+- Nessie API: `http://localhost:19120/api/v1`
 - MinIO API: `http://localhost:9000`
 - MinIO console: `http://localhost:9001`
 
@@ -137,7 +136,7 @@ docker compose --env-file .env -f infra/docker-compose.yml ps
 
 Best practice:
 - always wait for services to settle before running Spark jobs
-- confirm MinIO is reachable before expecting Iceberg tables to be written
+- confirm Nessie and MinIO are reachable before expecting Iceberg tables to be written
 - on Windows, prefer the PowerShell wrappers over raw `docker compose` commands for repeatable local operations
 
 ### Step 3. Initialize the medallion pipeline
@@ -194,7 +193,19 @@ Bash:
 
 ### Step 4. Validate the platform state
 
-First, confirm the catalog is visible:
+First, confirm the Nessie catalog endpoint is reachable:
+
+PowerShell:
+```powershell
+Invoke-WebRequest http://localhost:19120/api/v1/config -UseBasicParsing
+```
+
+Bash:
+```bash
+curl http://localhost:19120/api/v1/config
+```
+
+Then confirm the catalog is visible:
 
 PowerShell:
 ```powershell
@@ -226,7 +237,7 @@ Finally, inspect MinIO:
 - verify the `warehouse/` prefix contains Iceberg-managed table data for `bronze`, `silver`, and `gold`
 
 Best practice:
-- validate both the catalog view and the physical storage view
+- validate the catalog endpoint, the catalog view, and the physical storage view
 - check storage after the first successful run to confirm compute and storage are correctly separated
 
 ### Step 5. Start the optional notebook lab
@@ -259,6 +270,7 @@ What a healthy result looks like:
 - notebook-lab is running
 - `http://localhost:8888` responds successfully
 - notebook-lab can reach `spark-master:7077`
+- `http://localhost:19120/api/v1/config` responds successfully
 - Spark SQL returns the `bronze`, `silver`, and `gold` namespaces
 - the script ends with `Health check passed.`
 
@@ -288,14 +300,16 @@ If you want the shortest safe sequence:
 1. Copy `.env.example` to `.env`
 2. Run `.\scripts\run_job.ps1 up` or `./scripts/run_job.sh up`
 3. Run `bronze`, then `silver`, then `gold`
-4. Validate with `SHOW NAMESPACES IN novalake`
+4. Validate Nessie and run `SHOW NAMESPACES IN novalake`
 5. Check MinIO at `http://localhost:9001`
 
 ## Module Evolution
 
 - Module 1: Lakehouse Foundation
-- Module 2: Storage Evolution (current baseline)
-- Module 3: CDC Ingestion
-- Module 4: Streaming Analytics
-- Module 5: Metadata Intelligence
-- Module 6: AI Copilot
+- Module 2: Storage Evolution
+- Module 3: Catalog & Metadata Foundation (current baseline)
+- Module 4: CDC Ingestion
+- Module 5: Streaming Analytics
+- Module 6: Metadata-Driven Pipelines
+- Module 7: Metadata Intelligence
+- Module 8: AI Copilot
