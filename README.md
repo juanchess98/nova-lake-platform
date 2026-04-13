@@ -2,7 +2,7 @@
 
 NovaLake is a modular lakehouse platform that demonstrates how a modern data platform evolves module by module.
 
-**Current baseline:** Module 3 - Catalog & Metadata Foundation.
+**Current baseline:** Module 3 - Catalog & Metadata Foundation, hardened for the Module 4 handoff.
 
 ## Module 3 Deliverables
 
@@ -23,6 +23,16 @@ Module 3 keeps the Module 2 lakehouse flow intact while introducing a dedicated 
 
 MinIO and Nessie are now part of the local platform runtime. Kafka, Debezium, and dbt remain out of scope.
 
+## Module 3 Hardening Pass
+
+This pass does not redesign Module 3. It strengthens the existing baseline so CDC-focused Module 4 work starts from a cleaner operating model:
+
+- shared Spark runtime configuration now reflects Nessie as the real catalog backend
+- the notebook lab now derives Iceberg + Nessie + S3A settings from the same shared Python config used by Spark jobs and SQL helpers
+- `spark.sql.catalogImplementation=in-memory` is kept only for `spark-sql` wrapper sessions, where it suppresses the embedded Hive metastore and avoids local Derby lock contention
+- lab health validation now checks Nessie reachability, Spark catalog visibility, and a representative Gold query
+- Nessie local runtime is explicitly documented as development-oriented and intentionally in-memory
+
 ## Architecture Story
 
 NovaLake follows a medallion contract: raw -> bronze -> silver -> gold.
@@ -33,6 +43,12 @@ NovaLake follows a medallion contract: raw -> bronze -> silver -> gold.
 - Gold: business-facing analytical data products
 - Storage: MinIO object storage for Iceberg table data and metadata
 - Metadata: Nessie catalog service for Iceberg namespace and table metadata
+
+Module 2 behavior that remains unchanged:
+
+- Bronze, Silver, and Gold jobs keep the same medallion responsibilities
+- MinIO remains the physical Iceberg storage layer
+- table identifiers stay under `novalake.bronze`, `novalake.silver`, and `novalake.gold`
 
 ## Documentation Map
 
@@ -123,6 +139,9 @@ Service endpoints after startup:
 - Nessie API: `http://localhost:19120/api/v1`
 - MinIO API: `http://localhost:9000`
 - MinIO console: `http://localhost:9001`
+
+Local-development note:
+- the Nessie container uses an in-memory version store in Module 3; this keeps local setup lightweight and reproducible, but catalog state is not intended to be durable across every container lifecycle scenario
 
 Optional direct status check:
 
@@ -217,7 +236,7 @@ Bash:
 ./scripts/sql_shell.sh -q "SHOW NAMESPACES IN novalake"
 ```
 
-Then validate that a gold data product is queryable:
+Then validate that Spark can resolve a representative Gold table through Nessie:
 
 PowerShell:
 ```powershell
@@ -228,6 +247,9 @@ Bash:
 ```bash
 ./scripts/sql_shell.sh -q "SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date"
 ```
+
+Operational note:
+- the SQL wrapper injects `spark.sql.catalogImplementation=in-memory` only for `spark-sql` sessions, to keep the CLI from opening the embedded Hive metastore while Nessie remains the authoritative Iceberg catalog
 
 Finally, inspect MinIO:
 
@@ -272,6 +294,7 @@ What a healthy result looks like:
 - notebook-lab can reach `spark-master:7077`
 - `http://localhost:19120/api/v1/config` responds successfully
 - Spark SQL returns the `bronze`, `silver`, and `gold` namespaces
+- Spark SQL returns rows from `novalake.gold.daily_revenue`
 - the script ends with `Health check passed.`
 
 ### Step 6. Stop the platform cleanly
@@ -300,8 +323,10 @@ If you want the shortest safe sequence:
 1. Copy `.env.example` to `.env`
 2. Run `.\scripts\run_job.ps1 up` or `./scripts/run_job.sh up`
 3. Run `bronze`, then `silver`, then `gold`
-4. Validate Nessie and run `SHOW NAMESPACES IN novalake`
-5. Check MinIO at `http://localhost:9001`
+4. Validate Nessie at `http://localhost:19120/api/v1/config`
+5. Run `SHOW NAMESPACES IN novalake`
+6. Run `SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date`
+7. Check MinIO at `http://localhost:9001`
 
 ## Module Evolution
 

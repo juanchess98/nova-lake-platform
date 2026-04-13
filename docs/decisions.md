@@ -258,7 +258,41 @@ Use Project Nessie as the Iceberg catalog backend for NovaLake while keeping Min
 - Negative:
   - Adds a new service to the local stack
   - Requires Nessie runtime dependencies in the Spark image
+  - Local Module 3 development intentionally runs Nessie with an in-memory version store, so catalog state is not treated as durable across every container lifecycle scenario
 
 ### Follow-up
 
 Use the Nessie-backed metadata layer as the foundation for CDC orchestration, metadata-driven pipelines, and metadata intelligence in later modules.
+
+## ADR-009: Centralize Module 3 Spark Catalog Configuration in Shared Helpers
+
+- Status: Accepted
+- Date: 2026-04-13
+
+### Context
+
+Module 3 introduced multiple Spark execution surfaces: batch jobs, `spark-sql` helpers, and the optional notebook lab. The core catalog wiring already lived in `core/config.py`, but the notebook runtime still duplicated Iceberg, Nessie, and S3A configuration in Docker Compose. At the same time, `spark.sql.catalogImplementation=in-memory` was still being applied broadly even though Nessie had become the real catalog backend.
+
+### Decision
+
+Make `core/config.py` the shared source of truth for Module 3 Spark catalog settings. Remove `spark.sql.catalogImplementation=in-memory` from the general Spark runtime config, but keep it in the `spark-sql` wrappers only as a local CLI safeguard against the embedded Hive metastore and Derby lock contention.
+
+### Alternatives Considered
+
+- Keep duplicating catalog settings in Docker Compose and shell wrappers
+- Remove `spark.sql.catalogImplementation=in-memory` everywhere, including `spark-sql`
+- Move all Spark configuration fully into Compose environment variables
+
+### Consequences
+
+- Positive:
+  - Runtime configuration now matches the Module 3 architecture more accurately
+  - Notebook, jobs, and helper scripts are less likely to drift apart
+  - The reason for the remaining `spark-sql` override is explicit and reviewable
+- Negative:
+  - Wrapper scripts now depend on the shared Python config helper for startup
+  - The local `spark-sql` path still carries a CLI-specific compatibility rule that future modules should revisit if the interactive surface changes
+
+### Follow-up
+
+Reassess the CLI-specific Hive suppression rule if NovaLake later standardizes on a different interactive SQL entrypoint or adds stronger automated environment validation.

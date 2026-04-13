@@ -26,7 +26,7 @@ source "$ENV_FILE"
 set +a
 
 mapfile -t spark_conf_args < <(
-  run_compose exec -T spark-master python /opt/novalake/scripts/spark_conf_cli.py
+  run_compose exec -T spark-master python /opt/novalake/scripts/spark_conf_cli.py --target spark-sql
 )
 
 SPARK_SQL_BASE=(/opt/spark/bin/spark-sql)

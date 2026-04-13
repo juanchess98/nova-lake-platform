@@ -19,12 +19,12 @@ source "$ENV_FILE"
 set +a
 
 mapfile -t spark_conf_args < <(
-  run_compose exec -T spark-master python /opt/novalake/scripts/spark_conf_cli.py
+  run_compose exec -T spark-master python /opt/novalake/scripts/spark_conf_cli.py --target spark-sql
 )
 
 : "${NOVALAKE_CATALOG_URI:=http://localhost:19120/api/v1}"
 
-echo "[1/5] Checking notebook-lab container status..."
+echo "[1/6] Checking notebook-lab container status..."
 status="$(run_compose ps --format json notebook-lab | tr -d '\r\n')"
 if [[ -z "$status" ]] || [[ "$status" != *"running"* ]]; then
   echo "FAIL: notebook-lab is not running."
@@ -32,7 +32,7 @@ if [[ -z "$status" ]] || [[ "$status" != *"running"* ]]; then
 fi
 echo "OK: notebook-lab is running."
 
-echo "[2/5] Checking HTTP endpoint http://localhost:8888 ..."
+echo "[2/6] Checking HTTP endpoint http://localhost:8888 ..."
 http_code="$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8888)"
 if [[ "$http_code" != "200" ]] && [[ "$http_code" != "302" ]]; then
   echo "FAIL: Notebook endpoint returned HTTP $http_code"
@@ -40,7 +40,7 @@ if [[ "$http_code" != "200" ]] && [[ "$http_code" != "302" ]]; then
 fi
 echo "OK: Notebook endpoint reachable (HTTP $http_code)."
 
-echo "[3/5] Checking Spark master service from lab container..."
+echo "[3/6] Checking Spark master service from lab container..."
 run_compose exec notebook-lab /bin/bash -lc "python3 - <<'PY'
 import socket
 s = socket.socket()
@@ -50,7 +50,7 @@ s.close()
 print('OK: TCP connection to spark-master:7077')
 PY"
 
-echo "[4/5] Checking Nessie endpoint ${NOVALAKE_CATALOG_URI}/config ..."
+echo "[4/6] Checking Nessie endpoint ${NOVALAKE_CATALOG_URI}/config ..."
 nessie_http_code="$(curl -s -o /dev/null -w "%{http_code}" "${NOVALAKE_CATALOG_URI}/config")"
 if [[ "$nessie_http_code" != "200" ]]; then
   echo "FAIL: Nessie endpoint returned HTTP $nessie_http_code"
@@ -58,7 +58,11 @@ if [[ "$nessie_http_code" != "200" ]]; then
 fi
 echo "OK: Nessie endpoint reachable (HTTP 200)."
 
-echo "[5/5] Checking Iceberg catalog visibility..."
+echo "[5/6] Checking Iceberg catalog visibility..."
 run_compose exec spark-master /opt/spark/bin/spark-sql "${spark_conf_args[@]}" -e "SHOW NAMESPACES IN novalake;"
+
+echo "[6/6] Checking representative Gold query..."
+run_compose exec spark-master /opt/spark/bin/spark-sql "${spark_conf_args[@]}" -e \
+  "SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date LIMIT 5;"
 
 echo "Health check passed."

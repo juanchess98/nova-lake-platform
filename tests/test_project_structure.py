@@ -8,6 +8,8 @@ from core.config import (
     RAW_DATA_DIR,
     STORAGE_BACKEND_S3,
     WAREHOUSE_DIR,
+    spark_runtime_config,
+    spark_sql_cli_config,
     warehouse_uri,
 )
 
@@ -40,6 +42,7 @@ def test_job_runner_scripts_exist() -> None:
     assert Path("scripts/lab_health.ps1").exists(), "PowerShell notebook lab health script is missing."
     assert Path("scripts/sql_shell.sh").exists(), "Bash SQL shell script is missing."
     assert Path("scripts/sql_shell.ps1").exists(), "PowerShell SQL shell script is missing."
+    assert Path("scripts/start_notebook_lab.sh").exists(), "Notebook lab startup script is missing."
 
 
 def test_notebook_templates_exist() -> None:
@@ -67,3 +70,23 @@ def test_module_2_warehouse_defaults_to_s3() -> None:
 def test_module_3_catalog_defaults_to_nessie() -> None:
     assert CATALOG_BACKEND_NESSIE == "nessie"
     assert CATALOG_BACKEND == CATALOG_BACKEND_NESSIE
+
+
+def test_shared_runtime_config_uses_nessie_without_catalog_fallback() -> None:
+    runtime_config = spark_runtime_config()
+
+    assert "spark.sql.catalogImplementation" not in runtime_config
+    assert (
+        runtime_config["spark.sql.catalog.novalake.catalog-impl"]
+        == "org.apache.iceberg.nessie.NessieCatalog"
+    )
+
+
+def test_spark_sql_cli_config_keeps_local_hive_suppression() -> None:
+    cli_config = spark_sql_cli_config()
+
+    assert cli_config["spark.sql.catalogImplementation"] == "in-memory"
+    assert (
+        cli_config["spark.sql.catalog.novalake.catalog-impl"]
+        == "org.apache.iceberg.nessie.NessieCatalog"
+    )

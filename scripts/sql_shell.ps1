@@ -11,7 +11,7 @@ if (-not (Test-Path $envFile)) {
 }
 
 $sparkConfArgs = @(
-    docker compose --env-file .env -f infra/docker-compose.yml exec -T spark-master python /opt/novalake/scripts/spark_conf_cli.py
+    docker compose --env-file .env -f infra/docker-compose.yml exec -T spark-master python /opt/novalake/scripts/spark_conf_cli.py --target spark-sql
 )
 if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE

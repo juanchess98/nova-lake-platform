@@ -50,7 +50,12 @@ Compute and storage become decoupled while pipelines remain behaviorally consist
 
 NovaLake gains a dedicated metadata layer that aligns the platform with modern lakehouse architecture.
 
-Status: current baseline
+Hardening baseline:
+- shared Spark config is the source of truth for Nessie + Iceberg + S3A runtime settings
+- local validation explicitly covers Nessie reachability, namespace visibility, and a representative Gold query
+- local Nessie durability remains a conscious dev-mode tradeoff rather than an implicit platform guarantee
+
+Status: current hardened baseline
 
 ### Module 4 - CDC Ingestion
 
@@ -62,7 +67,7 @@ Status: current baseline
 
 #### Outcome
 
-NovaLake moves from batch snapshot ingestion toward operational-source continuity.
+NovaLake moves from batch snapshot ingestion toward operational-source continuity, building on the cleaned Module 3 separation between compute, storage, and catalog.
 
 ### Module 5 - Streaming Analytics
 

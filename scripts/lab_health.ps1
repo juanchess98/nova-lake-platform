@@ -25,7 +25,7 @@ function Get-DotEnvValue {
 }
 
 $sparkConfArgs = @(
-    docker compose --env-file .env -f infra/docker-compose.yml exec -T spark-master python /opt/novalake/scripts/spark_conf_cli.py
+    docker compose --env-file .env -f infra/docker-compose.yml exec -T spark-master python /opt/novalake/scripts/spark_conf_cli.py --target spark-sql
 )
 if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE
@@ -33,7 +33,7 @@ if ($LASTEXITCODE -ne 0) {
 
 $catalogUri = Get-DotEnvValue -Name "NOVALAKE_CATALOG_URI" -DefaultValue "http://localhost:19120/api/v1"
 
-Write-Host "[1/5] Checking notebook-lab container status..."
+Write-Host "[1/6] Checking notebook-lab container status..."
 $statusJson = docker compose --env-file .env -f infra/docker-compose.yml --profile lab ps --format json notebook-lab
 if (-not $statusJson) {
     Write-Error "FAIL: notebook-lab is not running."
@@ -45,7 +45,7 @@ if ($statusJson -notmatch '"State":"running"') {
 }
 Write-Host "OK: notebook-lab is running."
 
-Write-Host "[2/5] Checking HTTP endpoint http://localhost:8888 ..."
+Write-Host "[2/6] Checking HTTP endpoint http://localhost:8888 ..."
 $resp = Invoke-WebRequest -Uri "http://localhost:8888" -UseBasicParsing -Method Get
 if ($resp.StatusCode -ne 200) {
     Write-Error "FAIL: Notebook endpoint returned HTTP $($resp.StatusCode)"
@@ -53,7 +53,7 @@ if ($resp.StatusCode -ne 200) {
 }
 Write-Host "OK: Notebook endpoint reachable (HTTP 200)."
 
-Write-Host "[3/5] Checking Spark master service from lab container..."
+Write-Host "[3/6] Checking Spark master service from lab container..."
 $sparkConnectivityCheck = 'echo > /dev/tcp/spark-master/7077 && echo "OK: TCP connection to spark-master:7077"'
 $composeArgs = @(
     "compose",
@@ -67,7 +67,7 @@ $composeArgs = @(
 & docker @composeArgs
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-Write-Host "[4/5] Checking Nessie endpoint $catalogUri/config ..."
+Write-Host "[4/6] Checking Nessie endpoint $catalogUri/config ..."
 $nessieResp = Invoke-WebRequest -Uri "$catalogUri/config" -UseBasicParsing -Method Get
 if ($nessieResp.StatusCode -ne 200) {
     Write-Error "FAIL: Nessie endpoint returned HTTP $($nessieResp.StatusCode)"
@@ -75,7 +75,7 @@ if ($nessieResp.StatusCode -ne 200) {
 }
 Write-Host "OK: Nessie endpoint reachable (HTTP 200)."
 
-Write-Host "[5/5] Checking Iceberg catalog visibility..."
+Write-Host "[5/6] Checking Iceberg catalog visibility..."
 $catalogCheckArgs = @(
     "compose",
     "--env-file", ".env",
@@ -87,6 +87,20 @@ $catalogCheckArgs = @(
 $catalogCheckArgs += $sparkConfArgs
 $catalogCheckArgs += @("-e", "SHOW NAMESPACES IN novalake;")
 & docker @catalogCheckArgs
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+Write-Host "[6/6] Checking representative Gold query..."
+$goldQueryArgs = @(
+    "compose",
+    "--env-file", ".env",
+    "-f", "infra/docker-compose.yml",
+    "--profile", "lab",
+    "exec", "spark-master",
+    "/opt/spark/bin/spark-sql"
+)
+$goldQueryArgs += $sparkConfArgs
+$goldQueryArgs += @("-e", "SELECT * FROM novalake.gold.daily_revenue ORDER BY order_date LIMIT 5;")
+& docker @goldQueryArgs
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 Write-Host "Health check passed."

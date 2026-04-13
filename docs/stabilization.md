@@ -46,7 +46,7 @@ The foundation architecture was correct, but multiple runtime/tooling edge cases
 7. Derby metastore lock contention (`XSDB6`)
 - Symptom: Spark SQL startup error due to `metastore_db` lock.
 - Cause: default Hive metastore behavior in CLI sessions.
-- Resolution: SQL wrappers enforce `spark.sql.catalogImplementation=in-memory`.
+- Resolution: Module 3 keeps `spark.sql.catalogImplementation=in-memory` only in the `spark-sql` wrappers. Shared Spark runtime config no longer carries that setting, so Nessie remains the explicit catalog backend for jobs and notebook sessions while the CLI still avoids the embedded Hive metastore.
 
 8. Jupyter Lab startup failures
 - Symptom: lab container up but UI unreachable or immediate container exit.
@@ -66,3 +66,4 @@ The foundation architecture was correct, but multiple runtime/tooling edge cases
 - Reproducible local platform with Spark + Iceberg + Postgres services.
 - Reliable CLI and notebook UX for exploration.
 - Cleaner and more portable operational scripts for Windows and Unix-like shells.
+- A clearer Module 3 baseline where shared runtime config points at Nessie and CLI-specific compatibility behavior is documented instead of implicit.

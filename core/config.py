@@ -22,6 +22,7 @@ CATALOG_BACKEND_NESSIE = "nessie"
 CATALOG_BACKEND = os.getenv("NOVALAKE_CATALOG_BACKEND", CATALOG_BACKEND_NESSIE)
 
 SPARK_SQL_EXTENSIONS = "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions"
+SPARK_SQL_CLI_CATALOG_IMPLEMENTATION = "in-memory"
 
 S3_ENDPOINT = os.getenv("NOVALAKE_S3_ENDPOINT", "http://minio:9000")
 S3_ACCESS_KEY = os.getenv("NOVALAKE_S3_ACCESS_KEY", "novalake")
@@ -119,15 +120,28 @@ def iceberg_catalog_config() -> Dict[str, str]:
 def spark_runtime_config() -> Dict[str, str]:
     """Build shared Spark runtime settings for NovaLake sessions."""
     return {
-        "spark.sql.catalogImplementation": "in-memory",
         "spark.sql.extensions": SPARK_SQL_EXTENSIONS,
         **iceberg_catalog_config(),
     }
 
 
-def spark_conf_cli_args() -> List[str]:
+def spark_sql_cli_config() -> Dict[str, str]:
+    """Build spark-sql CLI settings, including local Hive metastore suppression."""
+    return {
+        **spark_runtime_config(),
+        "spark.sql.catalogImplementation": SPARK_SQL_CLI_CATALOG_IMPLEMENTATION,
+    }
+
+
+def spark_conf_cli_args(include_spark_sql_cli_overrides: bool = False) -> List[str]:
     """Return Spark CLI args as alternating ``--conf`` and ``key=value`` entries."""
     args: List[str] = []
-    for key, value in spark_runtime_config().items():
+    config = (
+        spark_sql_cli_config()
+        if include_spark_sql_cli_overrides
+        else spark_runtime_config()
+    )
+
+    for key, value in config.items():
         args.extend(["--conf", f"{key}={value}"])
     return args
