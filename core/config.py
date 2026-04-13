@@ -1,8 +1,8 @@
-"""Central configuration for NovaLake Platform storage and Spark runtime."""
+"""Central configuration for NovaLake Platform catalog, storage, and Spark runtime."""
 
 import os
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List
 from urllib.parse import urlparse
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +17,10 @@ STORAGE_BACKEND_LOCAL = "local_filesystem"
 STORAGE_BACKEND_S3 = "s3_compatible"
 STORAGE_BACKEND = os.getenv("NOVALAKE_STORAGE_BACKEND", STORAGE_BACKEND_S3)
 
+CATALOG_BACKEND_HADOOP = "hadoop"
+CATALOG_BACKEND_NESSIE = "nessie"
+CATALOG_BACKEND = os.getenv("NOVALAKE_CATALOG_BACKEND", CATALOG_BACKEND_NESSIE)
+
 SPARK_SQL_EXTENSIONS = "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions"
 
 S3_ENDPOINT = os.getenv("NOVALAKE_S3_ENDPOINT", "http://minio:9000")
@@ -25,6 +29,10 @@ S3_SECRET_KEY = os.getenv("NOVALAKE_S3_SECRET_KEY", "novalake123")
 S3_BUCKET = os.getenv("NOVALAKE_S3_BUCKET", "novalake-lakehouse")
 S3_WAREHOUSE_PREFIX = os.getenv("NOVALAKE_S3_WAREHOUSE_PREFIX", "warehouse").strip("/")
 S3_PATH_STYLE_ACCESS = os.getenv("NOVALAKE_S3_PATH_STYLE_ACCESS", "true").lower()
+
+CATALOG_URI = os.getenv("NOVALAKE_CATALOG_URI", "http://nessie:19120/api/v1")
+CATALOG_REF = os.getenv("NOVALAKE_CATALOG_REF", "main")
+CATALOG_AUTH_TYPE = os.getenv("NOVALAKE_CATALOG_AUTH_TYPE", "NONE")
 
 
 def _s3_endpoint_authority() -> str:
@@ -55,13 +63,40 @@ def warehouse_uri() -> str:
     )
 
 
-def iceberg_catalog_config() -> Dict[str, str]:
-    """Build Iceberg catalog settings for Spark sessions."""
-    config = {
+def _base_catalog_config() -> Dict[str, str]:
+    return {
         f"spark.sql.catalog.{ICEBERG_CATALOG}": "org.apache.iceberg.spark.SparkCatalog",
-        f"spark.sql.catalog.{ICEBERG_CATALOG}.type": "hadoop",
         f"spark.sql.catalog.{ICEBERG_CATALOG}.warehouse": warehouse_uri(),
     }
+
+
+def _nessie_catalog_config() -> Dict[str, str]:
+    return {
+        **_base_catalog_config(),
+        f"spark.sql.catalog.{ICEBERG_CATALOG}.catalog-impl": (
+            "org.apache.iceberg.nessie.NessieCatalog"
+        ),
+        f"spark.sql.catalog.{ICEBERG_CATALOG}.uri": CATALOG_URI,
+        f"spark.sql.catalog.{ICEBERG_CATALOG}.ref": CATALOG_REF,
+        f"spark.sql.catalog.{ICEBERG_CATALOG}.authentication.type": CATALOG_AUTH_TYPE,
+    }
+
+
+def iceberg_catalog_config() -> Dict[str, str]:
+    """Build Iceberg catalog settings for Spark sessions."""
+    if CATALOG_BACKEND == CATALOG_BACKEND_HADOOP:
+        config = {
+            **_base_catalog_config(),
+            f"spark.sql.catalog.{ICEBERG_CATALOG}.type": "hadoop",
+        }
+    elif CATALOG_BACKEND == CATALOG_BACKEND_NESSIE:
+        config = _nessie_catalog_config()
+    else:
+        raise ValueError(
+            "Unsupported catalog backend configured: "
+            f"'{CATALOG_BACKEND}'. Expected one of: "
+            f"'{CATALOG_BACKEND_HADOOP}', '{CATALOG_BACKEND_NESSIE}'."
+        )
 
     if STORAGE_BACKEND == STORAGE_BACKEND_S3:
         config.update(
@@ -88,3 +123,11 @@ def spark_runtime_config() -> Dict[str, str]:
         "spark.sql.extensions": SPARK_SQL_EXTENSIONS,
         **iceberg_catalog_config(),
     }
+
+
+def spark_conf_cli_args() -> List[str]:
+    """Return Spark CLI args as alternating ``--conf`` and ``key=value`` entries."""
+    args: List[str] = []
+    for key, value in spark_runtime_config().items():
+        args.extend(["--conf", f"{key}={value}"])
+    return args

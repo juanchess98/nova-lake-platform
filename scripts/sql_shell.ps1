@@ -10,45 +10,19 @@ if (-not (Test-Path $envFile)) {
     exit 1
 }
 
-function Get-DotEnvValue {
-    param(
-        [string]$Name,
-        [string]$DefaultValue = ""
-    )
-
-    $match = Get-Content $envFile |
-        Where-Object { $_ -match "^\s*$Name=(.*)$" } |
-        Select-Object -First 1
-
-    if ($match) {
-        return ($match -replace "^\s*$Name=", "").Trim()
-    }
-
-    return $DefaultValue
+$sparkConfArgs = @(
+    docker compose --env-file .env -f infra/docker-compose.yml exec -T spark-master python /opt/novalake/scripts/spark_conf_cli.py
+)
+if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
 }
-
-$bucket = Get-DotEnvValue -Name "NOVALAKE_S3_BUCKET" -DefaultValue "novalake-lakehouse"
-$warehousePrefix = Get-DotEnvValue -Name "NOVALAKE_S3_WAREHOUSE_PREFIX" -DefaultValue "warehouse"
-$accessKey = Get-DotEnvValue -Name "NOVALAKE_S3_ACCESS_KEY" -DefaultValue "novalake"
-$secretKey = Get-DotEnvValue -Name "NOVALAKE_S3_SECRET_KEY" -DefaultValue "novalake123"
-$pathStyle = Get-DotEnvValue -Name "NOVALAKE_S3_PATH_STYLE_ACCESS" -DefaultValue "true"
 
 $baseArgs = @(
     "exec", "spark-master",
-    "/opt/spark/bin/spark-sql",
-    "--conf", "spark.sql.catalogImplementation=in-memory",
-    "--conf", "spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",
-    "--conf", "spark.sql.catalog.novalake=org.apache.iceberg.spark.SparkCatalog",
-    "--conf", "spark.sql.catalog.novalake.type=hadoop",
-    "--conf", "spark.sql.catalog.novalake.warehouse=s3a://$bucket/$warehousePrefix",
-    "--conf", "spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem",
-    "--conf", "spark.hadoop.fs.s3a.endpoint=minio:9000",
-    "--conf", "spark.hadoop.fs.s3a.access.key=$accessKey",
-    "--conf", "spark.hadoop.fs.s3a.secret.key=$secretKey",
-    "--conf", "spark.hadoop.fs.s3a.path.style.access=$pathStyle",
-    "--conf", "spark.hadoop.fs.s3a.connection.ssl.enabled=false",
-    "--conf", "spark.hadoop.fs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider"
+    "/opt/spark/bin/spark-sql"
 )
+
+$baseArgs += $sparkConfArgs
 
 if ($Query -and $File) {
     Write-Error "Use either -Query or -File, not both."

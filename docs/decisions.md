@@ -228,4 +228,37 @@ Keep the Iceberg Hadoop catalog, but move the warehouse root to MinIO through th
 
 ### Follow-up
 
-Evaluate a service-backed Iceberg catalog when NovaLake introduces multi-environment deployment or concurrent team workflows.
+Adopt a service-backed Iceberg catalog in the next platform module once metadata becomes a dedicated architectural concern.
+
+## ADR-008: Introduce Project Nessie as the Dedicated Iceberg Catalog
+
+- Status: Accepted
+- Date: 2026-03-17
+
+### Context
+
+Module 2 separated compute from storage by moving Iceberg data into MinIO, but the catalog remained Hadoop-based and still coupled to the warehouse path. Module 3 requires a dedicated metadata layer without changing existing job contracts or physical storage.
+
+### Decision
+
+Use Project Nessie as the Iceberg catalog backend for NovaLake while keeping MinIO as the object store and Spark as the processing engine.
+
+### Alternatives Considered
+
+- Keep the Hadoop catalog in place
+- Introduce Hive Metastore
+- Introduce a generic Iceberg REST catalog
+
+### Consequences
+
+- Positive:
+  - Catalog metadata is now service-backed and decoupled from storage
+  - Existing medallion namespaces and table identifiers stay stable
+  - The platform gains a clear metadata-layer evolution seam for future modules
+- Negative:
+  - Adds a new service to the local stack
+  - Requires Nessie runtime dependencies in the Spark image
+
+### Follow-up
+
+Use the Nessie-backed metadata layer as the foundation for CDC orchestration, metadata-driven pipelines, and metadata intelligence in later modules.

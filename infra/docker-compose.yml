@@ -1,4 +1,13 @@
 services:
+  nessie:
+    image: ghcr.io/projectnessie/nessie:0.103.3
+    container_name: novalake-nessie
+    environment:
+      nessie.version.store.type: IN_MEMORY
+      quarkus.http.host: 0.0.0.0
+    ports:
+      - "19120:19120"
+
   postgres:
     image: postgres:16
     container_name: novalake-postgres
@@ -60,6 +69,7 @@ services:
       - ../.env
     depends_on:
       - minio-init
+      - nessie
     environment:
       PYTHONPATH: /opt/novalake
       PYSPARK_PYTHON: python3
@@ -90,6 +100,7 @@ services:
     depends_on:
       - spark-master
       - minio-init
+      - nessie
     environment:
       PYTHONPATH: /opt/novalake
       PYSPARK_PYTHON: python3
@@ -121,6 +132,7 @@ services:
       - spark-master
       - spark-worker
       - minio-init
+      - nessie
     environment:
       PYTHONPATH: /opt/novalake
       PYSPARK_PYTHON: python3
@@ -132,7 +144,10 @@ services:
         --conf spark.sql.catalogImplementation=in-memory
         --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
         --conf spark.sql.catalog.novalake=org.apache.iceberg.spark.SparkCatalog
-        --conf spark.sql.catalog.novalake.type=hadoop
+        --conf spark.sql.catalog.novalake.catalog-impl=org.apache.iceberg.nessie.NessieCatalog
+        --conf spark.sql.catalog.novalake.uri=${NOVALAKE_CATALOG_URI:-http://nessie:19120/api/v1}
+        --conf spark.sql.catalog.novalake.ref=${NOVALAKE_CATALOG_REF:-main}
+        --conf spark.sql.catalog.novalake.authentication.type=${NOVALAKE_CATALOG_AUTH_TYPE:-NONE}
         --conf spark.sql.catalog.novalake.warehouse=s3a://${NOVALAKE_S3_BUCKET}/${NOVALAKE_S3_WAREHOUSE_PREFIX}
         --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem
         --conf spark.hadoop.fs.s3a.endpoint=minio:9000
